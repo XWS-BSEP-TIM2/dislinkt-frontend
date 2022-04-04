@@ -1,0 +1,13 @@
+Logo Colors:
+#48c6ef
+#6f86d6
+
+Fonts:
+
+
+
+Angular Material colors:
+
+
+
+
