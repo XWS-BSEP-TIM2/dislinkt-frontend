@@ -3,10 +3,13 @@ Logo Colors:
 #6f86d6
 
 Fonts:
-
-
+Mukta - Headings/Titles
+Montserrat - Regular text
 
 Angular Material colors:
+Light Blue Palette (200)
+Indigo Palette (400)
+Pink Palette (800)
 
 
 
