@@ -1,0 +1,22 @@
+.header-chat-dialog{
+    height: 80px;
+}
+
+.chat-bubble-area{
+    height: 600px;
+    background-color: rgb(252, 252, 252);
+    overflow: auto;
+    border: solid 1px;
+    border-color: rgb(228, 228, 228);
+    margin: 0px -32px 0px 0px;
+}
+
+.chat-text-area{
+    margin-top: 30px;
+}
+
+.send-button{
+    color: white;
+    font-weight: bold;
+    background-image: linear-gradient(to right, #6f87d6 , #48c6ef);
+}
