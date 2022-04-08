@@ -12,4 +12,11 @@ export class PostDisplayComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  redirectAuthorProfile(){
+
+  }
+
+  redirectPostPage() {
+    
+  }
 }
