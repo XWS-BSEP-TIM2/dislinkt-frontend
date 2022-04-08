@@ -28,6 +28,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
 import { HeaderComponent } from './components/dashboard/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SingleNotificationComponent } from './components/dashboard/single-notification/single-notification.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FeedComponent,
     SuggestedConnectionsPageComponent,
     HeaderComponent,
+    SingleNotificationComponent,
   ],
   imports: [
     BrowserModule,
