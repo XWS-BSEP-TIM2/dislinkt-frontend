@@ -3,10 +3,6 @@ mat-card {
   max-width: 540px !important;
 }
 
-.post-container img {
-  background-size: cover;
-}
-
 mat-card-header {
   margin-left: 0px !important;
 }
@@ -15,4 +11,13 @@ mat-card-header {
   margin-left: -16px;
   margin-right: -16px;
   width: calc(100% + 32px);
+  max-height: 600px;
+  overflow: hidden !important;
+
+  text-align: center;
+}
+
+.image-container img {
+  width: 100%;
+  margin: auto;
 }
