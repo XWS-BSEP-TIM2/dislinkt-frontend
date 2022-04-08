@@ -1,0 +1,19 @@
+
+.bubbles-massage-sender{
+    /* background-image: linear-gradient(to right, #6f87d6 , #48c6ef); */
+    background-color: rgb(255, 255, 255);
+    border: solid 2px #48c6ef;
+    color: black;
+    margin-bottom: 4px;
+    word-wrap: initial;
+    border-radius: 0px 12px 12px 12px;
+}
+
+.bubbles-massage-me{
+    background-image: linear-gradient(to right, #6f87d6 , #48c6ef);
+    color: white;
+    margin-bottom: 4px;
+    word-wrap: initial;
+    border-radius: 12px 0px 12px 12px;
+    max-width: 600px;
+}

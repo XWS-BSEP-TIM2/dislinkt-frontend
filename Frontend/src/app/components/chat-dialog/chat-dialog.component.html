@@ -1,1 +1,52 @@
-<p>chat-dialog works!</p>
+<div class="rows">
+    <!-- Header of selected contact -->
+    <div class="row header-chat-dialog">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <ngx-avatar name="Pera Peric" size="60"></ngx-avatar>
+                </div>
+                <div class="level-item">
+                    <h2>Pera Peric</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat bubbles -->
+    <div class="row chat-bubble-area">
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="false"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+        <chat-bubble [isMe]="true"></chat-bubble>
+       
+    </div>
+
+    <!-- Send new message -->
+    <div class="row chat-text-area">
+        <div class="columns">
+            <div class="column is-10">
+                <input type="text" class="input is-rounded">
+            </div>
+            <div class="column is-2">
+                <button class="button is-rounded send-button">send</button>
+            </div>
+        </div>
+    </div>
+</div>

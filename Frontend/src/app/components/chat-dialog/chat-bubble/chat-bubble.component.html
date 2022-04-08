@@ -1,1 +1,9 @@
-<p>chat-bubble works!</p>
+<div class="">
+    <div class="">
+        <div [ngClass]="{'is-pulled-right': isMe, 'is-pulled-left' : !isMe}">
+            <div class="level-item bubbles-massage-me card" [ngClass]="{'bubbles-massage-me': isMe, 'bubbles-massage-sender' : !isMe}">
+                <h3 class="m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius recusandae fugit ipsa atque. Possimus omnis numquam iusto eos, sint tempora odio earum consequatur, autem praesentium mollitia dolores necessitatibus quidem accusamus!</h3>
+            </div>
+        </div>
+    </div>
+</div>

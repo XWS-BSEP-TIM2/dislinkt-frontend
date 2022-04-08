@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleNotificationComponent } from './components/dashboard/single-notification/single-notification.component';
 import { SingleConnectionSuggestionComponent } from './components/suggested-connections/single-connection-suggestion/single-connection-suggestion.component';
 import { SingleJobOfferComponent } from './components/suggested-job-offers/single-job-offer/single-job-offer.component';
+import { SingleContactComponent } from './components/chat-page/single-contact/single-contact.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SingleJobOfferComponent } from './components/suggested-job-offers/singl
     SingleNotificationComponent,
     SingleConnectionSuggestionComponent,
     SingleJobOfferComponent,
+    SingleContactComponent,
   ],
   imports: [
     BrowserModule,

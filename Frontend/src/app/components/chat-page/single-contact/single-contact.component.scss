@@ -1,0 +1,23 @@
+@use "~@angular/material" as mat;
+@import "/src/custom-theme.scss";
+
+.single-contact-container {
+  margin-bottom: 1px;
+  transition: all 0.2s;
+
+  -webkit-box-shadow: inset 0px 11px 20px -25px #000000 !important; 
+  box-shadow: inset 0px 11px 20px -25px #000000 !important;
+  
+
+  &:hover {
+    background-color: #81d4fa20 !important;
+  }
+}
+
+.mat-card-subtitle {
+  margin-bottom: 0px !important;
+}
+
+.contact-panel-css{
+    background-color: white;
+}
