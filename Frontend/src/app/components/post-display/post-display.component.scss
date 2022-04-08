@@ -1,0 +1,18 @@
+mat-card {
+  margin-bottom: 20px !important;
+  max-width: 540px !important;
+}
+
+.post-container img {
+  background-size: cover;
+}
+
+mat-card-header {
+  margin-left: 0px !important;
+}
+
+.image-container {
+  margin-left: -16px;
+  margin-right: -16px;
+  width: calc(100% + 32px);
+}

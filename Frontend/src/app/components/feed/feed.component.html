@@ -1,1 +1,32 @@
-<p>feed works!</p>
+<h1>Hello, John! 👋</h1>
+<div class="columns">
+  <div class="column">
+    <h2>
+      Welcome to the feed. Here you can see the newest updates from your
+      connections.
+    </h2>
+    <mat-divider></mat-divider>
+    <div
+      class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
+    >
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+      <post-display></post-display>
+    </div>
+  </div>
+  <div class="column is-4 side-column">
+    <h2>People you might know</h2>
+    <mat-divider class="mb-5"></mat-divider>
+    <suggested-connections></suggested-connections>
+
+    <h2 class="mt-5 pt-5">Jobs for you</h2>
+    <mat-divider class="mb-5"></mat-divider>
+    <suggested-job-offers></suggested-job-offers>
+  </div>
+</div>
