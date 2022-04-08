@@ -1,0 +1,32 @@
+.header-container {
+  height: 60px;
+  padding-right: 20px;
+  padding-top: 15px;
+}
+
+.notification-menu {
+  max-height: 400px !important;
+  overflow-y: scroll;
+}
+
+.search-menu {
+  margin: 0px 10px;
+  padding: 0px;
+  overflow-y: hidden;
+}
+
+#search {
+  overflow-y: hidden;
+  width: 200px;
+}
+
+.mat-form-field {
+  margin-bottom: -20px !important;
+  margin-top: -18px !important;
+  padding: 5px;
+  width: 100%;
+}
+
+.search-menu button {
+  top: 5px !important;
+}

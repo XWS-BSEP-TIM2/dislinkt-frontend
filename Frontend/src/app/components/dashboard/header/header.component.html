@@ -1,1 +1,63 @@
-<p>header works!</p>
+<div
+  class="header-container is-flex is-flex-direction-row-reverse is-align-items-center"
+>
+  <div class="clickable" [matMenuTriggerFor]="profile">
+    <ngx-avatar name="John Smith" [round]="true" size="40"></ngx-avatar>
+  </div>
+  <mat-menu #profile="matMenu" class="mt-2">
+    <button mat-menu-item class="px-5">
+      <mat-icon>person_outline</mat-icon>
+      <span>My Profile</span>
+    </button>
+    <button mat-menu-item class="px-5">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <button mat-menu-item class="px-5">
+      <mat-icon>close</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+  <button mat-icon-button class="mr-5" [matMenuTriggerFor]="notifications">
+    <mat-icon matBadge="8" matBadgeColor="primary">notifications_none</mat-icon>
+  </button>
+  <mat-menu #notifications="matMenu" class="mt-2">
+    <div class="notification-menu">
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+      <single-notification></single-notification>
+    </div>
+  </mat-menu>
+
+  <button
+    mat-icon-button
+    class="mr-3"
+    [matMenuTriggerFor]="search"
+    (click)="resetSearch()"
+  >
+    <mat-icon matBadgeColor="warn">search</mat-icon>
+  </button>
+  <mat-menu #search="matMenu" class="mt-2">
+    <div class="search-menu" (click)="$event.stopPropagation()">
+      <mat-form-field appearance="standard" (click)="$event.stopPropagation()">
+        <input matInput placeholder="Search Dislinkt" [(ngModel)]="searchText"/>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="resetSearch()"
+          matTooltip="Reset search"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-menu>
+</div>
