@@ -11,13 +11,13 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$chat-application-primary: mat.define-palette(
+$dislinkt-application-primary: mat.define-palette(
   mat.$light-blue-palette,
   200,
   100,
   500
 );
-$chat-application-accent: mat.define-palette(
+$dislinkt-application-accent: mat.define-palette(
   mat.$indigo-palette,
   400,
   300,
@@ -25,16 +25,21 @@ $chat-application-accent: mat.define-palette(
 );
 
 // The warn palette is optional (defaults to red).
-$chat-application-warn: mat.define-palette(mat.$pink-palette, 800, 700, 900);
+$dislinkt-application-warn: mat.define-palette(
+  mat.$pink-palette,
+  800,
+  700,
+  900
+);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$chat-application-theme: mat.define-light-theme(
+$dislinkt-application-theme: mat.define-light-theme(
   (
     color: (
-      primary: $chat-application-primary,
-      accent: $chat-application-accent,
-      warn: $chat-application-warn,
+      primary: $dislinkt-application-primary,
+      accent: $dislinkt-application-accent,
+      warn: $dislinkt-application-warn,
     ),
   )
 );
@@ -42,7 +47,7 @@ $chat-application-theme: mat.define-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($chat-application-theme);
+@include mat.all-component-themes($dislinkt-application-theme);
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Mukta&display=swap");
 

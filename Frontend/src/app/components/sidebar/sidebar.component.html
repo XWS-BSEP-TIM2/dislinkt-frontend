@@ -1,1 +1,66 @@
-<p>sidebar works!</p>
+<div class="sidebar-container stretch-height">
+  <div class="p-5">
+    <div class="is-flex is-flex-direction-row is-align-items-center">
+      <div>
+        <img src="assets/Dislinkt-logo-no-padding.png" width="30px" />
+      </div>
+      <h1 class="ml-2">Dislinkt</h1>
+    </div>
+  </div>
+
+  <div>
+    <mat-button-toggle-group
+      vertical="true"
+      [(ngModel)]="currentPage"
+      (change)="redirect()"
+    >
+      <mat-button-toggle value="" [disabled]="currentPage == ''"
+        ><div class="label-container">
+          <mat-icon>home</mat-icon>Feed
+        </div></mat-button-toggle
+      >
+      <mat-button-toggle value="chat" [disabled]="currentPage == 'chat'"
+        ><div class="label-container">
+          <mat-icon>chat_bubble_outline</mat-icon>Chat
+        </div></mat-button-toggle
+      >
+      <mat-button-toggle
+        value="connections"
+        [disabled]="currentPage == 'connections'"
+      >
+        <div class="label-container">
+          <mat-icon>people_outline</mat-icon>Connections
+        </div></mat-button-toggle
+      >
+      <mat-button-toggle
+        value="job-offers"
+        [disabled]="currentPage == 'job-offers'"
+        ><div class="label-container">
+          <mat-icon>business_center</mat-icon>Job offers
+        </div></mat-button-toggle
+      >
+      <mat-button-toggle value="user/1" [disabled]="currentPage == 'user/1'"
+        ><div class="label-container">
+          <mat-icon>person</mat-icon>My profile
+        </div></mat-button-toggle
+      >
+      <mat-button-toggle
+        value="edit-profile"
+        [disabled]="currentPage == 'edit-profile'"
+        ><div class="label-container">
+          <mat-icon>settings</mat-icon>Settings
+        </div></mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+  <div class="has-text-centered p-5 new-post-container">
+    <button
+      mat-raised-button
+      color="accent"
+      matTooltip="Write a new post to your connections!"
+      class="new-post-button"
+    >
+      <mat-icon class="mr-3">edit</mat-icon>New post
+    </button>
+  </div>
+</div>
