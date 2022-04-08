@@ -29,6 +29,8 @@ import { SuggestedConnectionsPageComponent } from './components/suggested-connec
 import { HeaderComponent } from './components/dashboard/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleNotificationComponent } from './components/dashboard/single-notification/single-notification.component';
+import { SingleConnectionSuggestionComponent } from './components/suggested-connections/single-connection-suggestion/single-connection-suggestion.component';
+import { SingleJobOfferComponent } from './components/suggested-job-offers/single-job-offer/single-job-offer.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { SingleNotificationComponent } from './components/dashboard/single-notif
     SuggestedConnectionsPageComponent,
     HeaderComponent,
     SingleNotificationComponent,
+    SingleConnectionSuggestionComponent,
+    SingleJobOfferComponent,
   ],
   imports: [
     BrowserModule,
