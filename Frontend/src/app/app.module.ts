@@ -24,6 +24,10 @@ import { ChatPageComponent } from './components/chat-page/chat-page.component';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ChatBubbleComponent } from './components/chat-dialog/chat-bubble/chat-bubble.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
+import { HeaderComponent } from './components/dashboard/header/header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { ChatBubbleComponent } from './components/chat-dialog/chat-bubble/chat-b
     ChatDialogComponent,
     AdminDashboardComponent,
     ChatBubbleComponent,
+    FeedComponent,
+    SuggestedConnectionsPageComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +60,8 @@ import { ChatBubbleComponent } from './components/chat-dialog/chat-bubble/chat-b
     BrowserAnimationsModule,
     AvatarModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

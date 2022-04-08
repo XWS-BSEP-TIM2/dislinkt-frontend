@@ -1,0 +1,66 @@
+@use "~@angular/material" as mat;
+@import "/src/custom-theme.scss";
+
+h1 {
+  font-weight: 900;
+  margin-bottom: 5px !important;
+}
+
+.sidebar-container {
+  width: 240px;
+  background-color: white;
+}
+
+mat-button-toggle-group {
+  width: 100%;
+  border-radius: 0;
+  border: none !important;
+}
+
+mat-button-toggle {
+  border: none !important;
+  padding-right: 7px;
+}
+
+.label-container {
+  display: flex !important;
+  justify-content: flex-start !important;
+  flex-direction: row !important;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.label-container mat-icon {
+  font-size: 22px;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.mat-button-toggle-checked {
+  padding-right: 0px;
+  border-right: 7px solid
+    mat.get-color-from-palette($dislinkt-application-accent, "default") !important;
+  background-color: #f0f0f0 !important;
+}
+
+.mat-button-toggle-checked .label-container {
+  font-weight: 600;
+}
+
+.new-post-container {
+  position: absolute;
+  bottom: 0;
+  width: 100% !important;
+}
+
+.new-post-button {
+  padding: 5px !important;
+  width: 100%;
+  font-size: 18px !important;
+  border-radius: 100px !important;
+}
+
+.new-post-button mat-icon {
+  font-size: 20px !important;
+  margin-top: 2px;
+}
