@@ -1,4 +1,6 @@
+@use "~@angular/material" as mat;
 @import "bulma/css/bulma.css";
+@import "/src/custom-theme.scss";
 
 html,
 body {
@@ -20,6 +22,20 @@ body {
 
 .shadow {
   box-shadow: 5px 5px 10px #00000050;
+}
+
+.is-primary {
+  background-color: mat.get-color-from-palette(
+    $dislinkt-application-accent,
+    "default"
+  ) !important;
+}
+
+.shadow-hover {
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 2px 2px 5px #00000030 !important;
+  }
 }
 
 /* Fonts, Text */
@@ -47,6 +63,10 @@ body {
 
 .stretch-min-height {
   min-height: 100%;
+}
+
+.tag {
+  margin-right: 5px;
 }
 
 /* Max width */
