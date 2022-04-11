@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NewPostDialogComponent } from '../new-post-dialog/new-post-dialog.component';
 
 @Component({
   selector: 'sidebar',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   currentPage?: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     console.log(this.router.url);
@@ -24,5 +26,11 @@ export class SidebarComponent implements OnInit {
   redirectFeed() {
     this.currentPage = '';
     this.redirect();
+  }
+
+  newPost() {
+    const dialogRef = this.dialog.open(NewPostDialogComponent, {
+      position: { top: '75px' },
+    });
   }
 }
