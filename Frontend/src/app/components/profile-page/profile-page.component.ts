@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'profile-page',
@@ -10,5 +11,7 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  redirectMyConnections() {}
+  redirectConnections() {
+    window.location.href = 'user/1/connections';
+  }
 }
