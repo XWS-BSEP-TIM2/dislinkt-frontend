@@ -32,6 +32,7 @@ import { SingleNotificationComponent } from './components/dashboard/single-notif
 import { SingleConnectionSuggestionComponent } from './components/suggested-connections/single-connection-suggestion/single-connection-suggestion.component';
 import { SingleJobOfferComponent } from './components/suggested-job-offers/single-job-offer/single-job-offer.component';
 import { SingleContactComponent } from './components/chat-page/single-contact/single-contact.component';
+import { NewPostDialogComponent } from './components/new-post-dialog/new-post-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SingleContactComponent } from './components/chat-page/single-contact/si
     SingleConnectionSuggestionComponent,
     SingleJobOfferComponent,
     SingleContactComponent,
+    NewPostDialogComponent,
   ],
   imports: [
     BrowserModule,
