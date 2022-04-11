@@ -38,6 +38,7 @@ import { DetailedJobOfferComponent } from './components/suggested-job-offers/det
 import { ProfileFeedComponent } from './components/profile-page/profile-feed/profile-feed.component';
 import { ProfileConnectionsComponent } from './components/profile-page/profile-connections/profile-connections.component';
 import { ConnectionDisplayComponent } from './components/profile-page/profile-connections/connection-display/connection-display.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ConnectionDisplayComponent } from './components/profile-page/profile-co
     ProfileFeedComponent,
     ProfileConnectionsComponent,
     ConnectionDisplayComponent,
+    WelcomePageComponent,
   ],
   imports: [
     BrowserModule,

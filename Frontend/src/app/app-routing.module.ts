@@ -15,6 +15,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
 import { SuggestedConnectionsComponent } from './components/suggested-connections/suggested-connections.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,8 @@ const routes: Routes = [
       { path: 'edit-profile', component: EditProfilePageComponent },
     ],
   },
+
+  { path: 'welcome', component: WelcomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
   { path: '**', component: ErrorPageComponent },
