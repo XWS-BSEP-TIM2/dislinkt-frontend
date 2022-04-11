@@ -1,0 +1,28 @@
+.profile-photo {
+  margin-top: -80px;
+  margin-left: 20px;
+  border: 5px solid white;
+  border-radius: 100px;
+  background-color: white;
+  width: min-content;
+}
+
+.connect-button mat-icon {
+  color: rgb(54, 54, 54) !important;
+  margin-right: 10px;
+}
+
+.connections-tag {
+  margin-right: 0px !important;
+}
+
+.personal-info {
+  margin-bottom: 10px;
+}
+
+.personal-info .info-text {
+  position: relative;
+  top: -8px;
+  margin-bottom: 0px;
+  margin-left: 15px;
+}

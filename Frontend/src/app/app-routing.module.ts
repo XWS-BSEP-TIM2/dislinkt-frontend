@@ -9,6 +9,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { FeedComponent } from './components/feed/feed.component';
 import { JobOffersPageComponent } from './components/job-offers-page/job-offers-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { ProfileConnectionsComponent } from './components/profile-page/profile-connections/profile-connections.component';
+import { ProfileFeedComponent } from './components/profile-page/profile-feed/profile-feed.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
@@ -30,7 +32,14 @@ const routes: Routes = [
         ],
       },
       { path: 'job-offers', component: JobOffersPageComponent },
-      { path: 'user/:id', component: ProfilePageComponent },
+      {
+        path: 'user/:id',
+        component: ProfilePageComponent,
+        children: [
+          { path: '', component: ProfileFeedComponent },
+          { path: 'connections', component: ProfileConnectionsComponent },
+        ],
+      },
       { path: 'edit-profile', component: EditProfilePageComponent },
     ],
   },
