@@ -39,6 +39,10 @@ import { ProfileFeedComponent } from './components/profile-page/profile-feed/pro
 import { ProfileConnectionsComponent } from './components/profile-page/profile-connections/profile-connections.component';
 import { ConnectionDisplayComponent } from './components/profile-page/profile-connections/connection-display/connection-display.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { WelcomePageSidebarComponent } from './components/welcome-page/welcome-page-sidebar/welcome-page-sidebar.component';
+import { WelcomePageHeaderComponent } from './components/welcome-page/welcome-page-header/welcome-page-header.component';
+import { PublicAccountsComponent } from './components/welcome-page/public-accounts/public-accounts.component';
+import { PublicAccountDisplayComponent } from './components/welcome-page/public-accounts/public-account-display/public-account-display.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +78,10 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     ProfileConnectionsComponent,
     ConnectionDisplayComponent,
     WelcomePageComponent,
+    WelcomePageSidebarComponent,
+    WelcomePageHeaderComponent,
+    PublicAccountsComponent,
+    PublicAccountDisplayComponent,
   ],
   imports: [
     BrowserModule,

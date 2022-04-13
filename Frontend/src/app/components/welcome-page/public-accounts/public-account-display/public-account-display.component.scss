@@ -1,0 +1,15 @@
+@use "~@angular/material" as mat;
+@import "/src/custom-theme.scss";
+
+.suggestion-container {
+  margin-bottom: 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #81d4fa20 !important;
+  }
+}
+
+.mat-card-subtitle {
+  margin-bottom: 0px !important;
+}

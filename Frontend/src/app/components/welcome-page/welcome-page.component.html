@@ -1,1 +1,44 @@
-<p>welcome-page works!</p>
+<mat-drawer-container class="stretch-height">
+  <mat-drawer mode="side" opened
+    ><welcome-page-sidebar></welcome-page-sidebar
+  ></mat-drawer>
+  <mat-drawer-content>
+    <welcome-page-header></welcome-page-header>
+    <div>
+      <div
+        class="is-flex stretch-width is-flex-direction-column is-align-items-center"
+      >
+        <div class="content-container">
+          <h1>Welcome to Dislinkt! 😄</h1>
+          <div class="columns">
+            <div class="column">
+              <h2>
+                This is where your connections come to life. Register to have
+                full access to our platform.
+              </h2>
+              <mat-divider></mat-divider>
+              <div
+                class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
+              >
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+                <post-display></post-display>
+              </div>
+            </div>
+            <div class="column is-5 side-column">
+              <h2>Popular public accounts</h2>
+              <mat-divider class="mb-5"></mat-divider>
+              <public-accounts></public-accounts>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

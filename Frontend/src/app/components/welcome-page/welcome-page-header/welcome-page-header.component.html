@@ -1,0 +1,31 @@
+<div
+  class="header-container is-flex is-flex-direction-row-reverse is-align-items-center"
+>
+  <button
+    mat-icon-button
+    class="mr-3"
+    [matMenuTriggerFor]="search"
+    (click)="resetSearch()"
+  >
+    <mat-icon matBadgeColor="warn">search</mat-icon>
+  </button>
+  <mat-menu #search="matMenu" class="mt-2">
+    <div class="search-menu" (click)="$event.stopPropagation()">
+      <mat-form-field appearance="standard" (click)="$event.stopPropagation()">
+        <input
+          matInput
+          placeholder="Search Dislinkt"
+          [(ngModel)]="searchText"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="resetSearch()"
+          matTooltip="Reset search"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-menu>
+</div>
