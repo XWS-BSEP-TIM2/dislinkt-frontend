@@ -1,0 +1,17 @@
+@use "~@angular/material" as mat;
+@import "/src/custom-theme.scss";
+
+h1 {
+  font-weight: 900;
+  margin-bottom: 5px !important;
+  font-size: 28px !important;
+}
+
+.sidebar-container {
+  width: 240px;
+  background-color: white;
+}
+
+img {
+  margin-top: 100px;
+}
