@@ -6,12 +6,14 @@
     <mat-card-title class="clickable" (click)="redirectAuthorProfile()"
       >Freud the Cat</mat-card-title
     >
-    <mat-card-subtitle class="clickable" (click)="redirectPostPage()"
-      >18/06/2022, 10:39 AM</mat-card-subtitle
-    >
+    <mat-card-subtitle>18/06/2022, 10:39 AM</mat-card-subtitle>
   </mat-card-header>
-  <div class="image-container clickable" (click)="redirectPostPage()">
-    <img src="assets/maca.png" />
+  <div class="image-container">
+    <img
+      src="assets/maca.png"
+      class="clickable"
+      (click)="openImageLightbox()"
+    />
   </div>
   <mat-card-content class="mt-4">
     <p>
@@ -32,16 +34,7 @@
         <button mat-icon-button matTooltip="Dislike">
           <mat-icon>thumb_down</mat-icon>
         </button>
-
-        <button
-          mat-icon-button
-          matTooltip="Comments"
-          (click)="redirectPostPage()"
-        >
-          <mat-icon>comment</mat-icon>
-        </button>
       </div>
-
       <div class="mr-5">
         <strong>90</strong> likes<span class="vertical-separator">|</span>
         <strong>14</strong> comments
