@@ -11,12 +11,11 @@ import { RegistrationPageComponent } from './components/registration-page/regist
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AvatarModule } from 'ngx-avatar';
 import { HttpClientModule } from '@angular/common/http';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { SuggestedConnectionsComponent } from './components/suggested-connections/suggested-connections.component';
 import { SuggestedJobOffersComponent } from './components/suggested-job-offers/suggested-job-offers.component';
 import { JobOffersPageComponent } from './components/job-offers-page/job-offers-page.component';
-import { ConnectionsPageComponent } from './components/connections-page/connections-page.component';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { PostDisplayComponent } from './components/post-display/post-display.component';
@@ -43,6 +42,11 @@ import { WelcomePageSidebarComponent } from './components/welcome-page/welcome-p
 import { WelcomePageHeaderComponent } from './components/welcome-page/welcome-page-header/welcome-page-header.component';
 import { PublicAccountsComponent } from './components/welcome-page/public-accounts/public-accounts.component';
 import { PublicAccountDisplayComponent } from './components/welcome-page/public-accounts/public-account-display/public-account-display.component';
+import { PostPageComponentComponent } from './components/post-page-component/post-page-component.component';
+import { DetailedPostDisplayComponent } from './components/post-page-component/detailed-post-display/detailed-post-display.component';
+import { WriteCommentComponent } from './components/post-page-component/write-comment/write-comment.component';
+import { CommentPreviewComponent } from './components/post-page-component/comment-preview/comment-preview.component';
+import { PhotoLightBoxComponent } from './components/post-page-component/photo-light-box/photo-light-box.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,6 @@ import { PublicAccountDisplayComponent } from './components/welcome-page/public-
     SuggestedConnectionsComponent,
     SuggestedJobOffersComponent,
     JobOffersPageComponent,
-    ConnectionsPageComponent,
     EditProfilePageComponent,
     NotificationComponent,
     PostDisplayComponent,
@@ -82,6 +85,11 @@ import { PublicAccountDisplayComponent } from './components/welcome-page/public-
     WelcomePageHeaderComponent,
     PublicAccountsComponent,
     PublicAccountDisplayComponent,
+    PostPageComponentComponent,
+    DetailedPostDisplayComponent,
+    WriteCommentComponent,
+    CommentPreviewComponent,
+    PhotoLightBoxComponent,
   ],
   imports: [
     BrowserModule,

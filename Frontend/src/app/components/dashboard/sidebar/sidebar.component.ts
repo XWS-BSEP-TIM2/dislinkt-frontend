@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NewPostDialogComponent } from '../new-post-dialog/new-post-dialog.component';
+import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.component';
 
 @Component({
   selector: 'sidebar',
