@@ -27,44 +27,51 @@
                                 
                 
                                 <h1 class="has-text-centered has-text-weight-bold mt-5" style="color: #6E87D6;">Register</h1>
-                       
+
                                
                                 <!-- Inputs -->
                                 <div class="columns">
                                   <div class="column is-2"></div>
                                   <div class="column is-8">
                                     <div class="field">
-                                        <label class="label">First name</label>
+                                        <label class="label">Name</label>
                                         <div class="control">
-                                          <input class="input" type="text" placeholder="Your first name">
+                                          <input class="input" [(ngModel)]="registrationModel.name" type="text" placeholder="Your name">
                                         </div>
                                       </div>
-
+                                      
                                       <div class="field">
-                                        <label class="label">Last name</label>
+                                        <label class="label">Surname </label>
                                         <div class="control">
-                                          <input class="input" type="text" placeholder="Your last name">
+                                          <input class="input" [(ngModel)]="registrationModel.surname" type="text" placeholder="Your Surname">
                                         </div>
                                       </div>
 
                                       <div class="field">
                                         <label class="label">Username</label>
                                         <div class="control">
-                                          <input class="input" type="text" placeholder="Your unique username">
+                                          <input class="input" [(ngModel)]="registrationModel.username" type="text" placeholder="Your unique username">
                                         </div>
                                       </div>
 
                                       <div class="field">
                                         <label class="label">Email</label>
                                         <div class="control">
-                                          <input class="input" type="text" placeholder="Your email">
+                                          <input class="input" [(ngModel)]="registrationModel.email" type="text" placeholder="Your email">
+                                        </div>
+                                      </div>
+
+                                      <div class="field">
+                                        <label class="label">Phone number</label>
+                                        <div class="control">
+                                          <input class="input" [(ngModel)]="registrationModel.phoneNumber" type="text" placeholder="Your phone number">
                                         </div>
                                       </div>
 
                                       <div class="field" style="width: 50%;">
                                         <label class="label">Birthday</label>
                                         <div class="control">
-                                          <input class="input" type="date">
+                                          <input class="input" [(ngModel)]="registrationModel.birthday" type="date">
                                         </div>
                                       </div>
 
@@ -73,11 +80,11 @@
                                         <div class="control">
                                           <label class="label">Gender</label>
                                           <label class="radio">
-                                            <input type="radio" name="question">
+                                            <input type="radio" (click)="registrationModel.gender='Male'" name="question">
                                             male 
                                           </label> <br>
                                           <label class="radio">
-                                            <input type="radio" name="question">
+                                            <input type="radio" (click)="registrationModel.gender='Female'" name="question">
                                             female 
                                           </label>
                                         </div>
@@ -86,21 +93,21 @@
                                       <div class="field">
                                         <label class="label">Password</label>
                                         <div class="control">
-                                          <input class="input" type="password" placeholder="Enter password">
+                                          <input class="input" [(ngModel)]="registrationModel.password" type="password" placeholder="Enter password">
                                         </div>
                                       </div>
-
+                                      
                                       <div class="field">
-                                        <label class="label">Confirm Password</label>
+                                        <label class="label ">Confirm Password</label>
                                         <div class="control">
-                                          <input class="input" type="password" placeholder="Confirm password">
+                                          <input class="input" [(ngModel)]="registrationModel.confirmPassword" type="password" placeholder="Confirm password" [class.is-danger] = "!registrationModel.passwordMatch()">
                                         </div>
                                       </div>
 
                                       <div class="field">
                                         <div class="control">
                                           <label class="checkbox">
-                                            <input type="checkbox">
+                                            <input type="checkbox" [(ngModel)]="registrationModel.isPrivate">
                                             Private dislinkt account
                                           </label>
                                         </div>
@@ -109,13 +116,20 @@
                                   </div>
                                   <div class="column is-2"></div>
                                 </div>
+                                
+
+                                <div class="row has-text-centered">
+                                  <p *ngIf="!registrationModel.validateProperty()" class="has-text-danger">Please fill in all fields</p>
+                                </div>
 
                                 <div class="row">
                                     <br>
                                     <div class="is-flex is-justify-content-center">
-                                        <button [routerLink]="['/']" class="button is-primary is-rounded">Register</button>
+                                        <button (click)="register()" class="button is-primary is-rounded" [class.disabled] = "!registrationModel.validateProperty()">Register</button>
                                     </div>
                                 </div>
+
+                               
 
                                 <div class="row has-text-centered mt-5">
                                     You already have an account? <a href="/login">Login</a>
