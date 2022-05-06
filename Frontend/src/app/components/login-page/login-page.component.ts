@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginRequest } from 'src/app/model/loginRequest';
+import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'login-page',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  loginRequest: LoginRequest = new LoginRequest()
+  errorMessage = ''
+
+  constructor(private loginService: LoginService, private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  login() {
+    if (!this.loginRequest.validateProperty()) {
+      this.errorMessage = 'Email or password missing.';
+    } else {
+      this.errorMessage = '';
+      this.loginService.login(this.loginRequest).subscribe(
+        (data) => {
+          if (data.error === '')
+            this.successfulLogin(data);
+          else
+            alert(data.error);
+        },
+        (res) => (this.errorMessage = 'Invalid email or password.')
+      );
+    }
+  }
+
+  successfulLogin(loginRespons: LoginRespons) {
+    this.errorMessage = '';
+    console.log(loginRespons);
+    this.loginService.loginSetUser(loginRespons);
   }
 
 }

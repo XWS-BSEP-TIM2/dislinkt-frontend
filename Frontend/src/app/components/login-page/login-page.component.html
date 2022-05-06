@@ -33,16 +33,16 @@
                                     <div class="column is-8">
   
                                         <div class="field">
-                                          <label class="label">Email</label>
+                                          <label class="label">Username</label>
                                           <div class="control">
-                                            <input class="input" type="text" placeholder="Your email">
+                                            <input [(ngModel)]="loginRequest.username" class="input" type="text" placeholder="Your username">
                                           </div>
                                         </div>
   
                                         <div class="field">
                                           <label class="label">Password</label>
                                           <div class="control">
-                                            <input class="input" type="password" placeholder="Enter password">
+                                            <input [(ngModel)]="loginRequest.password" class="input" type="password" placeholder="Enter password">
                                           </div>
                                         </div>
                                                
@@ -50,12 +50,14 @@
                                     <div class="column is-2"></div>
                                   </div>
 
-
+                                  <div class="row has-text-centered">
+                                    <p class="has-text-danger">{{errorMessage}}</p>
+                                  </div>
 
                                 <div class="row">
                                     <br>
                                     <div class="is-flex is-justify-content-center">
-                                        <button [routerLink]="['/']" class="button is-primary is-rounded">Log in</button>
+                                        <button (click)="login()" class="button is-primary is-rounded">Log in</button>
                                     </div>
                                 </div>
 

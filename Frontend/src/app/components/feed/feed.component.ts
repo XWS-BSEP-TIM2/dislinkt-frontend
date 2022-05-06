@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'feed',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  loginRespons: LoginRespons = new LoginRespons();
+
+  constructor(private loginService: LoginService) { 
+    this.loginRespons = loginService.getCurrentUser();
+  }
 
   ngOnInit(): void {
   }
