@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConnectionDetails } from 'src/app/model/connectionDetails';
 
 @Component({
   selector: 'detailed-connection-suggestion',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detailed-connection-suggestion.component.scss'],
 })
 export class DetailedConnectionSuggestionComponent implements OnInit {
+
+  @Input() connectionDetails!: ConnectionDetails;
+
   constructor() {}
 
   ngOnInit(): void {}
