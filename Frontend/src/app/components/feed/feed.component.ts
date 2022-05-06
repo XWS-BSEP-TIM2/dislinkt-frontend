@@ -12,7 +12,7 @@ export class FeedComponent implements OnInit {
   loginRespons: LoginRespons = new LoginRespons();
 
   constructor(private loginService: LoginService) { 
-    this.loginRespons = loginService.getCurrentUser();
+    this.loginRespons = this.loginService.getCurrentUser();
   }
 
   ngOnInit(): void {

@@ -44,7 +44,7 @@ export class LoginService {
     const token = this.getCurrentUser().token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ` + token,
+      'Authorization': `Bearer ` + token,
     });
     return headers;
   }

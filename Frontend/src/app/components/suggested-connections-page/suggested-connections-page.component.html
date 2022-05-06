@@ -9,21 +9,12 @@
     <div
       class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
     >
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-      <detailed-connection-suggestion></detailed-connection-suggestion>
-
-      <detailed-connection-suggestion></detailed-connection-suggestion>
+    <div *ngFor="let rec of recommendations">
+      <detailed-connection-suggestion [connectionDetails]="rec" ></detailed-connection-suggestion>
+    </div>
+      
+    
+    
     </div>
   </div>
   <div class="column is-4 side-column">
