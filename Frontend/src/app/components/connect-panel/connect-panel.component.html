@@ -1,0 +1,72 @@
+<div class="is-flex is-flex-direction-row is-justify-content-flex-start is-align-items-end">
+
+    <!-- When user is public and NoRelationship -->
+    <button *ngIf="connectBtnAvailable()" (click)="connectBtn()" mat-flat-button color="primary" class="connect-button m-1">
+        <mat-icon>person_add</mat-icon>
+        <strong>Connect</strong>
+    </button>
+    
+    <!-- When user is private and NoRelationship -->
+    <button *ngIf="connecPrivtBtnAvailable()" (click)="connecPrivtBtn()" mat-flat-button color="primary" class="connect-button m-1">
+        <mat-icon>lock</mat-icon>
+        <strong>Connect</strong>
+    </button>
+
+     <!-- When we must wait for other user to respond to our send connection request -->
+     <div *ngIf="pendingBtnAvailable()" class="clickable m-1" [matMenuTriggerFor]="pendingOpt">
+        <button mat-flat-button color="primary" class="connect-button">
+            <mat-icon>lock_open</mat-icon>
+            <strong>Pending</strong>
+        </button>
+    </div>
+    <mat-menu #pendingOpt="matMenu" class="mt-2">
+    <button (click)="cancelRequestBtn()" mat-menu-item class="px-5">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+    </button>
+    </mat-menu>
+
+    <!-- When user is private and NoRelationship -->
+    <button *ngIf="acceptBtnAvailable()" (click)="acceptBtn()" mat-flat-button color="primary" class="connect-button m-1">
+        <mat-icon>accessibility_new</mat-icon>
+        <strong>Accept</strong>
+    </button>
+
+    <!-- When user are Connected -->
+    <div *ngIf="connectedBtnAvailable()" class="clickable m-1" [matMenuTriggerFor]="connectedOpt">
+        <button mat-flat-button color="primary" class="connect-button">
+            <mat-icon>checkbox</mat-icon>
+            <strong>Connected</strong>
+        </button>
+    </div>
+    <mat-menu #connectedOpt="matMenu" class="mt-2">
+    <button (click)="disconnectBtn()" mat-menu-item class="px-5">
+        <mat-icon>remove_circle_outline</mat-icon>
+        <span>Disconnect</span>
+    </button>
+    </mat-menu>
+
+    <!-- Message button is avaible if users are connected -->
+    <button *ngIf="messageAvailable()" mat-flat-button color="primary" class="connect-button m-1">
+        <mat-icon>mail_outline</mat-icon>
+        <strong> Message</strong>
+    </button>
+
+    <div class="clickable m-1 ml-3" [matMenuTriggerFor]="moreOpt">
+        <button mat-flat-button color="primary" class="connect-button mt-3">
+            <mat-icon>list</mat-icon>
+        </button>
+    </div>
+    <mat-menu #moreOpt="matMenu" class="mt-2">
+    <button *ngIf="blockAvailable()" (click)="block()" mat-menu-item class="px-5">
+        <mat-icon>block</mat-icon>
+        <span>Block</span>
+    </button>
+    <button *ngIf="unblockAvailable()" (click)="unblock()" mat-menu-item class="px-5">
+        <mat-icon>replay</mat-icon>
+        <span>Unblock</span>
+    </button>
+    </mat-menu>
+
+
+</div>

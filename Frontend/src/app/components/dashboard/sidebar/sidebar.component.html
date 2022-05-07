@@ -42,7 +42,7 @@
           <mat-icon>business_center</mat-icon>Job offers
         </div></mat-button-toggle
       >
-      <mat-button-toggle value="user/1" [disabled]="currentPage == 'user/1'"
+      <mat-button-toggle value="user/{{loginUser.userID}}" [disabled]="currentPage == 'user/'"
         ><div class="label-container">
           <mat-icon>person</mat-icon>My profile
         </div></mat-button-toggle

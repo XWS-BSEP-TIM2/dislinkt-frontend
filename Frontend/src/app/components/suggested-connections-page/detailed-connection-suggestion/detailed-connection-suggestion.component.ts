@@ -14,5 +14,7 @@ export class DetailedConnectionSuggestionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  redirect() {}
+  redirect() {
+    window.location.href = '/user/'+this.connectionDetails.UserID;
+  }
 }
