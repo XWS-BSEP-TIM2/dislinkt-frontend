@@ -1,9 +1,5 @@
 <h2 class="mt-5">Connections (148)</h2>
 <mat-divider class="mb-5"></mat-divider>
-<connection-display></connection-display>
-<connection-display></connection-display>
-<connection-display></connection-display>
-<connection-display></connection-display>
-<connection-display></connection-display>
-<connection-display></connection-display>
-<connection-display></connection-display>
+<div *ngFor="let f of friends">
+    <detailed-connection-suggestion [connectionDetails]="f" ></detailed-connection-suggestion>
+  </div>

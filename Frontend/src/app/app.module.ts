@@ -47,6 +47,7 @@ import { DetailedPostDisplayComponent } from './components/post-page-component/d
 import { WriteCommentComponent } from './components/post-page-component/write-comment/write-comment.component';
 import { CommentPreviewComponent } from './components/post-page-component/comment-preview/comment-preview.component';
 import { PhotoLightBoxComponent } from './components/post-page-component/photo-light-box/photo-light-box.component';
+import { ConnectPanelComponent } from './components/connect-panel/connect-panel.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { PhotoLightBoxComponent } from './components/post-page-component/photo-l
     WriteCommentComponent,
     CommentPreviewComponent,
     PhotoLightBoxComponent,
+    ConnectPanelComponent,
   ],
   imports: [
     BrowserModule,

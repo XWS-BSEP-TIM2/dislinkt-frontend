@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginService } from 'src/app/services/login.service';
 import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.component';
 
 @Component({
@@ -11,11 +13,14 @@ import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.co
 export class SidebarComponent implements OnInit {
   currentPage?: string = '';
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  loginUser!: LoginRespons
+
+  constructor(private router: Router, public dialog: MatDialog, private loginService: LoginService) {}
 
   ngOnInit(): void {
     console.log(this.router.url);
     this.currentPage = this.router.url.substring(1);
+    this.loginUser = this.loginService.getCurrentUser();
   }
 
   redirect() {

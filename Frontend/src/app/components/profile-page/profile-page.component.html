@@ -8,24 +8,22 @@
 
       <div class="mt-5 is-flex is-flex-direction-row">
         <div class="stretch-width">
+          <h3>{{loginRespons.userID}}</h3>  <!-- TODO: remove -->
           <h1>John Smith</h1>
           <h2>Apple Senior Java Developer | @johny_smith</h2>
         </div>
         <div
           class="is-flex is-flex-direction-column is-justify-content-flex-start is-align-items-end"
         >
-          <div
-            class="tag is-primary is-medium connections-tag clickable"
-            (click)="redirectConnections()"
-          >
-            148 connections
-          </div>
-          <div>
-            <button mat-flat-button color="primary" class="connect-button mt-3">
-              <mat-icon>person_add</mat-icon>
-              <strong>CONNECT</strong>
-            </button>
-          </div>
+        <div
+        class="tag is-primary is-medium connections-tag clickable"
+        (click)="redirectConnections()"
+      >
+        148 connections
+      </div>
+        <div *ngIf="!myProfileFunc()">
+          <connect-panel [userIDa]="loginRespons.userID" [userIDb]="targetUserID"></connect-panel>
+        </div>
         </div>
       </div>
     </div>
