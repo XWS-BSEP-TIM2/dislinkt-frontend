@@ -5,11 +5,11 @@
     <profile-picture [activeUser]="true" [size]="40"></profile-picture>
   </div>
   <mat-menu #profile="matMenu" class="mt-2">
-    <button mat-menu-item class="px-5" (click)="redirectSettings()">
+    <button mat-menu-item class="px-5" (click)="redirectMyProfile()">
       <mat-icon>person_outline</mat-icon>
       <span>My Profile</span>
     </button>
-    <button mat-menu-item class="px-5" (click)="redirectMyProfile()">
+    <button mat-menu-item class="px-5" (click)="redirectSettings()">
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
     </button>
