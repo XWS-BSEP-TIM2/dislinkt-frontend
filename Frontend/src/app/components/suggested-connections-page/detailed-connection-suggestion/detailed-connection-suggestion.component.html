@@ -1,12 +1,18 @@
 <mat-card class="suggestion-container clickable" (click)="redirect()">
-  <div style="width: 760px;"></div>
+  <div style="width: 760px"></div>
   <mat-card-header>
     <div mat-card-avatar>
-      <ngx-avatar name="{{connectionDetails.Name}} {{connectionDetails.Surname}}" size="40"></ngx-avatar>
+      <ngx-avatar
+        name="{{ connectionDetails.Name }} {{ connectionDetails.Surname }}"
+        size="40"
+      ></ngx-avatar>
     </div>
     <mat-card-title
       ><span
-        ><strong>{{connectionDetails.Name}} {{connectionDetails.Surname}}</strong> | Java Developer @Microsoft</span
+        ><strong
+          >{{ connectionDetails.Name }} {{ connectionDetails.Surname }}</strong
+        >
+        | Java Developer @Microsoft</span
       ></mat-card-title
     >
     <mat-card-subtitle><span>2st connection</span></mat-card-subtitle>
@@ -14,7 +20,7 @@
   <mat-card-content>
     <hr class="mt-5" />
     <p>
-      {{connectionDetails.Biography}}
+      {{ connectionDetails.Biography }}
     </p></mat-card-content
   >
   <div
@@ -24,10 +30,11 @@
     <span>
       <mat-chip-list>
         <div *ngFor="let skill of connectionDetails.Skills">
-          <mat-chip color="primary" selected disableRipple="true">{{skill.Name}}</mat-chip>
+          <mat-chip color="primary" selected disableRipple="true">{{
+            skill.name
+          }}</mat-chip>
         </div>
-       </mat-chip-list
-      >
+      </mat-chip-list>
     </span>
   </div>
 </mat-card>

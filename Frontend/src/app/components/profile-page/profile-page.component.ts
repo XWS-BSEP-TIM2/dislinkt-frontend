@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConnectionPanelModel } from 'src/app/model/connectionPanelModel';
+import { ActivatedRoute } from '@angular/router';
+import { Experience } from 'src/app/model/experienceModel';
 import { LoginRespons } from 'src/app/model/loginResponse';
+import { Profile } from 'src/app/model/profileModel';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { LoginService } from 'src/app/services/login.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'profile-page',
@@ -11,39 +13,54 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
-
-  loginRespons!: LoginRespons;
+  userProfile: Profile = new Profile();
+  userPosition: Experience = new Experience();
+  connectionNumber: number = 0;
+  loginResponse!: LoginRespons;
   targetUserID: string = '';
 
-  constructor(private loginService: LoginService) {
+  constructor(
+    private loginService: LoginService,
+    private profileService: ProfileService,
+    private route: ActivatedRoute,
+    private connectionService: ConnectionService
+  ) {}
+
+  ngOnInit(): void {
+    this.userProfile.id = this.route.snapshot.paramMap.get('id')!;
+    this.targetUserID = this.userProfile.id;
+    this.loginResponse = this.loginService.getCurrentUser();
+    this.myProfileFunc();
+
+    this.profileService.getUserById(this.userProfile.id).subscribe((data) => {
+      this.userProfile = data.profile;
+      this.userPosition = this.profileService.getCurrentPosition(
+        this.userProfile
+      );
+      console.log(this.userPosition);
+    });
+
+    this.connectionService.GetFriends(this.userProfile.id).subscribe((data) => {
+      this.connectionNumber = data.length;
+    });
   }
 
   myProfileFunc(): boolean {
-    let urlID = this.getTargetUserID()
+    let urlID = this.userProfile.id;
     //return this.loginService.getCurrentUser().userID === urlID;   //TODO: fix
     //TODO: linija iznad uporedjuje prijavljenog korisnika i id prosledjenog
-    return urlID === this.loginRespons.userID
-  }
-
-  ngOnInit(): void {
-    this.targetUserID = this.getTargetUserID()
-    this.loginRespons = this.loginService.getCurrentUser()
-    this.myProfileFunc()
+    return urlID === this.loginResponse.userID;
   }
 
   redirectConnections() {
-    window.location.href = 'user/'+this.getTargetUserID()+'/connections';
+    window.location.href = 'user/' + this.userProfile.id + '/connections';
   }
 
   redirectBlocks() {
-    window.location.href = 'user/'+this.getTargetUserID()+'/blocks';
+    window.location.href = 'user/' + this.userProfile.id + '/blocks';
   }
 
   redirectRequests() {
-    window.location.href = 'user/'+this.getTargetUserID()+'/requests';
-  }
-
-  getTargetUserID(): string{
-    return window.location.pathname.substring(6).split('/')[0]
+    window.location.href = 'user/' + this.userProfile.id + '/requests';
   }
 }
