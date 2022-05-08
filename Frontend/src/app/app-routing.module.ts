@@ -15,8 +15,9 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
-import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component'
-import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component'
+import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component';
+import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
+import { AuthGuard, UnAuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: '', component: FeedComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
       { path: 'chat', component: ChatPageComponent },
-      { path: 'connections',  component: SuggestedConnectionsPageComponent, },
+      { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
 
       { path: 'post/:id', component: PostPageComponentComponent },
@@ -42,11 +43,21 @@ const routes: Routes = [
       },
       { path: 'edit-profile', component: EditProfilePageComponent },
     ],
+
+    canActivate: [AuthGuard],
   },
 
-  { path: 'welcome', component: WelcomePageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'register', component: RegistrationPageComponent },
+  {
+    path: 'welcome',
+    component: WelcomePageComponent,
+    canActivate: [UnAuthGuard],
+  },
+  { path: 'login', component: LoginPageComponent, canActivate: [UnAuthGuard] },
+  {
+    path: 'register',
+    component: RegistrationPageComponent,
+    canActivate: [UnAuthGuard],
+  },
   { path: '**', component: ErrorPageComponent },
 ];
 

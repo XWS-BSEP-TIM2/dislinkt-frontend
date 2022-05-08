@@ -1,81 +1,113 @@
-<div class="background-login-page" >
-    <div class="rows">
-        <div class="row">
-            <img src="assets/layered-waves-haikei.svg" class="waves-css">
-        </div>
-        <!-- style="background-color: red; height: 100px;" -->
-        <div class="row" >
-            <div class="container">
-                <mat-card>
-                    <div class="columns is-flex"> <!-- is-vcentered -->
-                        <div class="column is-6 blobwallpaper">
-                            <div class="rows">
-                                <div class="row is-flex is-justify-content-center">
-                                    <img src="assets/Dislinkt-white-logo-transparent.png" class="img-dislink-logo">
-                                </div>
-                                <div class="row">
-                                    <br>
-                                    <h1 class="has-text-centered" style="color: white;">Dislinkt</h1>
-                                    <br>
-
-                                    <p class="has-text-centered dislinkt-description">Dislinkt is the world's largest professional network on the internet. You can use Dislinkt to find the right job or internship, connect and strengthen professional relationships, and learn the skills you need to succeed in your career.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column is-6">
-                            <div class="rows">
-                                
-                                <h1 class="has-text-centered has-text-weight-bold mt-5" style="color: #6E87D6;">Login</h1>
-                               
-                                <div class="columns">
-                                    <div class="column is-2"></div>
-                                    <div class="column is-8">
-  
-                                        <div class="field">
-                                          <label class="label">Username</label>
-                                          <div class="control">
-                                            <input [(ngModel)]="loginRequest.username" class="input" type="text" placeholder="Your username">
-                                          </div>
-                                        </div>
-  
-                                        <div class="field">
-                                          <label class="label">Password</label>
-                                          <div class="control">
-                                            <input [(ngModel)]="loginRequest.password" class="input" type="password" placeholder="Enter password">
-                                          </div>
-                                        </div>
-                                               
-                                    </div>
-                                    <div class="column is-2"></div>
-                                  </div>
-
-                                  <div class="row has-text-centered">
-                                    <p class="has-text-danger">{{errorMessage}}</p>
-                                  </div>
-
-                                <div class="row">
-                                    <br>
-                                    <div class="is-flex is-justify-content-center">
-                                        <button (click)="login()" class="button is-primary is-rounded">Log in</button>
-                                    </div>
-                                </div>
-
-                                <div class="row has-text-centered mt-5">
-                                    You do not have an account? <a href="/register">Register</a>
-                                </div>
-
-                                <div class="row is-flex is-justify-content-center mt-5">
-                                    <button [routerLink]="['/welcome']" class="button is-outlined">Continue as a guest</button>
-                                </div>
-
-                            </div>
-    
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-        </div>
+<div class="background-login-page">
+  <div class="rows">
+    <div class="row">
+      <img src="assets/layered-waves-haikei.svg" class="waves-css" />
     </div>
-</div>
+    <!-- style="background-color: red; height: 100px;" -->
+    <div class="row">
+      <div class="container">
+        <mat-card>
+          <div class="columns is-flex">
+            <!-- is-vcentered -->
+            <div class="column is-6 blobwallpaper">
+              <div class="rows">
+                <div class="row is-flex is-justify-content-center">
+                  <img
+                    src="assets/Dislinkt-white-logo-transparent.png"
+                    class="img-dislink-logo"
+                  />
+                </div>
+                <div class="row">
+                  <br />
+                  <h1 class="has-text-centered" style="color: white">
+                    Dislinkt
+                  </h1>
+                  <br />
 
+                  <p class="has-text-centered dislinkt-description">
+                    Dislinkt is the world's largest professional network on the
+                    internet. You can use Dislinkt to find the right job or
+                    internship, connect and strengthen professional
+                    relationships, and learn the skills you need to succeed in
+                    your career.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="rows">
+                <h1
+                  class="has-text-centered has-text-weight-bold mt-5"
+                  style="color: #6e87d6"
+                >
+                  Login
+                </h1>
+
+                <div class="columns">
+                  <div class="column is-2"></div>
+                  <div class="column is-8">
+                    <div class="field">
+                      <label class="label">Username</label>
+                      <div class="control">
+                        <input
+                          [(ngModel)]="loginRequest.username"
+                          class="input"
+                          type="text"
+                          placeholder="Your username"
+                          (keyup.enter)="login()"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Password</label>
+                      <div class="control">
+                        <input
+                          [(ngModel)]="loginRequest.password"
+                          class="input"
+                          type="password"
+                          placeholder="Enter password"
+                          (keyup.enter)="login()"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-2"></div>
+                </div>
+
+                <div class="row has-text-centered">
+                  <p class="has-text-danger">{{ errorMessage }}</p>
+                </div>
+
+                <div class="row">
+                  <br />
+                  <div class="is-flex is-justify-content-center">
+                    <button
+                      (click)="login()"
+                      class="button is-primary is-rounded"
+                    >
+                      Log in
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row has-text-centered mt-5">
+                  You do not have an account? <a href="/register">Register</a>
+                </div>
+
+                <div class="row is-flex is-justify-content-center mt-5">
+                  <button
+                    [routerLink]="['/welcome']"
+                    class="button is-outlined"
+                  >
+                    Continue as a guest
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
