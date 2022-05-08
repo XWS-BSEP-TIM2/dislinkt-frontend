@@ -20,7 +20,7 @@ export class LoginService {
     loginResponse.fullName = '';
     localStorage.setItem('currentUser', JSON.stringify(loginResponse));
     this.writeFullNameToStorage(loginResponse);
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 
   writeFullNameToStorage(loginResponse: LoginResponse) {
@@ -32,6 +32,7 @@ export class LoginService {
       user.fullName = data.profile.name + ' ' + data.profile.surname;
       console.log();
       localStorage.setItem('currentUser', JSON.stringify(user));
+      window.location.href = '/';
     });
   }
 
@@ -51,7 +52,11 @@ export class LoginService {
   }
 
   isUserLoggedIn() {
-    return this.getCurrentUser().role !== '';
+    if (this.getCurrentUser() == null) {
+      return false;
+    } else {
+      return this.getCurrentUser().role !== '';
+    }
   }
 
   getHeaders() {
