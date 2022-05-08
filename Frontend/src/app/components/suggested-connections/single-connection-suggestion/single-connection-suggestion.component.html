@@ -1,9 +1,18 @@
 <mat-card class="suggestion-container clickable" (click)="redirect()">
   <mat-card-header>
     <div mat-card-avatar>
-      <ngx-avatar name="Miki Miki" size="40"></ngx-avatar>
+      <profile-picture
+        [connection]="connectionDetails"
+        [size]="40"
+      ></profile-picture>
     </div>
-    <mat-card-title><span>Miki Miki</span></mat-card-title>
-    <mat-card-subtitle><span>1st connection</span></mat-card-subtitle>
+    <mat-card-title
+      ><span
+        >{{ connectionDetails.Name }} {{ connectionDetails.Surname }}</span
+      ></mat-card-title
+    >
+    <mat-card-subtitle
+      ><span>@{{ connectionDetails.Username }}</span></mat-card-subtitle
+    >
   </mat-card-header>
 </mat-card>

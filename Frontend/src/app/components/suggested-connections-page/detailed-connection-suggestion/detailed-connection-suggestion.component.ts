@@ -7,7 +7,6 @@ import { ConnectionDetails } from 'src/app/model/connectionDetails';
   styleUrls: ['./detailed-connection-suggestion.component.scss'],
 })
 export class DetailedConnectionSuggestionComponent implements OnInit {
-
   @Input() connectionDetails!: ConnectionDetails;
 
   constructor() {}

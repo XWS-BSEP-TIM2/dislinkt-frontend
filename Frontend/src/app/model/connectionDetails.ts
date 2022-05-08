@@ -8,6 +8,6 @@ export class ConnectionDetails {
     public Username: string = '',
     public Biography: string = '',
     public IsPrivate: boolean = false,
-    public Skills: Skill[]
+    public Skills: Skill[] = [],
   ) {}
 }

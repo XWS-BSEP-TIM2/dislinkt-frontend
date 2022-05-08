@@ -7,30 +7,23 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'suggested-connections-page',
   templateUrl: './suggested-connections-page.component.html',
-  styleUrls: ['./suggested-connections-page.component.scss']
+  styleUrls: ['./suggested-connections-page.component.scss'],
 })
 export class SuggestedConnectionsPageComponent implements OnInit {
+  loginResponse: LoginResponse = new LoginResponse();
+  recommendations: ConnectionDetails[] = [];
 
-  loginRespons: LoginResponse = new LoginResponse();
-  constructor(private loginService: LoginService, private connectionService: ConnectionService) {
-    this.loginRespons = this.loginService.getCurrentUser();
-   }
-
-  recommendations!: ConnectionDetails[];
-
-  ngOnInit(): void {
-    this.recommendations = []
-    
-    
-    this.connectionService.GetRecommendations().subscribe((data) => {
-      //console.log(data);
-      this.recommendations = data;
-    });
-    
-
-    
-    //this.recommendations.push(new ConnectionDetails("id", "Nikola", "Tesla", "nikolatesla", "Neka super biografija koja je jako zanimljiva ali zapravo i nije toliko zanimljivo jer je ovo vec dosadilo", false, [new Skill("i", "Java", "Skill"), new Skill("i", "C#", "Skill"), new Skill("i", "Python", "Skill")] ))
-
+  constructor(
+    private loginService: LoginService,
+    private connectionService: ConnectionService
+  ) {
+    this.loginResponse = this.loginService.getCurrentUser();
   }
 
+  ngOnInit(): void {
+    this.connectionService.GetRecommendations().subscribe((data) => {
+      this.recommendations = data;
+    });
+
+  }
 }

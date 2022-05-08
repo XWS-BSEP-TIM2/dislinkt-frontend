@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConnectionDetails } from 'src/app/model/connectionDetails';
 
 @Component({
   selector: 'single-connection-suggestion',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-connection-suggestion.component.scss'],
 })
 export class SingleConnectionSuggestionComponent implements OnInit {
+  @Input() connectionDetails!: ConnectionDetails;
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  redirect() {}
+  redirect() {
+    window.location.href = '/user/' + this.connectionDetails.UserID;
+  }
 }

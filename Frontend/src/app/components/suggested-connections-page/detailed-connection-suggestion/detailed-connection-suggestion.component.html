@@ -2,10 +2,10 @@
   <div style="width: 760px"></div>
   <mat-card-header>
     <div mat-card-avatar>
-      <ngx-avatar
-        name="{{ connectionDetails.Name }} {{ connectionDetails.Surname }}"
-        size="40"
-      ></ngx-avatar>
+      <profile-picture
+        [connection]="connectionDetails"
+        [size]="40"
+      ></profile-picture>
     </div>
     <mat-card-title
       ><span
@@ -15,7 +15,9 @@
         | Java Developer @Microsoft</span
       ></mat-card-title
     >
-    <mat-card-subtitle><span>2st connection</span></mat-card-subtitle>
+    <mat-card-subtitle
+      ><span>@{{ connectionDetails.Username }}</span></mat-card-subtitle
+    >
   </mat-card-header>
   <mat-card-content>
     <hr class="mt-5" />

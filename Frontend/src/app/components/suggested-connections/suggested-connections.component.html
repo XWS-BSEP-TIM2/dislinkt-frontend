@@ -2,13 +2,20 @@
   class="is-flex is-flex-direction-column stretch-width is-align-items-center"
 >
   <div class="stretch-width">
-    <single-connection-suggestion></single-connection-suggestion>
-    <single-connection-suggestion></single-connection-suggestion>
-    <single-connection-suggestion></single-connection-suggestion>
+    <div *ngFor="let rec of recommendations | slice: 0:3; let i = index">
+      <single-connection-suggestion
+        [connectionDetails]="rec"
+      ></single-connection-suggestion>
+    </div>
   </div>
 
   <div>
-    <button mat-flat-button color="primary" class="shadow-hover" (click)="redirectConnections()">
+    <button
+      mat-flat-button
+      color="primary"
+      class="shadow-hover"
+      (click)="redirectConnections()"
+    >
       See more
     </button>
   </div>
