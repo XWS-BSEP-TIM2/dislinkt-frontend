@@ -108,6 +108,10 @@ body {
   margin: auto;
 }
 
+mat-spinner {
+  margin: 50px auto;
+}
+
 /* Hide scroll bar*/
 .main-container::-webkit-scrollbar {
   display: none !important;

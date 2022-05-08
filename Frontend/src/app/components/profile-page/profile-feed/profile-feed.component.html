@@ -1,4 +1,5 @@
-<div>
+<mat-spinner color="accent" *ngIf="userProfile.name == ''"></mat-spinner>
+<div *ngIf="userProfile.name != ''">
   <div class="box">
     <div class="columns">
       <div class="column mr-5">

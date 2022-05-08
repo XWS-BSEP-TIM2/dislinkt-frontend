@@ -1,6 +1,7 @@
 <div class="columns">
   <div class="column">
-    <div class="stretch-width box">
+    <mat-spinner color="accent" *ngIf="userProfile.name == ''"></mat-spinner>
+    <div class="stretch-width box" *ngIf="userProfile.name != ''">
       <div class="cover-image"></div>
       <div class="profile-photo" *ngIf="userProfile.name != ''">
         <profile-picture
