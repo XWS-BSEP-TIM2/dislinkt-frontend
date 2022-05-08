@@ -22,6 +22,16 @@ export class ConnectionService {
     return this._http.get<any>(this.url + 'api/connection/friends/'+userID, { headers: headers });
   }
 
+  GetBlockeds() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url + 'api/connection/block', { headers: headers });
+  }
+
+  GetFriendRequests() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url + 'api/connection/friends-request', { headers: headers });
+  }
+
   GetDetail(myUserID: string, targetUserID: string) {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(this.url + 'connection/'+myUserID+'/detail/'+targetUserID, { headers: headers });

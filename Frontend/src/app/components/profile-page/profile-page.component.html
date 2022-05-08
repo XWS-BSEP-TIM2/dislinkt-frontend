@@ -15,12 +15,13 @@
         <div
           class="is-flex is-flex-direction-column is-justify-content-flex-start is-align-items-end"
         >
-        <div
-        class="tag is-primary is-medium connections-tag clickable"
-        (click)="redirectConnections()"
-      >
-        148 connections
-      </div>
+
+        <div class="is-flex is-flex-direction-row is-justify-content-flex-start is-align-items-end">
+          <div class="tag is-primary is-medium connections-tag clickable m-1" (click)="redirectConnections()" >148 connections</div>
+          <div *ngIf="myProfileFunc()" class="tag is-primary is-medium connections-tag clickable m-1" (click)="redirectRequests()">Requests</div>
+          <div *ngIf="myProfileFunc()" class="tag is-primary is-medium connections-tag clickable m-1" (click)="redirectBlocks()">Blocks</div>
+        </div>
+        
         <div *ngIf="!myProfileFunc()">
           <connect-panel [userIDa]="loginRespons.userID" [userIDb]="targetUserID"></connect-panel>
         </div>

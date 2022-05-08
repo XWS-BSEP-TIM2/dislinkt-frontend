@@ -48,6 +48,8 @@ import { WriteCommentComponent } from './components/post-page-component/write-co
 import { CommentPreviewComponent } from './components/post-page-component/comment-preview/comment-preview.component';
 import { PhotoLightBoxComponent } from './components/post-page-component/photo-light-box/photo-light-box.component';
 import { ConnectPanelComponent } from './components/connect-panel/connect-panel.component';
+import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component';
+import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { ConnectPanelComponent } from './components/connect-panel/connect-panel.
     CommentPreviewComponent,
     PhotoLightBoxComponent,
     ConnectPanelComponent,
+    ProfileRequestsComponent,
+    ProfileBlocksComponent,
   ],
   imports: [
     BrowserModule,

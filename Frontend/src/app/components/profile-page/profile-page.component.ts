@@ -19,19 +19,31 @@ export class ProfilePageComponent implements OnInit {
   }
 
   myProfileFunc(): boolean {
-    let urlID = window.location.pathname.substring(6).split('/')[0] 
+    let urlID = this.getTargetUserID()
     //return this.loginService.getCurrentUser().userID === urlID;   //TODO: fix
     //TODO: linija iznad uporedjuje prijavljenog korisnika i id prosledjenog
     return urlID === this.loginRespons.userID
   }
 
   ngOnInit(): void {
-    this.targetUserID = window.location.pathname.substring(6).split('/')[0]
+    this.targetUserID = this.getTargetUserID()
     this.loginRespons = this.loginService.getCurrentUser()
     this.myProfileFunc()
   }
 
   redirectConnections() {
-    window.location.href = 'user/'+window.location.pathname.substring(6).split('/')[0]+'/connections';
+    window.location.href = 'user/'+this.getTargetUserID()+'/connections';
+  }
+
+  redirectBlocks() {
+    window.location.href = 'user/'+this.getTargetUserID()+'/blocks';
+  }
+
+  redirectRequests() {
+    window.location.href = 'user/'+this.getTargetUserID()+'/requests';
+  }
+
+  getTargetUserID(): string{
+    return window.location.pathname.substring(6).split('/')[0]
   }
 }

@@ -1,0 +1,5 @@
+<h2 class="mt-5">Blocked users</h2>
+<mat-divider class="mb-5"></mat-divider>
+<div *ngFor="let b of blockeds">
+    <detailed-connection-suggestion [connectionDetails]="b" ></detailed-connection-suggestion>
+</div>

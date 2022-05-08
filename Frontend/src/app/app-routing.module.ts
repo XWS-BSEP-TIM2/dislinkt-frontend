@@ -15,6 +15,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { SuggestedConnectionsPageComponent } from './components/suggested-connections-page/suggested-connections-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component'
+import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component'
 
 const routes: Routes = [
   {
@@ -34,6 +36,8 @@ const routes: Routes = [
         children: [
           { path: '', component: ProfileFeedComponent },
           { path: 'connections', component: ProfileConnectionsComponent },
+          { path: 'requests', component: ProfileRequestsComponent },
+          { path: 'blocks', component: ProfileBlocksComponent },
         ],
       },
       { path: 'edit-profile', component: EditProfilePageComponent },
