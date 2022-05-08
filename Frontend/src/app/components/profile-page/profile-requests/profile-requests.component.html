@@ -1,0 +1,5 @@
+<h2 class="mt-5">Connection Requests</h2>
+<mat-divider class="mb-5"></mat-divider>
+<div *ngFor="let req of connectionRequest">
+    <detailed-connection-suggestion [connectionDetails]="req" ></detailed-connection-suggestion>
+</div>
