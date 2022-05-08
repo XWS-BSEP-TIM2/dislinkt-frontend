@@ -4,11 +4,7 @@
       <div class="column mr-5">
         <h2>Biography</h2>
         <p class="has-text-justified">
-          Donec at odio nec nulla pretium sodales. Phasellus ut tempus ex, in
-          vestibulum purus. Morbi eu lacinia lorem. Proin posuere efficitur
-          fringilla. Nam scelerisque elit sed rutrum auctor. Duis dapibus est
-          sed efficitur accumsan. Curabitur malesuada nisi eget sapien egestas
-          ultrices.
+          {{ userProfile.biography }}
         </p>
       </div>
       <div class="column is-5 ml-5">
@@ -16,19 +12,21 @@
         <div class="personal-info">
           <span>
             <mat-icon>date_range</mat-icon>
-            <strong class="info-text">25/11/1990</strong>
+            <strong class="info-text">{{
+              userProfile.birthDate | date: "longDate"
+            }}</strong>
           </span>
         </div>
         <div class="personal-info">
           <span>
             <mat-icon>email</mat-icon>
-            <strong class="info-text">john@smith.com</strong>
+            <strong class="info-text">{{ userProfile.email }}</strong>
           </span>
         </div>
         <div class="personal-info">
           <span>
             <mat-icon>phone</mat-icon>
-            <strong class="info-text">255-588-588</strong>
+            <strong class="info-text">{{ userProfile.phoneNumber }}</strong>
           </span>
         </div>
       </div>
@@ -36,34 +34,47 @@
   </div>
 
   <div class="columns">
-    <div class="column">
+    <div class="column is-7">
       <div class="box stretch-height">
         <h2>Experience</h2>
         <mat-list>
           <div mat-subheader>Work</div>
-          <mat-list-item>
+
+          <mat-list-item *ngFor="let experience of workExperiences">
             <mat-icon mat-list-icon>work_outline</mat-icon>
-            <div mat-line>Microsoft Java Developer</div>
-            <div mat-line>2018-2022</div>
+            <div mat-line>{{ experience.name }}</div>
+            <div mat-line class="experienceDescription">
+              {{ experience.description }}
+            </div>
+            <div mat-line>
+              {{ experience.startDate | date: "YYYY" }}-{{
+                experience.endDate | date: "YYYY"
+              }}
+            </div>
           </mat-list-item>
 
-          <mat-list-item>
-            <mat-icon mat-list-icon>work_outline</mat-icon>
-            <div mat-line>Levi9 Tester</div>
-            <div mat-line>2014-2018</div>
-          </mat-list-item>
+          <div class="ml-3 mb-5" *ngIf="workExperiences.length == 0">
+            No work experiences to show.
+          </div>
+
           <mat-divider></mat-divider>
           <div mat-subheader>Education</div>
-          <mat-list-item>
+          <mat-list-item *ngFor="let experience of educationExperiences">
             <mat-icon mat-list-icon>school</mat-icon>
-            <div mat-line>New Yor Gymnasium</div>
-            <div mat-line>2010-2014</div>
+            <div mat-line>{{ experience.name }}</div>
+            <div mat-line class="experienceDescription">
+              {{ experience.description }}
+            </div>
+            <div mat-line>
+              {{ experience.startDate | date: "YYYY" }}-{{
+                experience.endDate | date: "YYYY"
+              }}
+            </div>
           </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon>school</mat-icon>
-            <div mat-line>Some Elementary School</div>
-            <div mat-line>2002-2010</div>
-          </mat-list-item>
+
+          <div class="ml-3 mb-5" *ngIf="educationExperiences.length == 0">
+            No education to show.
+          </div>
         </mat-list>
       </div>
     </div>
@@ -71,33 +82,17 @@
       <div class="box stretch-height">
         <h2>Skills and Interests</h2>
         <mat-chip-list>
-          <mat-chip color="primary" selected disableRipple="true"
-            >Angular</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true"
-            >ReactJS</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true"
-            >Spring Boot</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true"
-            >Java</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true">C#</mat-chip>
-          <mat-chip color="primary" selected disableRipple="true"
-            >Testing</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true">C</mat-chip>
-          <mat-chip color="primary" selected disableRipple="true"
-            >Front-end</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true"
-            >Back-end</mat-chip
-          >
-          <mat-chip color="primary" selected disableRipple="true"
-            >Full-stack</mat-chip
+          <mat-chip
+            color="primary"
+            selected
+            disableRipple="true"
+            *ngFor="let skill of userProfile.skills"
+            >{{ skill.name }}</mat-chip
           >
         </mat-chip-list>
+        <div class="ml-3 mb-5" *ngIf="userProfile.skills.length == 0">
+          No skills to show.
+        </div>
       </div>
     </div>
   </div>

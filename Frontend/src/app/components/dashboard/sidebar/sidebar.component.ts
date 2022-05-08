@@ -13,18 +13,22 @@ import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.co
 export class SidebarComponent implements OnInit {
   currentPage?: string = '';
 
-  loginUser!: LoginRespons
+  loginUser!: LoginRespons;
 
-  constructor(private router: Router, public dialog: MatDialog, private loginService: LoginService) {}
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.router.url);
+    // console.log(this.router.url);
     this.currentPage = this.router.url.substring(1);
     this.loginUser = this.loginService.getCurrentUser();
   }
 
   redirect() {
-    console.log(this.currentPage);
+    // console.log(this.currentPage);
     this.router.navigate([this.currentPage]);
   }
 

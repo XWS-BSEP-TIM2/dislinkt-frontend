@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectionDetails, Skill } from 'src/app/model/connectionDetails';
+import { ConnectionDetails } from 'src/app/model/connectionDetails';
 import { LoginRespons } from 'src/app/model/loginResponse';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { LoginService } from 'src/app/services/login.service';

@@ -8,22 +8,27 @@
 
       <div class="mt-5 is-flex is-flex-direction-row">
         <div class="stretch-width">
-          <h3>{{loginRespons.userID}}</h3>  <!-- TODO: remove -->
-          <h1>John Smith</h1>
-          <h2>Apple Senior Java Developer | @johny_smith</h2>
+          <h1>{{ userProfile.name }} {{ userProfile.surname }}</h1>
+          <h2>{{ userPosition.name }} | @{{ userProfile.username }}</h2>
         </div>
         <div
           class="is-flex is-flex-direction-column is-justify-content-flex-start is-align-items-end"
         >
-        <div
-        class="tag is-primary is-medium connections-tag clickable"
-        (click)="redirectConnections()"
-      >
-        148 connections
-      </div>
-        <div *ngIf="!myProfileFunc()">
-          <connect-panel [userIDa]="loginRespons.userID" [userIDb]="targetUserID"></connect-panel>
-        </div>
+          <div
+            class="tag is-primary is-medium connections-tag clickable"
+            (click)="redirectConnections()"
+          >
+            <span *ngIf="connectionNumber == 1"> 1 connection </span>
+            <span *ngIf="connectionNumber != 1">
+              {{ connectionNumber }} connections
+            </span>
+          </div>
+          <div *ngIf="!myProfileFunc()">
+            <connect-panel
+              [userIDa]="loginResponse.userID"
+              [userIDb]="targetUserID"
+            ></connect-panel>
+          </div>
         </div>
       </div>
     </div>
