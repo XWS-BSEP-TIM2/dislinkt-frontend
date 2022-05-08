@@ -22,14 +22,19 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.router.url);
     this.currentPage = this.router.url.substring(1);
     this.loginUser = this.loginService.getCurrentUser();
   }
 
   redirect() {
-    // console.log(this.currentPage);
     this.router.navigate([this.currentPage]);
+    if (this.currentPage == 'user/' + this.loginUser.userID) {
+      this.redirectMyProfile();
+    }
+  }
+
+  redirectMyProfile() {
+    window.location.href = '/user/' + this.loginUser.userID;
   }
 
   redirectFeed() {

@@ -19,7 +19,7 @@ export class LoginService {
 
   loginSetUser(loginResponse: LoginResponse) {
     this.user = loginResponse;
-    console.log(this.user);
+    //console.log(this.user);
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     window.location.href = '/';
   }

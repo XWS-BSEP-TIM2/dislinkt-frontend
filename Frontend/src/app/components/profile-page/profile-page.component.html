@@ -8,7 +8,11 @@
 
       <div class="mt-5 is-flex is-flex-direction-row">
         <div class="stretch-width">
-          <h1>{{ userProfile.name }} {{ userProfile.surname }}</h1>
+          <h1>
+            <span class="clickable" (click)="redirectFeed()">
+              {{ userProfile.name }} {{ userProfile.surname }}
+            </span>
+          </h1>
           <h2>{{ userPosition.name }} | @{{ userProfile.username }}</h2>
         </div>
         <div
@@ -40,13 +44,6 @@
             >
               Blocks
             </div>
-          </div>
-
-          <div *ngIf="!myProfileFunc()">
-            <connect-panel
-              [userIDa]="loginResponse.userID"
-              [userIDb]="targetUserID"
-            ></connect-panel>
           </div>
 
           <div *ngIf="!myProfileFunc()">

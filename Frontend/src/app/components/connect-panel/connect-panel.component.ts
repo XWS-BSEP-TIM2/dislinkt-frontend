@@ -23,10 +23,10 @@ export class ConnectPanelComponent implements OnInit {
   loadData() {
     this.connectionPanelModel = new ConnectionPanelModel();
     this.connectionService.GetDetail(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.connectionPanelModel = data;
       this.ready = true;
-      console.log(this.connectionPanelModel)
+      //console.log(this.connectionPanelModel)
     });  
   }
 
@@ -69,49 +69,49 @@ export class ConnectPanelComponent implements OnInit {
   // =============================== ACTIONS
   connectBtn() {
     this.connectionService.AddFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   connecPrivtBtn() {
     this.connectionService.SendFriendRequest(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   cancelRequestBtn() {
     this.connectionService.UnsendFriendRequest(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   acceptBtn() {
     this.connectionService.AddFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   disconnectBtn() {
     this.connectionService.RemoveFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   block() {
     this.connectionService.AddBlockUser(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }
 
   unblock() {
     this.connectionService.UnblockUser(this.userIDa, this.userIDb).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.loadData();
     });  
   }

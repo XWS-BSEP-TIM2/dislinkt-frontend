@@ -23,13 +23,15 @@ export class ProfileService {
     var currentExperience: Experience = new Experience();
     var today = new Date();
 
-    if (this.getSortedExperiences.length != 0) {
+    console.log(profile);
+
+    if (this.getSortedExperiences(profile).length != 0) {
       currentExperience = this.getSortedExperiences(profile)[0];
       if (currentExperience.endDate < today) {
         currentExperience.name = '[FORMER] ' + currentExperience.name;
       }
     } else {
-      currentExperience.name = 'No career information available.';
+      currentExperience.name = 'No career information available';
     }
 
     return currentExperience;

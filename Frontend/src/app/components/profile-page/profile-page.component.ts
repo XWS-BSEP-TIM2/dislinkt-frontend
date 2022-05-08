@@ -37,7 +37,7 @@ export class ProfilePageComponent implements OnInit {
       this.userPosition = this.profileService.getCurrentPosition(
         this.userProfile
       );
-      console.log(this.userPosition);
+      //console.log(this.userPosition);
     });
 
     this.connectionService.GetFriends(this.userProfile.id).subscribe((data) => {
@@ -62,5 +62,9 @@ export class ProfilePageComponent implements OnInit {
 
   redirectRequests() {
     window.location.href = 'user/' + this.userProfile.id + '/requests';
+  }
+
+  redirectFeed() {
+    window.location.href = 'user/' + this.userProfile.id;
   }
 }

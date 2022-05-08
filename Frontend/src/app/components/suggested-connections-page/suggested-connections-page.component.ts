@@ -23,7 +23,7 @@ export class SuggestedConnectionsPageComponent implements OnInit {
     
     
     this.connectionService.GetRecommendations().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.recommendations = data;
     });
     

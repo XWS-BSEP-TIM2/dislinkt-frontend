@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit {
 
   successfulLogin(loginRespons: LoginRespons) {
     this.errorMessage = '';
-    console.log(loginRespons);
+    //console.log(loginRespons);
     this.loginService.loginSetUser(loginRespons);
   }
 
