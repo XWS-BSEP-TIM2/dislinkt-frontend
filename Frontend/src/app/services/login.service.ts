@@ -19,7 +19,7 @@ export class LoginService {
   loginSetUser(loginResponse: LoginResponse) {
     localStorage.setItem('currentUser', JSON.stringify(loginResponse));
     this.writeFullNameToStorage(loginResponse);
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 
   writeFullNameToStorage(loginResponse: LoginResponse) {
@@ -31,6 +31,7 @@ export class LoginService {
       user.fullName = data.profile.name + ' ' + data.profile.surname;
       console.log();
       localStorage.setItem('currentUser', JSON.stringify(user));
+      window.location.href = '/';
     });
   }
 
