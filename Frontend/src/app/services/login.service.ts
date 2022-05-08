@@ -9,7 +9,6 @@ import { LoginResponse as LoginResponse } from '../model/loginResponse';
 })
 export class LoginService {
   url = 'http://localhost:9000/login'; //TODO: na jednom mestu
-  private user = new LoginResponse();
 
   constructor(private _http: HttpClient, private route: Router) {}
 
@@ -18,7 +17,6 @@ export class LoginService {
   }
 
   loginSetUser(loginResponse: LoginResponse) {
-    //console.log(this.user);
     localStorage.setItem('currentUser', JSON.stringify(loginResponse));
     this.writeFullNameToStorage(loginResponse);
     window.location.href = '/';
@@ -28,16 +26,17 @@ export class LoginService {
     //TODO: run this command after changing users' names in settings as well!
     var user = loginResponse;
     const headers = this.getHeaders();
-    const url = 'http://localhost:9000/user/' + loginResponse.userID;
+    const url = 'http://localhost:9000/profile/' + loginResponse.userID;
     this._http.get<any>(url, { headers: headers }).subscribe((data) => {
-      this.user.fullName = data.profile.name + ' ' + data.profile.surname;
-      localStorage.setItem('currentUser', JSON.stringify(loginResponse));
+      user.fullName = data.profile.name + ' ' + data.profile.surname;
+      console.log();
+      localStorage.setItem('currentUser', JSON.stringify(user));
     });
   }
 
   logout() {
-    this.user = new LoginResponse();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
+    var user = new LoginResponse();
+    localStorage.setItem('currentUser', JSON.stringify(user));
     window.location.href = '/';
   }
 

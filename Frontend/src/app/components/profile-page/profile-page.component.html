@@ -2,8 +2,18 @@
   <div class="column">
     <div class="stretch-width box">
       <div class="cover-image"></div>
-      <div class="profile-photo">
-        <profile-picture [activeUser]="true" [size]="120"></profile-picture>
+      <div class="profile-photo" *ngIf="userProfile.name != ''">
+        <profile-picture
+          [activeUser]="true"
+          [size]="120"
+          *ngIf="myProfileFunc()"
+        ></profile-picture>
+
+        <profile-picture
+          [user]="userProfile"
+          [size]="120"
+          *ngIf="!myProfileFunc()"
+        ></profile-picture>
       </div>
 
       <div class="mt-5 is-flex is-flex-direction-row">

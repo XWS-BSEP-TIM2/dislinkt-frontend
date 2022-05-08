@@ -2,7 +2,7 @@
   class="header-container is-flex is-flex-direction-row-reverse is-align-items-center"
 >
   <div class="clickable" [matMenuTriggerFor]="profile">
-    <ngx-avatar name="John Smith" [round]="true" size="40"></ngx-avatar>
+    <profile-picture [activeUser]="true" [size]="40"></profile-picture>
   </div>
   <mat-menu #profile="matMenu" class="mt-2">
     <button mat-menu-item class="px-5" (click)="redirectSettings()">
