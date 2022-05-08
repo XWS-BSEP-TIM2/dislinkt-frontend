@@ -17,6 +17,7 @@ export class LoginService {
   }
 
   loginSetUser(loginResponse: LoginResponse) {
+    loginResponse.fullName = '';
     localStorage.setItem('currentUser', JSON.stringify(loginResponse));
     this.writeFullNameToStorage(loginResponse);
     window.location.href = '/';
@@ -41,7 +42,12 @@ export class LoginService {
   }
 
   getCurrentUser(): LoginResponse {
-    return JSON.parse(localStorage.getItem('currentUser')!);
+    let currentUser = localStorage.getItem('currentUser')
+    if (currentUser != null) {
+      return JSON.parse(localStorage.getItem('currentUser')!);  
+    } else {
+      return new LoginResponse();  
+    }
   }
 
   isUserLoggedIn() {
