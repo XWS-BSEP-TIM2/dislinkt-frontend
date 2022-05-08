@@ -45,7 +45,11 @@ export class LoginService {
   }
 
   isUserLoggedIn() {
-    return this.getCurrentUser().role !== '';
+    if (this.getCurrentUser() == null) {
+      return false;
+    } else {
+      return this.getCurrentUser().role !== '';
+    }
   }
 
   getHeaders() {
