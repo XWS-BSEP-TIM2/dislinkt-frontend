@@ -24,6 +24,9 @@ export class ProfilePictureComponent implements OnInit {
   ngOnInit(): void {
     if (this.activeUser) {
       this.fullName = this.loginService.getCurrentUser().fullName;
+      if (this.fullName == null) {
+        this.fullName = 'Null';
+      }
     } else if (this.user.id != '') {
       this.fullName = this.profileService.getFullName(this.user);
     } else if (this.connection.UserID != '') {
