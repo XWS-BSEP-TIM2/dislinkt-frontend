@@ -6,24 +6,20 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'profile-blocks',
   templateUrl: './profile-blocks.component.html',
-  styleUrls: ['./profile-blocks.component.scss']
+  styleUrls: ['./profile-blocks.component.scss'],
 })
 export class ProfileBlocksComponent implements OnInit {
-
- 
-  constructor(private connectionService: ConnectionService) { }
+  constructor(private connectionService: ConnectionService) {}
 
   blockeds!: ConnectionDetails[];
 
   loadData() {
     this.connectionService.GetBlockeds().subscribe((data) => {
-      console.log(data);
       this.blockeds = data;
-    });  
+    });
   }
 
   ngOnInit(): void {
-   this.loadData()
+    this.loadData();
   }
-
 }

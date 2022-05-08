@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginResponse } from 'src/app/model/loginResponse';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class FeedComponent implements OnInit {
 
-  loginRespons: LoginRespons = new LoginRespons();
+  loginRespons: LoginResponse = new LoginResponse();
 
   constructor(private loginService: LoginService) { 
     this.loginRespons = this.loginService.getCurrentUser();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Experience } from 'src/app/model/experienceModel';
-import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginResponse } from 'src/app/model/loginResponse';
 import { Profile } from 'src/app/model/profileModel';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -16,7 +16,7 @@ export class ProfilePageComponent implements OnInit {
   userProfile: Profile = new Profile();
   userPosition: Experience = new Experience();
   connectionNumber: number = 0;
-  loginResponse!: LoginRespons;
+  loginResponse!: LoginResponse;
   targetUserID: string = '';
 
   constructor(

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/model/loginRequest';
-import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginResponse } from 'src/app/model/loginResponse';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  successfulLogin(loginRespons: LoginRespons) {
+  successfulLogin(loginRespons: LoginResponse) {
     this.errorMessage = '';
     //console.log(loginRespons);
     this.loginService.loginSetUser(loginRespons);

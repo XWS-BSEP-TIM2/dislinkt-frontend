@@ -23,8 +23,6 @@ export class ProfileService {
     var currentExperience: Experience = new Experience();
     var today = new Date();
 
-    console.log(profile);
-
     if (this.getSortedExperiences(profile).length != 0) {
       currentExperience = this.getSortedExperiences(profile)[0];
       if (currentExperience.endDate < today) {

@@ -50,6 +50,8 @@ import { PhotoLightBoxComponent } from './components/post-page-component/photo-l
 import { ConnectPanelComponent } from './components/connect-panel/connect-panel.component';
 import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component';
 import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
+import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
+import { CompanyPictureComponent } from './components/company-picture/company-picture.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { ProfileBlocksComponent } from './components/profile-page/profile-blocks
     ConnectPanelComponent,
     ProfileRequestsComponent,
     ProfileBlocksComponent,
+    ProfilePictureComponent,
+    CompanyPictureComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginResponse } from 'src/app/model/loginResponse';
 import { LoginService } from 'src/app/services/login.service';
 import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.component';
 
@@ -12,8 +12,7 @@ import { NewPostDialogComponent } from '../../new-post-dialog/new-post-dialog.co
 })
 export class SidebarComponent implements OnInit {
   currentPage?: string = '';
-
-  loginUser!: LoginRespons;
+  loginUser!: LoginResponse;
 
   constructor(
     private router: Router,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionDetails } from 'src/app/model/connectionDetails';
-import { LoginRespons } from 'src/app/model/loginResponse';
+import { LoginResponse } from 'src/app/model/loginResponse';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class SuggestedConnectionsPageComponent implements OnInit {
 
-  loginRespons: LoginRespons = new LoginRespons();
+  loginRespons: LoginResponse = new LoginResponse();
   constructor(private loginService: LoginService, private connectionService: ConnectionService) {
     this.loginRespons = this.loginService.getCurrentUser();
    }
