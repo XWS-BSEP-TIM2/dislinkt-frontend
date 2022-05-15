@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { server } from '../app-global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConnectionService {
 
-  url = 'http://localhost:9000/'; //TODO: na jednom mestu
+  url = server; //TODO: na jednom mestu
 
   constructor(private _http: HttpClient, private route: Router, private loginService: LoginService) { }
 

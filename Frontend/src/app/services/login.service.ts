@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../model/loginRequest';
 import { LoginResponse as LoginResponse } from '../model/loginResponse';
+import { server } from '../app-global';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  url = 'http://localhost:9000/login'; //TODO: na jednom mestu
+  url = server+'login'; //TODO: na jednom mestu
 
   constructor(private _http: HttpClient, private route: Router) {}
 
@@ -27,7 +28,7 @@ export class LoginService {
     //TODO: run this command after changing users' names in settings as well!
     var user = loginResponse;
     const headers = this.getHeaders();
-    const url = 'http://localhost:9000/profile/' + loginResponse.userID;
+    const url = server+'profile/' + loginResponse.userID;
     this._http.get<any>(url, { headers: headers }).subscribe((data) => {
       user.fullName = data.profile.name + ' ' + data.profile.surname;
       console.log();

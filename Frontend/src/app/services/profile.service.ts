@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { server } from '../app-global';
 import { Experience } from '../model/experienceModel';
 import { Profile } from '../model/profileModel';
 import { LoginService } from './login.service';
@@ -9,7 +10,7 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class ProfileService {
-  url = 'http://localhost:9000/profile';
+  url = server+'profile';
 
   constructor(private _http: HttpClient, private loginService: LoginService) {}
 
