@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
       this.errorMessage = '';
       this.loginService.login(this.loginRequest).subscribe(
         (data) => {
-          if (data.error === '')
+          if (data.error == undefined || data.error === '')
             this.successfulLogin(data);
           else
             alert(data.error);
