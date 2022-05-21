@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../model/loginRequest';
 import { LoginResponse as LoginResponse } from '../model/loginResponse';
 import { server } from '../app-global';
+import { RecoveryRequest } from '../model/recoveryRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,18 @@ export class LoginService {
 
   login(loginR: LoginRequest) {
     return this._http.post<any>(this.url, loginR);
+  }
+
+  forggotPasswrod(username: string) {
+    return this._http.get<any>(this.url+'/recovery/'+username);
+  }
+
+  resendVerification(username: string) {
+    return this._http.get<any>(this.url + '/verify/' + username);
+  }
+
+  loginRecoverRequest(recoveryRequest: RecoveryRequest) {
+    return this._http.post<any>(this.url+'/recovery', recoveryRequest);
   }
 
   loginSetUser(loginResponse: LoginResponse) {

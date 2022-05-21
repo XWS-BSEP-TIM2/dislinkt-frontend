@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/model/loginRequest';
 import { LoginResponse } from 'src/app/model/loginResponse';
+import { RecoveryRequest } from 'src/app/model/recoveryRequest';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -14,12 +15,39 @@ export class LoginPageComponent implements OnInit {
   loginRequest: LoginRequest = new LoginRequest()
   errorMessage = ''
 
+  recoveryFormVisible = false;
+  recoveryRequest: RecoveryRequest = new RecoveryRequest()
+  recoveryMsg = ''
+
   constructor(private loginService: LoginService, private route: Router) { }
 
   ngOnInit(): void {
   }
 
+  forggotPassword() {
+    this.recoveryMsg = ''
+    this.loginService.forggotPasswrod(this.loginRequest.username).subscribe(
+      (data) => {
+        if (data.status == 4) {
+          this.errorMessage = "";
+          this.recoveryMsg = data.msg
+          this.recoveryFormVisible = true
+        } else {
+          this.errorMessage = data.msg;
+        }
+      },
+      (err) => {
+        this.errorMessage = "Error recovery"
+      }
+    );
+  }
+
   login() {
+    if (this.recoveryFormVisible) {
+      this.sendRecoveryRequest()
+      return 
+    }
+
     if (!this.loginRequest.validateProperty()) {
       this.errorMessage = 'Email or password missing.';
     } else {
@@ -28,8 +56,9 @@ export class LoginPageComponent implements OnInit {
         (data) => {
           if (data.error == undefined || data.error === '')
             this.successfulLogin(data);
-          else
-            alert(data.error);
+          else {
+            this.errorMessage = data.error
+          }
         },
         (res) => (this.errorMessage = 'Invalid email or password.')
       );
@@ -40,6 +69,41 @@ export class LoginPageComponent implements OnInit {
     this.errorMessage = '';
     //console.log(loginRespons);
     this.loginService.loginSetUser(loginRespons);
+  }
+
+  sendRecoveryRequest() {
+    this.recoveryRequest.username = this.loginRequest.username;
+    if (!this.recoveryRequest.validateProperty()) {
+      this.errorMessage = 'Email or password missing.';
+    } else {
+      this.errorMessage = '';
+      this.loginService.loginRecoverRequest(this.recoveryRequest).subscribe(
+        (data) => {
+          if (data.error == undefined || data.error === '')
+            this.successfulLogin(data);
+          else {
+            //alert(data.error); 
+            this.errorMessage = data.error
+          }
+        },
+        (res) => (this.errorMessage = 'Error login recovery')
+      );
+    }
+  }
+
+  resendVerificationLink() {
+    this.errorMessage = ''
+    this.loginService.resendVerification(this.loginRequest.username).subscribe(
+      (data) => { 
+        this.errorMessage = data.msg;
+      },
+      (err) => {
+        this.errorMessage = 'Error resend verification link'
+    })
+  }
+
+  showResendVerificationLink() {
+    return this.errorMessage.includes('Your Acc is not verified')
   }
 
 }
