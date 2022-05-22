@@ -5,6 +5,7 @@ import { LoginRequest } from '../model/loginRequest';
 import { LoginResponse as LoginResponse } from '../model/loginResponse';
 import { server } from '../app-global';
 import { RecoveryRequest } from '../model/recoveryRequest';
+import { PasswordlessLoginModel } from '../model/passwordlessLoginModel';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,15 @@ export class LoginService {
 
   loginRecoverRequest(recoveryRequest: RecoveryRequest) {
     return this._http.post<any>(this.url+'/recovery', recoveryRequest);
+  }
+  loginPasswordless(token:PasswordlessLoginModel){
+    const url=server+'magic-link-login'
+    return this._http.post<any>(url,token);
+  }
+
+  sendMagicLinkMail(mail:string){
+    const url=server+'magic-link-login/send-mail'
+    return this._http.post<any>(url,{email:mail}).subscribe();
   }
 
   loginSetUser(loginResponse: LoginResponse) {

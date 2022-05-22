@@ -52,6 +52,7 @@ import { ProfileRequestsComponent } from './components/profile-page/profile-requ
 import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { CompanyPictureComponent } from './components/company-picture/company-picture.component';
+import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { CompanyPictureComponent } from './components/company-picture/company-pi
     ProfileBlocksComponent,
     ProfilePictureComponent,
     CompanyPictureComponent,
+    MagicLinkLoginComponent,
   ],
   imports: [
     BrowserModule,

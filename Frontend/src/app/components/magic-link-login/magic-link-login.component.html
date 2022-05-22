@@ -1,0 +1,14 @@
+<div>
+    <div class="row">
+        <img src="assets/layered-waves-haikei.svg" class="waves-css" />
+    </div>
+    <div class="container" *ngIf="errorMessage==''">
+        <div class="center">Success.</div>
+    </div>
+    <div class="container">
+        <div class="centerError" *ngIf="errorMessage!=''">{{errorMessage}}</div>
+    </div>
+</div>
+
+
+

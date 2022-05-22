@@ -1,0 +1,39 @@
+.background-login-page{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f5f7;
+}
+
+.waves-css{
+    width: 100%;
+}
+
+.img-dislink-logo{
+    width: 24%;
+    margin-top: 60px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+  }
+.center {
+    width: 400px; 
+    padding: 10px;
+    color: rgb(68, 194, 89);
+    font-weight: bold;
+    font-family: Tahoma;
+    font-size: xx-large;
+    margin-left: 100px;
+}
+
+.centerError {
+    width: 400px; 
+    padding: 10px;
+    color: rgb(180, 75, 43);
+    font-weight: bold;
+    font-family: Tahoma;
+    font-size: xx-large;
+    margin-left: 100px;
+}

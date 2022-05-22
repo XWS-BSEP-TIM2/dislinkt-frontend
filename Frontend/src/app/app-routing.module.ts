@@ -18,6 +18,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component';
 import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
 import { AuthGuard, UnAuthGuard } from './services/auth-guard.service';
+import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
     canActivate: [UnAuthGuard],
   },
   { path: 'login', component: LoginPageComponent, canActivate: [UnAuthGuard] },
+  { path: 'magic-link-login/:id', component: MagicLinkLoginComponent, canActivate: [UnAuthGuard] },
   {
     path: 'register',
     component: RegistrationPageComponent,

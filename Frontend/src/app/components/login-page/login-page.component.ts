@@ -14,6 +14,7 @@ export class LoginPageComponent implements OnInit {
 
   loginRequest: LoginRequest = new LoginRequest()
   errorMessage = ''
+  mail='';
 
   recoveryFormVisible = false;
   recoveryRequest: RecoveryRequest = new RecoveryRequest()
@@ -104,6 +105,20 @@ export class LoginPageComponent implements OnInit {
 
   showResendVerificationLink() {
     return this.errorMessage.includes('Your Acc is not verified')
+  }
+
+  openModalTab():void{
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  closeModalTab():void{
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  sendMagicLinkMail():void{
+    this.loginService.sendMagicLinkMail(this.mail);
+    console.log(this.mail);
+    this.closeModalTab();
   }
 
 }
