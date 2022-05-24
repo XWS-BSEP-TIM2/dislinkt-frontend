@@ -34,9 +34,12 @@ export class MagicLinkLoginComponent implements OnInit {
           console.log(data.error);
           this.errorMessage=data.error;
         } 
+      },
+      (error:any)=>{
+          console.log(error);
+          this.errorMessage='Error!';
       }
-    )
-    
+      )
   }
 
   sleep = (milliseconds:number) => {

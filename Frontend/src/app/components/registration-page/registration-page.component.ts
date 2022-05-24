@@ -30,6 +30,9 @@ export class RegistrationPageComponent implements OnInit {
       } else {
         this.route.navigate(['error']);
       }
+    },
+    error=>{
+      alert(error.error.Message);
     });
   }
 
