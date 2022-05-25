@@ -19,6 +19,7 @@ import { ProfileRequestsComponent } from './components/profile-page/profile-requ
 import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
 import { AuthGuard, UnAuthGuard } from './services/auth-guard.service';
 import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', component: FeedComponent },
-      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate:[AuthGuard], data:{role:['ADMIN']} },
       { path: 'chat', component: ChatPageComponent },
       { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
@@ -60,7 +61,9 @@ const routes: Routes = [
     component: RegistrationPageComponent,
     canActivate: [UnAuthGuard],
   },
+  {path:'not-authorized', component: NotAuthorizedComponent},
   { path: '**', component: ErrorPageComponent },
+  
 ];
 
 @NgModule({

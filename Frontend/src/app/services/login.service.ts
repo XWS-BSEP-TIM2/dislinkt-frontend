@@ -56,6 +56,7 @@ export class LoginService {
       user.fullName = data.profile.name + ' ' + data.profile.surname;
       console.log();
       localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('role',user.role)
       window.location.href = '/';
     });
   }
@@ -91,4 +92,11 @@ export class LoginService {
     });
     return headers;
   }
+
+  getCurrentUserRole(){
+    return this.getCurrentUser().role
+  }
+
 }
+
+
