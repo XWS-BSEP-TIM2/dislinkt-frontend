@@ -92,8 +92,16 @@
 
                                       <div class="field">
                                         <label class="label">Password</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.password" type="password" placeholder="Enter password">
+                                        <div class="control ">
+
+                                          <p class="control has-icons-right">
+                                            <input class="input" [(ngModel)]="registrationModel.password" type="password" placeholder="Enter password">
+                                            <span class="icon is-small is-right">
+                                              <mat-icon *ngIf="registrationModel.passwordStrength()[1]" style="color: rgba(60, 255, 0, 0.812);">check_circle_outline</mat-icon>    
+                                              <mat-icon *ngIf="!registrationModel.passwordStrength()[1]" style="color: red;">cancel</mat-icon>
+                                            </span>
+                                          </p>
+                                          <p [ngClass]="registrationModel.passwordStrength()[1] ? 'has-text-success' : 'has-text-danger'">{{registrationModel.passwordStrength()[0]}}</p>
                                         </div>
                                       </div>
                                       
@@ -101,6 +109,7 @@
                                         <label class="label ">Confirm Password</label>
                                         <div class="control">
                                           <input class="input" [(ngModel)]="registrationModel.confirmPassword" type="password" placeholder="Confirm password" [class.is-danger] = "!registrationModel.passwordMatch()">
+                                          <p *ngIf="!registrationModel.passwordMatch()" class="has-text-danger">Password did not match</p>
                                         </div>
                                       </div>
 

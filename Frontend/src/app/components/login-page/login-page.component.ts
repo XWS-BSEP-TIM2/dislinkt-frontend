@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   errorMessage = ''
   mail='';
 
-  recoveryFormVisible = false;
+  recoveryFormVisible = true;
   recoveryRequest: RecoveryRequest = new RecoveryRequest()
   recoveryMsg = ''
 
@@ -27,6 +27,7 @@ export class LoginPageComponent implements OnInit {
 
   forggotPassword() {
     this.recoveryMsg = ''
+    this.recoveryRequest.username = this.loginRequest.username;
     this.loginService.forggotPasswrod(this.loginRequest.username).subscribe(
       (data) => {
         if (data.status == 4) {
