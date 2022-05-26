@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   errorMessage = ''
   mail='';
 
-  recoveryFormVisible = true;
+  recoveryFormVisible = false;
   recoveryRequest: RecoveryRequest = new RecoveryRequest()
   recoveryMsg = ''
 
