@@ -27,7 +27,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', component: FeedComponent },
-      
+      { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate:[AuthGuard], data:{role:['ADMIN']} },
       { path: 'chat', component: ChatPageComponent },
       { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
@@ -46,15 +46,9 @@ const routes: Routes = [
       { path: 'edit-profile', component: EditProfilePageComponent },
     ],
 
-    canActivate: [AuthGuard], data:{role:['USER']} 
-  }, 
-  { 
-    path:'admin',
-    children:[
-      { path: 'dashboard', component: AdminDashboardComponent },
-    ],
-    canActivate:[AuthGuard], data:{role:['ADMIN']}
+    canActivate: [AuthGuard],
   },
+
   {
     path: 'welcome',
     component: WelcomePageComponent,
