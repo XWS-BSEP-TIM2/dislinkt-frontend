@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { server } from '../app-global';
+import { ChangePasswordRequest } from '../model/changePasswordRequest';
 import { Experience } from '../model/experienceModel';
 import { Profile } from '../model/profileModel';
 import { LoginService } from './login.service';
@@ -18,6 +19,11 @@ export class ProfileService {
     const headers = this.loginService.getHeaders();
     const url = this.url + '/' + userId;
     return this._http.get<any>(url, { headers: headers });
+  }
+
+  changePassword(changePasswordRequest: ChangePasswordRequest) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'/changepassword', changePasswordRequest, { headers: headers })
   }
 
   getCurrentPosition(profile: Profile): Experience {

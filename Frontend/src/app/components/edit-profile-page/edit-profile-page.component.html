@@ -179,22 +179,31 @@
                             <div class="field">
                                 <label class="label">Old Password</label>
                                 <div class="control">
-                                  <input class="input" [(ngModel)]="oldPassword" type="password" placeholder="Old password">
+                                  <input class="input" [(ngModel)]="changePasswordRequest.oldPassword" type="password" placeholder="Old password">
                                 </div>
                               </div>
 
                             <div class="field">
-                                <label class="label">New Password</label>
-                                <div class="control">
-                                  <input class="input" [(ngModel)]="newPassword" type="password" placeholder="New password">
-                                </div>
+                              <label class="label">New Password</label>
+                              <div class="control ">
+                            
+                                <p class="control has-icons-right">
+                                  <input class="input" [(ngModel)]="changePasswordRequest.newPassword" type="password" placeholder="New password">
+                                  <span class="icon is-small is-right">
+                                    <mat-icon *ngIf="changePasswordRequest.passwordStrength()[1]" style="color: rgba(60, 255, 0, 0.812);">check_circle_outline</mat-icon>    
+                                    <mat-icon *ngIf="!changePasswordRequest.passwordStrength()[1]" style="color: red;">cancel</mat-icon>
+                                  </span>
+                                </p>
+                                <p [ngClass]="changePasswordRequest.passwordStrength()[1] ? 'has-text-success' : 'has-text-danger'">{{changePasswordRequest.passwordStrength()[0]}}</p>
+                              </div>
                             </div>
-                              
+
                             <div class="field">
-                                <label class="label ">Confirm Password</label>
-                                <div class="control">
-                                    <input class="input" [(ngModel)]="confirmPassword" type="password" placeholder="Confirm new password" [class.is-danger] = "!passwordMatch()"> <!--  -->
-                                </div>
+                              <label class="label ">Confirm Password</label>
+                              <div class="control">
+                                <input class="input" [(ngModel)]="changePasswordRequest.confirmNewPassword" type="password" placeholder="Confirm password" [class.is-danger] = "!changePasswordRequest.passwordMatch()">
+                                <p *ngIf="!changePasswordRequest.passwordMatch()" class="has-text-danger">Password did not match</p>
+                              </div>
                             </div>
 
                             <div class="is-flex is-justify-content-center mt-5">

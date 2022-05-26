@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/model/profileModel';
+import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
 
 @Component({
   selector: 'edit-profile-page',
@@ -12,6 +13,8 @@ export class EditProfilePageComponent implements OnInit {
 
   myProfile: Profile = new Profile();
   myProfileTemp: Profile = new Profile();
+
+  changePasswordRequest: ChangePasswordRequest = new ChangePasswordRequest();
 
   constructor(private profileService: ProfileService, private loginService: LoginService) { 
   }
@@ -24,10 +27,6 @@ export class EditProfilePageComponent implements OnInit {
 
   newUsername: string = '';
   newEmail: string = '';
-  
-  oldPassword: string = '';
-  newPassword: string = '';
-  confirmPassword: string = '';
 
   ngOnInit(): void {
     this.loadProfile()
@@ -38,6 +37,7 @@ export class EditProfilePageComponent implements OnInit {
     this.profileService.getUserById(myId).subscribe((data) => {
       this.myProfile = data.profile;
       this.myProfileTemp = this.myProfile; //reference oboje pokazuju na isto
+      this.changePasswordRequest.username = this.myProfile.username;
       console.log(this.myProfile);
     });
   }
@@ -76,12 +76,8 @@ export class EditProfilePageComponent implements OnInit {
   }
   cancelChangePassword() {
     this.changePasswordFormVisible = false;
-    this.oldPassword = '';
-    this.newPassword = '';
-    this.confirmPassword = '';
-  }
-  passwordMatch() {
-    return this.newPassword === this.confirmPassword;
+    this.changePasswordRequest = new ChangePasswordRequest();
+    this.changePasswordRequest.username = this.myProfile.username;
   }
 
   cancelAllOtherForms(n: number) {
@@ -90,10 +86,6 @@ export class EditProfilePageComponent implements OnInit {
     if(n!=3) this.cancelChangeEmail();
     if(n!=4) this.cancelChangePassword();
   }
-
-
-
-
 
   changeProfile() {
     this.myProfileTemp = this.myProfile;
@@ -117,10 +109,24 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   changePassword() {
-    alert("TODO: poslati zahtev ka bekendu da se izmeni password")
-    //todo
-
-    this.cancelChangePassword();
+    if (!this.changePasswordRequest.validateProperty()) {
+      alert('All property must be valid')
+      return
+    }
+    this.profileService.changePassword(this.changePasswordRequest).subscribe(
+      (data) => {
+        console.log(data)
+        if (data != null) {
+          alert(data.msg)
+          if(data.status == 200)
+          this.cancelChangePassword();
+        } else {
+          alert('error?')
+        }
+      },
+      (error)=>{
+        alert('ERROR');
+      });
   }
 
 
