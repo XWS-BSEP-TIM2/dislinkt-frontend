@@ -50,6 +50,12 @@ export class LoginService {
   writeFullNameToStorage(loginResponse: LoginResponse) {
     //TODO: run this command after changing users' names in settings as well!
     var user = loginResponse;
+    if (user.role=="ADMIN"){
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('role',user.role)
+      this.route.navigateByUrl('/admin/dashboard');
+      return
+    }
     const headers = this.getHeaders();
     const url = server+'profile/' + loginResponse.userID;
     this._http.get<any>(url, { headers: headers }).subscribe((data) => {
@@ -57,7 +63,10 @@ export class LoginService {
       console.log();
       localStorage.setItem('currentUser', JSON.stringify(user));
       localStorage.setItem('role',user.role)
-      window.location.href = '/';
+      if (user.role=="USER"){
+        window.location.href = '/';
+      }
+      
     });
   }
 
