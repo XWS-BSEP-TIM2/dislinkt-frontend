@@ -1,14 +1,14 @@
-export class RecoveryRequest {
+export class ChangePasswordRequest {
     constructor(
         public username: string = '',
-        public recoveryCode: string = '',
+        public oldPassword: string = '',
         public newPassword: string = '',
         public confirmNewPassword: string = '',
     ) { }
 
     validateProperty(): boolean {
         let [t, b] = this.passwordStrength();
-        return this.username !== '' && this.recoveryCode !== '' && this.newPassword !== '' && this.newPassword === this.confirmNewPassword && b
+        return this.username !== '' && this.oldPassword !== '' && this.newPassword !== '' && this.newPassword === this.confirmNewPassword && b
     }
 
     passwordStrength(): [string, boolean] {
