@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'admin-dashboard',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profileService:ProfileService) { }
 
   ngOnInit(): void {
+    this.profileService.getProfilesByAdmin().subscribe(data=>{
+      console.log(data);
+    })
   }
 
 }

@@ -26,6 +26,12 @@ export class ProfileService {
     return this._http.post<any>(this.url+'/changepassword', changePasswordRequest, { headers: headers })
   }
 
+  getProfilesByAdmin(){
+    const headers = this.loginService.getHeaders();
+    const url = this.url + '/admin-view';
+    return this._http.get<any>(url, { headers: headers });
+  }
+
   getCurrentPosition(profile: Profile): Experience {
     var currentExperience: Experience = new Experience();
     var today = new Date();
