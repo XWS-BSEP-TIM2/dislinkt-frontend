@@ -16,7 +16,14 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // return true if you want to navigate, otherwise return false
     
-    if (this.loginService.isUserLoggedIn()) {     
+    if (this.loginService.isUserLoggedIn()) {
+      if (route.routeConfig!.path=="" && this.loginService.getCurrentUserRole()!="USER"){
+        this.router.navigateByUrl('/not-authorized')
+        return false;
+      }else if(route.routeConfig!.path!="" && this.loginService.getCurrentUserRole()!="ADMIN"){
+        this.router.navigateByUrl('/not-authorized')
+        return false;
+      }   
       console.log(route); 
       return true;
     } else {
