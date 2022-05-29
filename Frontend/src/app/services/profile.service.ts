@@ -57,4 +57,10 @@ export class ProfileService {
   getFullName(profile: Profile) {
     return profile.name + ' ' + profile.surname;
   }
+
+  generateApiKey(){
+    const headers = this.loginService.getHeaders();
+    const url = server + 'api-token/'+this.loginService.getCurrentUser().userID;
+    return this._http.get<any>(url, { headers: headers });
+  }
 }

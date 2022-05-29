@@ -42,4 +42,13 @@ export class ProfileFeedComponent implements OnInit {
   resetSearch() {
     this.searchText = '';
   }
+
+  generateApiKey(){
+    this.profileService.generateApiKey().subscribe(data=>{
+      alert('Your api key:'+data.tokenCode);
+    },
+    error=>{
+      alert('Unable to generate api token');
+    })
+  }
 }
