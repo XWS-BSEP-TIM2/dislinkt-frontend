@@ -24,7 +24,11 @@
               {{ userProfile.name }} {{ userProfile.surname }}
             </span>
           </h1>
-          <h2>{{ userPosition.name }} | @{{ userProfile.username }}</h2>
+          <h2>
+            <span *ngIf="userPosition.name != ''"
+              >{{ userPosition.name }} | </span
+            >@{{ userProfile.username }}
+          </h2>
         </div>
         <div
           class="is-flex is-flex-direction-column is-justify-content-flex-start is-align-items-end"

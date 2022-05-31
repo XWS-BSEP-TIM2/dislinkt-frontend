@@ -4,6 +4,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/model/profileModel';
 import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
 import { Skill } from 'src/app/model/skillModel';
+import { DateSecondsFormat } from 'src/app/model/dateSecondsFormat';
 
 @Component({
   selector: 'edit-profile-page',
@@ -29,6 +30,7 @@ export class EditProfilePageComponent implements OnInit {
 
   newUsername: string = '';
   newEmail: string = '';
+  birthDate: string = '2000-01-01';
   biography: string = '';
   skills: string = '';
   interests: string = '';
@@ -44,6 +46,11 @@ export class EditProfilePageComponent implements OnInit {
       this.myProfile = data.profile;
       this.myProfileTemp = this.myProfile; //reference oboje pokazuju na isto
       this.changePasswordRequest.username = this.myProfile.username;
+      console.log(this.myProfile.birthDate);
+      if (this.myProfile.birthDate != undefined) {
+        this.birthDate = this.myProfile.birthDate?.toISOString().split('T')[0];
+        console.log(this.birthDate);
+      }
       this.biography = this.myProfile.biography;
       this.skills = this.myProfile.skills
         .filter((e) => e.skillType == 'Skill')
@@ -69,6 +76,10 @@ export class EditProfilePageComponent implements OnInit {
   cancelChangeProfile() {
     this.myProfile = this.myProfileTemp;
     this.changeProfileFormEditable = false;
+    if (this.myProfile.birthDate != undefined) {
+      this.birthDate = this.myProfile.birthDate?.toISOString().split('T')[0];
+      console.log(this.birthDate);
+    }
   }
 
   startChangeUsername() {
@@ -130,10 +141,16 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   changeProfile() {
-    this.myProfileTemp = this.myProfile;
-    alert('TODO: poslati zahtev ka bekendu da se izmeni Profil');
-    //todo
-    this.changeProfileFormEditable = false;
+    let requestBody: any;
+    requestBody = this.myProfile;
+    requestBody.birthDate = new DateSecondsFormat();
+    requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
+
+    console.log(requestBody);
+    this.profileService.updateProfile(requestBody).subscribe((data) => {
+      this.loadProfile();
+      this.changeProfileFormEditable = false;
+    });
   }
 
   changeUsername() {
@@ -186,10 +203,12 @@ export class EditProfilePageComponent implements OnInit {
       this.myProfile.skills.push(newInterest);
     }
 
-    this.myProfile.birthDate = null;
+    let requestBody: any;
+    requestBody = this.myProfile;
+    requestBody.birthDate = new DateSecondsFormat();
+    requestBody.birthDate.seconds = this.myProfile.birthDate.getSeconds();
 
-    console.log(this.myProfile);
-    this.profileService.updateProfile(this.myProfile).subscribe((data) => {
+    this.profileService.updateProfile(requestBody).subscribe((data) => {
       this.loadProfile();
       this.cancelChangeBiography();
     });
