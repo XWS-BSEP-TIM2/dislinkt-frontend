@@ -45,7 +45,7 @@ export class ProfileService {
     var currentExperience: Experience = new Experience();
     var today = new Date();
 
-    if (this.getSortedExperiences(profile).length != 0) {
+    if (this.getSortedExperiences(profile) != undefined) {
       currentExperience = this.getSortedExperiences(profile)[0];
       if (currentExperience.endDate < today) {
         currentExperience.name = '[FORMER] ' + currentExperience.name;
@@ -59,7 +59,9 @@ export class ProfileService {
 
   getSortedExperiences(profile: Profile): Experience[] {
     var sortedExperiences = profile.experiences;
-    sortedExperiences.sort((a, b) => (a.endDate > b.endDate ? 1 : -1));
+    if (sortedExperiences != undefined) {
+      sortedExperiences.sort((a, b) => (a.endDate > b.endDate ? 1 : -1));
+    }
     return sortedExperiences;
   }
 

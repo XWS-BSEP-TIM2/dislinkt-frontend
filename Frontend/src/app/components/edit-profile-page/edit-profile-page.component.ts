@@ -46,10 +46,8 @@ export class EditProfilePageComponent implements OnInit {
       this.myProfile = data.profile;
       this.myProfileTemp = this.myProfile; //reference oboje pokazuju na isto
       this.changePasswordRequest.username = this.myProfile.username;
-      console.log(this.myProfile.birthDate);
       if (this.myProfile.birthDate != undefined) {
         this.birthDate = this.myProfile.birthDate?.toISOString().split('T')[0];
-        console.log(this.birthDate);
       }
       this.biography = this.myProfile.biography;
       this.skills = this.myProfile.skills
@@ -78,7 +76,6 @@ export class EditProfilePageComponent implements OnInit {
     this.changeProfileFormEditable = false;
     if (this.myProfile.birthDate != undefined) {
       this.birthDate = this.myProfile.birthDate?.toISOString().split('T')[0];
-      console.log(this.birthDate);
     }
   }
 
@@ -146,7 +143,6 @@ export class EditProfilePageComponent implements OnInit {
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
-    console.log(requestBody);
     this.profileService.updateProfile(requestBody).subscribe((data) => {
       this.loadProfile();
       this.changeProfileFormEditable = false;
@@ -154,17 +150,29 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   changeUsername() {
-    alert('TODO: poslati zahtev ka bekendu da se izmeni Username');
-    //todo
+    this.myProfile.username = this.newUsername;
+    let requestBody: any;
+    requestBody = this.myProfile;
+    requestBody.birthDate = new DateSecondsFormat();
+    requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
-    this.cancelChangeUsername();
+    this.profileService.updateProfile(requestBody).subscribe((data) => {
+      this.loadProfile();
+      this.cancelChangeUsername();
+    });
   }
 
   changeEmail() {
-    alert('TODO: poslati zahtev ka bekendu da se izmeni Email');
-    //todo
+    this.myProfile.email = this.newEmail;
+    let requestBody: any;
+    requestBody = this.myProfile;
+    requestBody.birthDate = new DateSecondsFormat();
+    requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
-    this.cancelChangeEmail();
+    this.profileService.updateProfile(requestBody).subscribe((data) => {
+      this.loadProfile();
+      this.cancelChangeEmail();
+    });
   }
 
   changePassword() {
@@ -206,7 +214,7 @@ export class EditProfilePageComponent implements OnInit {
     let requestBody: any;
     requestBody = this.myProfile;
     requestBody.birthDate = new DateSecondsFormat();
-    requestBody.birthDate.seconds = this.myProfile.birthDate.getSeconds();
+    requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
     this.profileService.updateProfile(requestBody).subscribe((data) => {
       this.loadProfile();
