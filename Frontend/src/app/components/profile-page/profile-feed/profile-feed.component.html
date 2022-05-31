@@ -13,7 +13,9 @@
         <div class="personal-info">
           <span>
             <mat-icon>date_range</mat-icon>
-            <strong class="info-text">{{ userProfile.birthDate }}</strong>
+            <strong class="info-text">{{
+              userProfile.birthDate | date: "longDate"
+            }}</strong>
           </span>
         </div>
         <div class="personal-info">

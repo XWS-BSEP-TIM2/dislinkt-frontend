@@ -24,7 +24,9 @@ export class ProfileFeedComponent implements OnInit {
     this.userProfile.id = this.route.snapshot.paramMap.get('id')!;
 
     this.profileService.getUserById(this.userProfile.id).subscribe((data) => {
+      this.profileService.modifyProfileData(data);
       this.userProfile = data.profile;
+      console.log(this.userProfile);
       this.initExperiences();
     });
   }
