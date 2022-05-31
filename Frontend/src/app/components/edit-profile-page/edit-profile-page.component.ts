@@ -5,6 +5,7 @@ import { Profile } from 'src/app/model/profileModel';
 import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
 import { Skill } from 'src/app/model/skillModel';
 import { DateSecondsFormat } from 'src/app/model/dateSecondsFormat';
+import { Experience } from 'src/app/model/experienceModel';
 
 @Component({
   selector: 'edit-profile-page',
@@ -14,6 +15,7 @@ import { DateSecondsFormat } from 'src/app/model/dateSecondsFormat';
 export class EditProfilePageComponent implements OnInit {
   myProfile: Profile = new Profile();
   myProfileTemp: Profile = new Profile();
+  experiences: any[] = [];
 
   changePasswordRequest: ChangePasswordRequest = new ChangePasswordRequest();
 
@@ -27,6 +29,7 @@ export class EditProfilePageComponent implements OnInit {
   changeEmailFormVisible: boolean = false;
   changePasswordFormVisible: boolean = false;
   changeBiographyFormVisible: boolean = false;
+  changeExperienceFormVisible: boolean = false;
 
   newUsername: string = '';
   newEmail: string = '';
@@ -62,6 +65,8 @@ export class EditProfilePageComponent implements OnInit {
           return e.name;
         })
         .toString();
+
+      this.loadExperiences();
     });
   }
 
@@ -129,17 +134,29 @@ export class EditProfilePageComponent implements OnInit {
       .toString();
   }
 
+  startChangeExperience() {
+    this.cancelAllOtherForms(6);
+    this.changeExperienceFormVisible = true;
+  }
+
+  cancelChangeExperience() {
+    this.changeExperienceFormVisible = false;
+    this.loadExperiences();
+  }
+
   cancelAllOtherForms(n: number) {
     if (n != 1) this.cancelChangeProfile();
     if (n != 2) this.cancelChangeUsername();
     if (n != 3) this.cancelChangeEmail();
     if (n != 4) this.cancelChangePassword();
     if (n != 5) this.cancelChangeBiography();
+    if (n != 6) this.cancelChangeExperience();
   }
 
   changeProfile() {
     let requestBody: any;
     requestBody = this.myProfile;
+    requestBody.experiences = this.saveExperiences();
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
@@ -153,6 +170,7 @@ export class EditProfilePageComponent implements OnInit {
     this.myProfile.username = this.newUsername;
     let requestBody: any;
     requestBody = this.myProfile;
+    requestBody.experiences = this.saveExperiences();
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
@@ -166,6 +184,7 @@ export class EditProfilePageComponent implements OnInit {
     this.myProfile.email = this.newEmail;
     let requestBody: any;
     requestBody = this.myProfile;
+    requestBody.experiences = this.saveExperiences();
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
@@ -213,6 +232,7 @@ export class EditProfilePageComponent implements OnInit {
 
     let requestBody: any;
     requestBody = this.myProfile;
+    requestBody.experiences = this.saveExperiences();
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
@@ -220,6 +240,96 @@ export class EditProfilePageComponent implements OnInit {
       this.loadProfile();
       this.cancelChangeBiography();
     });
+  }
+
+  addNewExperience() {
+    let exp: any = new Object();
+    exp.name = '';
+    exp.description = '';
+    exp.experienceType = 'Work';
+    exp.startDate = '2015-05-10';
+    exp.endDate = '2017-08-21';
+    this.experiences.push(exp);
+  }
+
+  deleteExperience(index: number) {
+    this.experiences.splice(index, 1);
+  }
+
+  changeExperience() {
+    let requestBody: any;
+    requestBody = this.myProfile;
+    requestBody.experiences = this.saveNewExperiences();
+    requestBody.birthDate = new DateSecondsFormat();
+    requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
+
+    console.log(requestBody);
+
+    this.profileService.updateProfile(requestBody).subscribe((data) => {
+      this.loadProfile();
+      this.cancelChangeExperience();
+    });
+  }
+
+  areExperiencesValid() {
+    for (let experience of this.experiences) {
+      if (
+        experience.name == '' ||
+        experience.description == '' ||
+        experience.startDate == undefined ||
+        experience.endDate == undefined
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  saveExperiences() {
+    let exp: any;
+    exp = this.myProfile.experiences;
+    for (let experience of exp) {
+      let startDate = experience.startDate;
+      let endDate = experience.endDate;
+      experience.startDate = new DateSecondsFormat();
+      experience.startDate.seconds = Date.parse(startDate) / 1000 + 45000;
+      experience.endDate = new DateSecondsFormat();
+      experience.startDate.endDate = Date.parse(endDate) / 1000 + 45000;
+    }
+
+    return exp;
+  }
+
+  loadExperiences() {
+    this.experiences = [];
+    for (let experience of this.myProfile.experiences) {
+      let exp: any = new Object();
+      exp.name = experience.name;
+      exp.experienceType = experience.experienceType;
+      exp.description = experience.description;
+      if (experience.startDate != undefined) {
+        exp.startDate = experience.startDate?.toISOString().split('T')[0];
+      }
+      if (experience.endDate != undefined) {
+        exp.endDate = experience.endDate?.toISOString().split('T')[0];
+      }
+
+      this.experiences.push(exp);
+    }
+  }
+
+  saveNewExperiences() {
+    for (let experience of this.experiences) {
+      let startDate = experience.startDate;
+      let endDate = experience.endDate;
+      experience.startDate = new DateSecondsFormat();
+      experience.startDate.seconds = Date.parse(startDate) / 1000 + 45000;
+      experience.endDate = new DateSecondsFormat();
+      experience.startDate.endDate = Date.parse(endDate) / 1000 + 45000;
+    }
+
+    return this.experiences;
   }
 
   generateApiKey() {

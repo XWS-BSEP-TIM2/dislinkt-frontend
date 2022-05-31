@@ -91,6 +91,7 @@
                 <input
                   class="input"
                   type="date"
+                  required
                   [disabled]="!changeProfileFormEditable"
                   [(ngModel)]="birthDate"
                 />
@@ -484,6 +485,124 @@
               </div>
             </div>
             <div class="column is-3"></div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!--- Experiences and Education -->
+    <mat-card class="editSectionCss">
+      <div class="columns">
+        <div class="column is-10">
+          <mat-card-header>
+            <mat-card-title
+              >Change your <strong>work & education</strong>
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="column is-2">
+          <button
+            style="margin-left: 5px"
+            *ngIf="!changeBiographyFormVisible"
+            (click)="startChangeExperience()"
+            class="button is-danger is-outlined"
+          >
+            change
+          </button>
+        </div>
+      </div>
+      <mat-card-content>
+        <div *ngIf="changeExperienceFormVisible" class="mt-5 mb-5">
+          <hr />
+          <div class="has-text-centered m-3" *ngIf="experiences.length == 0">
+            <p>No experiences added.</p>
+          </div>
+          <div
+            class="columns"
+            *ngFor="let experience of experiences; let i = index"
+          >
+            <div class="column is-3"></div>
+            <div class="column is-6">
+              <div class="experience-container p-5 mb-5">
+                <div class="field" style="width: 50%">
+                  <label class="label">Experience type</label>
+                  <div class="select">
+                    <select [(ngModel)]="experience.experienceType">
+                      <option value="Work">Work</option>
+                      <option value="Education">Education</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Experience name</label>
+                  <div class="control">
+                    <input
+                      class="input"
+                      [(ngModel)]="experience.name"
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Experience description</label>
+                  <div class="control">
+                    <textarea
+                      class="textarea"
+                      [(ngModel)]="experience.description"
+                      type="text"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="field" style="width: 50%">
+                  <label class="label">Start date</label>
+                  <input
+                    class="input"
+                    type="date"
+                    required
+                    [(ngModel)]="experience.startDate"
+                  />
+                </div>
+                <div class="field" style="width: 50%">
+                  <label class="label">End date</label>
+                  <input
+                    class="input"
+                    type="date"
+                    required
+                    [(ngModel)]="experience.endDate"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="column is-3 stretch-height">
+              <button
+                mat-icon-button
+                color="warn"
+                matTooltip="Delete experience"
+                (click)="deleteExperience(i)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="is-flex is-justify-content-center mt-5">
+            <button class="button is-info m-2" (click)="addNewExperience()">
+              Add new
+            </button>
+
+            <button
+              (click)="cancelChangeExperience()"
+              class="button is-danger m-2"
+            >
+              Cancel
+            </button>
+            <button
+              (click)="changeExperience()"
+              class="button is-success m-2"
+              [disabled]="!areExperiencesValid()"
+            >
+              Change
+            </button>
           </div>
         </div>
       </mat-card-content>
