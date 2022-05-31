@@ -90,9 +90,9 @@
               <div class="control">
                 <input
                   class="input"
+                  type="date"
                   [disabled]="!changeProfileFormEditable"
                   [(ngModel)]="myProfile.birthDate"
-                  type="date"
                 />
               </div>
             </div>
@@ -477,9 +477,7 @@
                 <button
                   (click)="changeBiography()"
                   class="button is-success m-2"
-                  [disabled]="
-                    biography == '' || skills == '' || interests == ''
-                  "
+                  [disabled]="biography == ''"
                 >
                   Change
                 </button>

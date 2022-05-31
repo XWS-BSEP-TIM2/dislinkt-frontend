@@ -4,7 +4,6 @@ import { server } from '../app-global';
 import { ChangePasswordRequest } from '../model/changePasswordRequest';
 import { Experience } from '../model/experienceModel';
 import { Profile } from '../model/profileModel';
-import { Skill } from '../model/skillModel';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -34,6 +33,12 @@ export class ProfileService {
     const headers = this.loginService.getHeaders();
     const url = this.url + '/admin-view';
     return this._http.get<any>(url, { headers: headers });
+  }
+
+  updateProfile(profile: any) {
+    const headers = this.loginService.getHeaders();
+    const url = this.url;
+    return this._http.put<any>(url, profile, { headers: headers });
   }
 
   getCurrentPosition(profile: Profile): Experience {
@@ -76,7 +81,6 @@ export class ProfileService {
   }
 
   modifyProfileData(data: any) {
-    console.log(data);
     data.profile.birthDate = this.getDateFromSeconds(
       data.profile.birthDate.seconds
     );

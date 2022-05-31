@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/model/profileModel';
 import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
+import { Skill } from 'src/app/model/skillModel';
 
 @Component({
   selector: 'edit-profile-page',
@@ -39,9 +40,23 @@ export class EditProfilePageComponent implements OnInit {
   loadProfile() {
     let myId = this.loginService.getCurrentUser().userID;
     this.profileService.getUserById(myId).subscribe((data) => {
+      this.profileService.modifyProfileData(data);
       this.myProfile = data.profile;
       this.myProfileTemp = this.myProfile; //reference oboje pokazuju na isto
       this.changePasswordRequest.username = this.myProfile.username;
+      this.biography = this.myProfile.biography;
+      this.skills = this.myProfile.skills
+        .filter((e) => e.skillType == 'Skill')
+        .map((e) => {
+          return e.name;
+        })
+        .toString();
+      this.interests = this.myProfile.skills
+        .filter((e) => e.skillType != 'Skill')
+        .map((e) => {
+          return e.name;
+        })
+        .toString();
     });
   }
 
@@ -94,9 +109,16 @@ export class EditProfilePageComponent implements OnInit {
 
   cancelChangeBiography() {
     this.changeBiographyFormVisible = false;
-    this.biography = '';
-    this.skills = '';
-    this.interests = '';
+    this.biography = this.myProfile.biography;
+    this.skills = this.myProfile.skills
+      .filter((e) => e.skillType == 'Skill')
+      .map((e) => {
+        return e.name;
+      })
+      .toString();
+    this.interests = this.myProfile.skills
+      .filter((e) => e.skillType != 'Skill')
+      .toString();
   }
 
   cancelAllOtherForms(n: number) {
@@ -149,10 +171,28 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   changeBiography() {
-    alert('TODO: poslati zahtev ka bekendu da se izmeni biography');
-    //todo
+    this.myProfile.biography = this.biography;
+    this.myProfile.skills = [];
+    for (let skill of this.skills.split(',').map((e) => e.trim())) {
+      let newSkill = new Skill();
+      newSkill.name = skill;
+      newSkill.skillType = 'Skill';
+      this.myProfile.skills.push(newSkill);
+    }
+    for (let interest of this.interests.split(',').map((e) => e.trim())) {
+      let newInterest = new Skill();
+      newInterest.name = interest;
+      newInterest.skillType = 'Interest';
+      this.myProfile.skills.push(newInterest);
+    }
 
-    this.cancelChangeBiography();
+    this.myProfile.birthDate = null;
+
+    console.log(this.myProfile);
+    this.profileService.updateProfile(this.myProfile).subscribe((data) => {
+      this.loadProfile();
+      this.cancelChangeBiography();
+    });
   }
 
   generateApiKey() {

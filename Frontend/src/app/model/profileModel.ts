@@ -11,7 +11,7 @@ export class Profile {
     public biography: string = '',
     public gender: string = '',
     public phoneNumber: string = '',
-    public birthDate: Date = new Date(),
+    public birthDate: Date | null = new Date(),
     public isPrivate: boolean = false,
     public skills: Skill[] = [],
     public experiences: Experience[] = [],
