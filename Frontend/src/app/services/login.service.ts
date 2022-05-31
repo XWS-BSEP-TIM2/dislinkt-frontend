@@ -11,7 +11,7 @@ import { PasswordlessLoginModel } from '../model/passwordlessLoginModel';
   providedIn: 'root',
 })
 export class LoginService {
-  url = server+'login'; //TODO: na jednom mestu
+  url = server + 'login'; //TODO: na jednom mestu
 
   constructor(private _http: HttpClient, private route: Router) {}
 
@@ -20,7 +20,7 @@ export class LoginService {
   }
 
   forggotPasswrod(username: string) {
-    return this._http.get<any>(this.url+'/recovery/'+username);
+    return this._http.get<any>(this.url + '/recovery/' + username);
   }
 
   resendVerification(username: string) {
@@ -28,16 +28,16 @@ export class LoginService {
   }
 
   loginRecoverRequest(recoveryRequest: RecoveryRequest) {
-    return this._http.post<any>(this.url+'/recovery', recoveryRequest);
+    return this._http.post<any>(this.url + '/recovery', recoveryRequest);
   }
-  loginPasswordless(token:PasswordlessLoginModel){
-    const url=server+'magic-link-login'
-    return this._http.post<any>(url,token);
+  loginPasswordless(token: PasswordlessLoginModel) {
+    const url = server + 'magic-link-login';
+    return this._http.post<any>(url, token);
   }
 
-  sendMagicLinkMail(mail:string){
-    const url=server+'magic-link-login/send-mail'
-    return this._http.post<any>(url,{email:mail}).subscribe();
+  sendMagicLinkMail(mail: string) {
+    const url = server + 'magic-link-login/send-mail';
+    return this._http.post<any>(url, { email: mail }).subscribe();
   }
 
   loginSetUser(loginResponse: LoginResponse) {
@@ -50,23 +50,21 @@ export class LoginService {
   writeFullNameToStorage(loginResponse: LoginResponse) {
     //TODO: run this command after changing users' names in settings as well!
     var user = loginResponse;
-    if (user.role=="ADMIN"){
+    if (user.role == 'ADMIN') {
       localStorage.setItem('currentUser', JSON.stringify(user));
-      localStorage.setItem('role',user.role)
+      localStorage.setItem('role', user.role);
       this.route.navigateByUrl('/admin/dashboard');
-      return
+      return;
     }
     const headers = this.getHeaders();
-    const url = server+'profile/' + loginResponse.userID;
+    const url = server + 'profile/' + loginResponse.userID;
     this._http.get<any>(url, { headers: headers }).subscribe((data) => {
       user.fullName = data.profile.name + ' ' + data.profile.surname;
-      console.log();
       localStorage.setItem('currentUser', JSON.stringify(user));
-      localStorage.setItem('role',user.role)
-      if (user.role=="USER"){
+      localStorage.setItem('role', user.role);
+      if (user.role == 'USER') {
         window.location.href = '/';
       }
-      
     });
   }
 
@@ -77,11 +75,11 @@ export class LoginService {
   }
 
   getCurrentUser(): LoginResponse {
-    let currentUser = localStorage.getItem('currentUser')
+    let currentUser = localStorage.getItem('currentUser');
     if (currentUser != null) {
-      return JSON.parse(localStorage.getItem('currentUser')!);  
+      return JSON.parse(localStorage.getItem('currentUser')!);
     } else {
-      return new LoginResponse();  
+      return new LoginResponse();
     }
   }
 
@@ -102,10 +100,7 @@ export class LoginService {
     return headers;
   }
 
-  getCurrentUserRole(){
-    return this.getCurrentUser().role
+  getCurrentUserRole() {
+    return this.getCurrentUser().role;
   }
-
 }
-
-

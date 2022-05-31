@@ -11,11 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
 export class ProfileBlocksComponent implements OnInit {
   constructor(private connectionService: ConnectionService) {}
 
-  blockeds!: ConnectionDetails[];
+  blocked: ConnectionDetails[] = [];
 
   loadData() {
     this.connectionService.GetBlockeds().subscribe((data) => {
-      this.blockeds = data;
+      this.blocked = data;
     });
   }
 

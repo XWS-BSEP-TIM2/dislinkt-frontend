@@ -12,7 +12,6 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getProfilesByAdmin().subscribe(data=>{
-      console.log(data);
     })
   }
 

@@ -37,7 +37,6 @@ export class ProfilePageComponent implements OnInit {
       this.userPosition = this.profileService.getCurrentPosition(
         this.userProfile
       );
-      //console.log(this.userPosition);
     });
 
     this.connectionService.GetFriends(this.userProfile.id).subscribe((data) => {
@@ -47,8 +46,6 @@ export class ProfilePageComponent implements OnInit {
 
   myProfileFunc(): boolean {
     let urlID = this.userProfile.id;
-    //return this.loginService.getCurrentUser().userID === urlID;   //TODO: fix
-    //TODO: linija iznad uporedjuje prijavljenog korisnika i id prosledjenog
     return urlID === this.loginResponse.userID;
   }
 

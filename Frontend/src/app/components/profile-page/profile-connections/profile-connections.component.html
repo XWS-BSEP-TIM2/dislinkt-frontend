@@ -1,5 +1,8 @@
-<h2 class="mt-5">Connections (148)</h2>
+<h2 class="mt-5">Connections ({{ friends.length }})</h2>
 <mat-divider class="mb-5"></mat-divider>
+<p *ngIf="friends.length == 0">No connections.</p>
 <div *ngFor="let f of friends">
-    <detailed-connection-suggestion [connectionDetails]="f" ></detailed-connection-suggestion>
-  </div>
+  <detailed-connection-suggestion
+    [connectionDetails]="f"
+  ></detailed-connection-suggestion>
+</div>

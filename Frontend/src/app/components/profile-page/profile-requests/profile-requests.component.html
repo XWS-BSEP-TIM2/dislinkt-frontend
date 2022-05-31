@@ -1,5 +1,8 @@
-<h2 class="mt-5">Connection Requests</h2>
+<h2 class="mt-5">Connection Requests ({{ connectionRequest.length }})</h2>
 <mat-divider class="mb-5"></mat-divider>
+<p *ngIf="connectionRequest.length == 0">No requests at the moment.</p>
 <div *ngFor="let req of connectionRequest">
-    <detailed-connection-suggestion [connectionDetails]="req" ></detailed-connection-suggestion>
+  <detailed-connection-suggestion
+    [connectionDetails]="req"
+  ></detailed-connection-suggestion>
 </div>

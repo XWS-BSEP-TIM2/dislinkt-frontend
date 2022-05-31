@@ -8,46 +8,44 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-
-  loginRequest: LoginRequest = new LoginRequest()
-  errorMessage = ''
-  mail='';
+  loginRequest: LoginRequest = new LoginRequest();
+  errorMessage = '';
+  mail = '';
 
   recoveryFormVisible = false;
-  recoveryRequest: RecoveryRequest = new RecoveryRequest()
-  recoveryMsg = ''
+  recoveryRequest: RecoveryRequest = new RecoveryRequest();
+  recoveryMsg = '';
 
-  constructor(private loginService: LoginService, private route: Router) { }
+  constructor(private loginService: LoginService, private route: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   forggotPassword() {
-    this.recoveryMsg = ''
+    this.recoveryMsg = '';
     this.recoveryRequest.username = this.loginRequest.username;
     this.loginService.forggotPasswrod(this.loginRequest.username).subscribe(
       (data) => {
         if (data.status == 4) {
-          this.errorMessage = "";
-          this.recoveryMsg = data.msg
-          this.recoveryFormVisible = true
+          this.errorMessage = '';
+          this.recoveryMsg = data.msg;
+          this.recoveryFormVisible = true;
         } else {
           this.errorMessage = data.msg;
         }
       },
       (err) => {
-        this.errorMessage = "Error recovery"
+        this.errorMessage = 'Error recovery';
       }
     );
   }
 
   login() {
     if (this.recoveryFormVisible) {
-      this.sendRecoveryRequest()
-      return 
+      this.sendRecoveryRequest();
+      return;
     }
 
     if (!this.loginRequest.validateProperty()) {
@@ -59,7 +57,7 @@ export class LoginPageComponent implements OnInit {
           if (data.error == undefined || data.error === '')
             this.successfulLogin(data);
           else {
-            this.errorMessage = data.error
+            this.errorMessage = data.error;
           }
         },
         (res) => (this.errorMessage = 'Invalid email or password.')
@@ -67,10 +65,9 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  successfulLogin(loginRespons: LoginResponse) {
+  successfulLogin(loginResponse: LoginResponse) {
     this.errorMessage = '';
-    //console.log(loginRespons);
-    this.loginService.loginSetUser(loginRespons);
+    this.loginService.loginSetUser(loginResponse);
   }
 
   sendRecoveryRequest() {
@@ -84,8 +81,8 @@ export class LoginPageComponent implements OnInit {
           if (data.error == undefined || data.error === '')
             this.successfulLogin(data);
           else {
-            //alert(data.error); 
-            this.errorMessage = data.error
+            //alert(data.error);
+            this.errorMessage = data.error;
           }
         },
         (res) => (this.errorMessage = 'Error login recovery')
@@ -94,32 +91,31 @@ export class LoginPageComponent implements OnInit {
   }
 
   resendVerificationLink() {
-    this.errorMessage = ''
+    this.errorMessage = '';
     this.loginService.resendVerification(this.loginRequest.username).subscribe(
-      (data) => { 
+      (data) => {
         this.errorMessage = data.msg;
       },
       (err) => {
-        this.errorMessage = 'Error resend verification link'
-    })
+        this.errorMessage = 'Error resend verification link';
+      }
+    );
   }
 
   showResendVerificationLink() {
-    return this.errorMessage.includes('Your Acc is not verified')
+    return this.errorMessage.includes('Your Acc is not verified');
   }
 
-  openModalTab():void{
+  openModalTab(): void {
     document.getElementById('modal')?.classList.toggle('is-active');
   }
 
-  closeModalTab():void{
+  closeModalTab(): void {
     document.getElementById('modal')?.classList.toggle('is-active');
   }
 
-  sendMagicLinkMail():void{
+  sendMagicLinkMail(): void {
     this.loginService.sendMagicLinkMail(this.mail);
-    console.log(this.mail);
     this.closeModalTab();
   }
-
 }
