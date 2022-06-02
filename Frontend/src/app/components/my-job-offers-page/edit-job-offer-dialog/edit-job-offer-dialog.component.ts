@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JobOffer } from 'src/app/model/jobOffer';
+import { JobOfferService } from '../../../services/job-offer.service';
 
 @Component({
   selector: 'edit-job-offer-dialog',
@@ -10,7 +12,7 @@ export class EditJobOfferDialogComponent implements OnInit {
   offer: JobOffer = new JobOffer();
   technologies: string = '';
 
-  constructor() {}
+  constructor(private jobOfferService: JobOfferService,@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     /*
@@ -33,6 +35,7 @@ export class EditJobOfferDialogComponent implements OnInit {
 
   send() {
     if (this.validForm()) {
+      this.offer.id=this.data;
       this.offer.position = this.offer.position.trim();
       this.offer.seniority = this.offer.seniority.trim();
       this.offer.description = this.offer.description.trim();
@@ -41,15 +44,17 @@ export class EditJobOfferDialogComponent implements OnInit {
         .split(',')
         .map((e) => e.trim());
 
-      /*
-      this.jobOfferService.postNewOffer(this.offer).subscribe((data) => {
+
+      this.jobOfferService.editOffer(this.offer).subscribe((data) => {
         if (data) {
-          alert('Your job offer has been published!');
+          alert('Your job offer has been changed!');
           window.location.href = '/job-offers';
         }
+      }, (error) => {
+        console.log(error)
       });
 
-      */
+
     }
   }
 }

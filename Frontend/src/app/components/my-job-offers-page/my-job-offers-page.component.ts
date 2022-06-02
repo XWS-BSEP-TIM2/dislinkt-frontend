@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { JobOffer } from 'src/app/model/jobOffer';
 import { Profile } from 'src/app/model/profileModel';
 import { LoginService } from 'src/app/services/login.service';
+import { JobOfferService } from '../../services/job-offer.service';
 import { EditJobOfferDialogComponent } from './edit-job-offer-dialog/edit-job-offer-dialog.component';
 import { NewJobOfferDialogComponent } from './new-job-offer-dialog/new-job-offer-dialog.component';
 
@@ -16,30 +17,18 @@ export class MyJobOffersPageComponent implements OnInit {
   //company: Company = new Company();
   jobOffers: JobOffer[] = [];
 
-  constructor(private loginService: LoginService, public dialog: MatDialog) {}
+  constructor(private loginService: LoginService, public dialog: MatDialog,private jobOfferService:JobOfferService) {}
 
   ngOnInit(): void {
     this.user.id = this.loginService.getCurrentUser().userID;
-    /*
-    this.browseService.getUserById(this.user.id).subscribe((data) => {
-      this.user = data;
-
-      this.browseService.getCompanyByUserId(this.user.id).subscribe((data) => {
-        if (data != null) {
-          this.company = data;
-
-          if (this.user.role == 'COMPANY_OWNER') {
-            this.browseService
-              .getAllJobOffersByCompany(this.company.id)
-              .subscribe((data) => {
-                data.reverse();
-                this.jobOffers = data;
-              });
-          }
-        }
-      });
-    });
-    */
+    this.jobOfferService.getUserJobOffers(this.user.id).subscribe(data=>{
+      console.log(data.jobOffers);
+      data.jobOffers!=undefined ?  this.jobOffers=data.jobOffers : this.jobOffers=[]
+     
+    },
+    (error)=>{
+      alert('Unable to load job offers');
+    })
   }
 
   addNew() {
@@ -60,13 +49,16 @@ export class MyJobOffersPageComponent implements OnInit {
           '? It cannot be undone.'
       )
     ) {
-      /*
+      
       this.jobOfferService.deleteOffer(offer).subscribe((data) => {
+        console.log(data);
         if (data) {
           window.location.href = '/job-offers';
         }
+      },error=>{
+        console.log(error);
       });
-      */
+      
     }
   }
 }
