@@ -11,6 +11,8 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class NewPostDialogComponent implements OnInit {
   post: Post = new Post();
+  fileToUpload: File | any = null;
+  base64: string | any = '';
 
   constructor(
     private postService: PostService,
@@ -20,7 +22,10 @@ export class NewPostDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  removeImage() {}
+  removeImage() {
+    this.fileToUpload = null;
+    this.base64 = '';
+  }
 
   publishPost() {
     let requestBody: any = new Object();
@@ -28,11 +33,32 @@ export class NewPostDialogComponent implements OnInit {
     requestBody.content = this.post.content;
     requestBody.links = [];
     requestBody.imageBase64 = '';
-    console.log(requestBody);
+    if (this.fileToUpload != null && this.base64.includes('data:image/jpeg')) {
+      requestBody.imageBase64 = this.base64.substring(23);
+    } else if (
+      this.fileToUpload != null &&
+      this.base64.includes('data:image/png')
+    ) {
+      requestBody.imageBase64 = this.base64.substring(22);
+    }
 
     this.postService.publishPost(requestBody).subscribe((data) => {
       this.dialogRef.close();
       alert('Post succesfully shared!');
+    });
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.getBase64(this.fileToUpload).then((data) => (this.base64 = data));
+  }
+
+  getBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
     });
   }
 }
