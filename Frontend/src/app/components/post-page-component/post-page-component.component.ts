@@ -21,16 +21,23 @@ export class PostPageComponentComponent implements OnInit {
   ngOnInit(): void {
     this.postId = this.route.snapshot.paramMap.get('id')!;
 
-    this.postService.getPostHref('posts/' + this.postId).subscribe((data) => {
-      this.post = data.post;
+    this.postService.getPostHref('posts/' + this.postId).subscribe(
+      (data) => {
+        this.post = data.post;
 
-      this.postService.getPostHref(this.post.hrefs[1].url).subscribe((data) => {
-        if (data.comments != undefined) {
-          this.comments = data.comments;
-          this.comments.reverse();
-        }
-      });
-    });
+        this.postService
+          .getPostHref(this.post.hrefs[1].url)
+          .subscribe((data) => {
+            if (data.comments != undefined) {
+              this.comments = data.comments;
+              this.comments.reverse();
+            }
+          });
+      },
+      (err) => {
+        window.location.href = '/not-authorized';
+      }
+    );
   }
 
   refreshComments() {
