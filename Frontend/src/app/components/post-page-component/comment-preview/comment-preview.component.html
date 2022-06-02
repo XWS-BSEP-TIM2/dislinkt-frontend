@@ -4,7 +4,7 @@
     <div class="is-flex is-flex-direction-column ml-5">
       <p>
         <strong>{{ comment.owner.name }} {{ comment.owner.surname }}</strong> |
-        18/06/2022, 10:39 AM
+        {{ comment.timestamp | date: "medium" }}
       </p>
       <p>
         {{ comment.content }}

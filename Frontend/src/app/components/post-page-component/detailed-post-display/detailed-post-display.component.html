@@ -10,7 +10,7 @@
       matTooltip="User profile"
       >{{ post.owner.name }} {{ post.owner.surname }}</mat-card-title
     >
-    <mat-card-subtitle>{{ timestamp | date: "medium" }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ post.timestamp | date: "medium" }}</mat-card-subtitle>
   </mat-card-header>
   <div
     class="image-container clickable"

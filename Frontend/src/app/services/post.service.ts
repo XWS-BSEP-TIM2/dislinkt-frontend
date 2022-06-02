@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
-import { Post } from '../model/post';
+import { Post, PostComment } from '../model/post';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -46,5 +46,19 @@ export class PostService {
     const headers = this.loginService.getHeaders();
     const url = this.url + 'posts/user/' + id;
     return this._http.get<any>(url, { headers: headers });
+  }
+
+  modifyPostDateFromSeconds(post: Post) {
+    var date = new Date(1970, 0, 1); // Epoch
+    date.setSeconds(post.creation_time.seconds + 3600);
+    post.timestamp = date;
+    return post;
+  }
+
+  modifyCommentDateFromSeconds(comment: PostComment) {
+    var date = new Date(1970, 0, 1); // Epoch
+    date.setSeconds(comment.creation_time.seconds + 3600);
+    comment.timestamp = date;
+    return comment;
   }
 }

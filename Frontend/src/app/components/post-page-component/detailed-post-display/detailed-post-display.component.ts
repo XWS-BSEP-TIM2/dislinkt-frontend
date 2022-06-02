@@ -13,7 +13,6 @@ import { PhotoLightBoxComponent } from '../photo-light-box/photo-light-box.compo
 })
 export class DetailedPostDisplayComponent implements OnInit {
   @Input() post: Post = new Post();
-  timestamp: Date = new Date();
   loaded: boolean = false;
   loggedInUser: boolean = false;
   likesCount: number = 0;
@@ -34,6 +33,8 @@ export class DetailedPostDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.post = this.postService.modifyPostDateFromSeconds(this.post);
+
     if (this.post.image_base64 != null) {
       this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
         'data:image/jpg;base64,' + this.post.image_base64
@@ -151,6 +152,8 @@ export class DetailedPostDisplayComponent implements OnInit {
   }
 
   openImageLightbox() {
-    this.dialog.open(PhotoLightBoxComponent, { data: {imgData: this.imagePath}});
+    this.dialog.open(PhotoLightBoxComponent, {
+      data: { imgData: this.imagePath },
+    });
   }
 }

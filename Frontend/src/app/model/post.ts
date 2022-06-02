@@ -3,7 +3,7 @@ import { Profile } from './profileModel';
 export class Post {
   constructor(
     public owner: Profile = new Profile(),
-    public creationTime: CreationTime = new CreationTime(),
+    public creation_time: CreationTime = new CreationTime(),
     public content: string = '',
     public image_base64: string = '',
     public links: string[] = [],
@@ -28,8 +28,9 @@ export class PostHref {
 export class PostComment {
   constructor(
     public owner: Profile = new Profile(),
-    public creationTime: CreationTime = new CreationTime(),
+    public creation_time: CreationTime = new CreationTime(),
     public content: string = '',
-    public hrefs: PostHref[] = []
+    public hrefs: PostHref[] = [],
+    public timestamp: Date = new Date()
   ) {}
 }

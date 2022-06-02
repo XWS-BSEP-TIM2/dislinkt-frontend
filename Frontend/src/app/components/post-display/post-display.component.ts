@@ -11,7 +11,6 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class PostDisplayComponent implements OnInit {
   @Input() post: Post = new Post();
-  timestamp: Date = new Date();
   loaded: boolean = false;
   loggedInUser: boolean = false;
   likesCount: number = 0;
@@ -31,6 +30,8 @@ export class PostDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.post = this.postService.modifyPostDateFromSeconds(this.post);
+
     if (this.post.image_base64 != null) {
       this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
         'data:image/jpg;base64,' + this.post.image_base64
