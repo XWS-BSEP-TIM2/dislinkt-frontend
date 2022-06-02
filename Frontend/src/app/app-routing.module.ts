@@ -20,6 +20,7 @@ import { ProfileBlocksComponent } from './components/profile-page/profile-blocks
 import { AuthGuard, UnAuthGuard } from './services/auth-guard.service';
 import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { MyJobOffersPageComponent } from './components/my-job-offers-page/my-job-offers-page.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
       { path: 'chat', component: ChatPageComponent },
       { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
-
+      { path: 'my-job-offers', component: MyJobOffersPageComponent },
       { path: 'post/:id', component: PostPageComponentComponent },
       {
         path: 'user/:id',

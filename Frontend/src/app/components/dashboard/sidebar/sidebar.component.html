@@ -42,6 +42,13 @@
           <mat-icon>business_center</mat-icon>Job offers
         </div></mat-button-toggle
       >
+      <mat-button-toggle
+        value="my-job-offers"
+        [disabled]="currentPage == 'my-job-offers'"
+        ><div class="label-container">
+          <mat-icon>insert_drive_file</mat-icon>My Job offers
+        </div></mat-button-toggle
+      >
       <mat-button-toggle value="user/{{ loginUser.userID }}"
         ><div class="label-container">
           <mat-icon>person</mat-icon>My profile
@@ -57,6 +64,15 @@
     </mat-button-toggle-group>
   </div>
   <div class="has-text-centered p-5 new-post-container">
+    <button
+      mat-raised-button
+      color="accent"
+      matTooltip="Post a new Job Offer!"
+      class="new-post-button shadow-hover mb-5"
+      (click)="newJobOffer()"
+    >
+      <mat-icon class="mr-3">library_books</mat-icon>New Job Offer
+    </button>
     <button
       mat-raised-button
       color="accent"

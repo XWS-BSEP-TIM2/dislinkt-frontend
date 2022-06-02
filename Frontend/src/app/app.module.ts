@@ -54,6 +54,10 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
 import { CompanyPictureComponent } from './components/company-picture/company-picture.component';
 import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { MyJobOffersPageComponent } from './components/my-job-offers-page/my-job-offers-page.component';
+import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.component';
+import { NewJobOfferDialogComponent } from './components/my-job-offers-page/new-job-offer-dialog/new-job-offer-dialog.component';
+import { EditJobOfferDialogComponent } from './components/my-job-offers-page/edit-job-offer-dialog/edit-job-offer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +108,10 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     CompanyPictureComponent,
     MagicLinkLoginComponent,
     NotAuthorizedComponent,
+    MyJobOffersPageComponent,
+    SidebarRightComponent,
+    NewJobOfferDialogComponent,
+    EditJobOfferDialogComponent,
   ],
   imports: [
     BrowserModule,

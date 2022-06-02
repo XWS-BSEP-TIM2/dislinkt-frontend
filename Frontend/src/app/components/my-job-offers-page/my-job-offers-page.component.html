@@ -1,0 +1,50 @@
+<div class="columns mb-5 pb-5">
+  <div class="column">
+    <div
+      class="is-flex is-flex-direction-row is-justify-content-space-between mb-5 pb-5"
+    >
+      <h1>My Job Offers ({{ jobOffers.length }})</h1>
+      <button mat-flat-button color="primary" (click)="addNew()">
+        Add new
+      </button>
+    </div>
+    <div *ngIf="jobOffers.length == 0">
+      <p>You have no active job offers right now.</p>
+    </div>
+    <div class="box" *ngFor="let offer of jobOffers">
+      <div
+        class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-flex-start"
+      >
+        <h2>{{ offer.position }}: {{ offer.seniority }}</h2>
+        <div>
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Delete Job Offer"
+            (click)="deleteJobOffer(offer)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Edit Job Offer"
+            (click)="editJobOffer(offer.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+      <p>{{ offer.description }}</p>
+      <hr />
+      <mat-chip-list>
+        <mat-chip selected *ngFor="let technology of offer.technologies">{{
+          technology
+        }}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+  <div class="column is-4 side-column">
+    <sidebar-right></sidebar-right>
+  </div>
+</div>
