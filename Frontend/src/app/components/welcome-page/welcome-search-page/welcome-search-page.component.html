@@ -10,10 +10,9 @@
       <div
         class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
       >
-        <post-display
-          class="stretch-width"
-          *ngFor="let post of posts"
-        ></post-display>
+        <div *ngFor="let post of posts">
+          <post-display class="stretch-width" [post]="post"></post-display>
+        </div>
       </div>
     </div>
   </div>

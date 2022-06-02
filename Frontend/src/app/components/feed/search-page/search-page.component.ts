@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginResponse } from 'src/app/model/loginResponse';
+import { Post } from 'src/app/model/post';
 import { LoginService } from 'src/app/services/login.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'search-page',
@@ -16,7 +18,7 @@ export class SearchPageComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    // private browseService: BrowseService,
+    private postService: PostService,
     private route: ActivatedRoute
   ) {
     this.loginResponse = this.loginService.getCurrentUser();
@@ -25,18 +27,13 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
     this.searchText = this.route.snapshot.paramMap.get('searchText')!;
 
-    /*
-    this.browseService.getAllPosts().subscribe((data) => {
-      if (data != null) {
-        data.sort((a: Post, b: Post) => (a.timestamp < b.timestamp ? 1 : -1));
-        this.posts = this.filterData(data);
-        this.loaded = true;
-      }
+    this.postService.getAllPosts().subscribe((data) => {
+      this.posts = data.posts;
+      this.posts = this.filterData(this.posts);
+      this.loaded = true;
     });
-    */
   }
 
-  /*
   filterData(posts: Post[]) {
     let filtered: Post[] = [];
     for (let post of posts) {
@@ -49,38 +46,14 @@ export class SearchPageComponent implements OnInit {
   }
 
   squishPostContent(post: Post): string {
-    if (post.type == 'NEW_USER') {
-      return (post.user.email + post.user.name + post.user.surname)
-        .trim()
-        .toLocaleLowerCase()
-        .replace(/ /g, '');
-    } else if (post.type == 'NEW_COMPANY') {
-      return (
-        post.company.name +
-        post.company.description +
-        post.company.tagline +
-        post.company.technologies.toString() +
-        post.company.emailList.toString() +
-        post.company.phoneNumberList.toString() +
-        post.company.user.email +
-        post.company.user.name +
-        post.company.user.surname
-      )
-        .trim()
-        .toLocaleLowerCase()
-        .replace(/ /g, '');
-    } else {
-      return (
-        post.jobOffer.description +
-        post.jobOffer.company.name +
-        post.jobOffer.position +
-        post.jobOffer.seniority +
-        post.jobOffer.technologies.toString()
-      )
-        .trim()
-        .toLocaleLowerCase()
-        .replace(/ /g, '');
-    }
+    return (
+      post.content +
+      post.owner.name +
+      post.owner.surname +
+      post.owner.username
+    )
+      .trim()
+      .toLocaleLowerCase()
+      .replace(/ /g, '');
   }
-  */
 }

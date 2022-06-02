@@ -17,6 +17,21 @@
       >{{ post.timestamp | date: "medium" }}</mat-card-subtitle
     >
   </mat-card-header>
+  <div class="is-flex is-flex-direction-row-reverse menu-icon" *ngIf="false">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+  </div>
   <div
     class="image-container clickable"
     (click)="redirectPostPage()"

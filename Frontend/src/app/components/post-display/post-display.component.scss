@@ -33,3 +33,10 @@ mat-card-header {
 ::ng-deep .red {
   color: rgb(175, 0, 0) !important;
 }
+
+.menu-icon {
+  position: relative;
+  top: -75px;
+  right: -15px;
+  margin-bottom: -50px;
+}

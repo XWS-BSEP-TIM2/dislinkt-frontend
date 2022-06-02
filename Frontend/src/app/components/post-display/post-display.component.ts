@@ -20,6 +20,7 @@ export class PostDisplayComponent implements OnInit {
   dislikedByUser: boolean = false;
   likeId: string = '';
   dislikeId: string = '';
+  ownedByUser: boolean = false;
 
   constructor(
     private postService: PostService,
@@ -36,6 +37,11 @@ export class PostDisplayComponent implements OnInit {
       this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
         'data:image/jpg;base64,' + this.post.image_base64
       );
+    }
+
+    if (this.loggedInUser) {
+      let urlMatch = 'profile/' + this.loginService.getCurrentUser().userID;
+      this.ownedByUser = urlMatch == this.post.hrefs[4].url;
     }
 
     this.refreshNumbers();
@@ -147,4 +153,5 @@ export class PostDisplayComponent implements OnInit {
       this.refreshNumbers();
     });
   }
+
 }
