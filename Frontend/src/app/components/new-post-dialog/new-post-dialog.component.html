@@ -1,20 +1,36 @@
 <div class="dialog-container">
   <div class="is-flex is-flex-direction-row">
-    <ngx-avatar class="mt-3" name="John Snow"></ngx-avatar>
+    <profile-picture class="mt-3" [activeUser]="true"></profile-picture>
     <mat-form-field class="ml-5" appearance="outline" color="accent">
       <mat-label>Write a post</mat-label>
-      <textarea matInput placeholder="Tell us about your day..."></textarea>
+      <textarea
+        matInput
+        placeholder="Tell us about your day..."
+        [(ngModel)]="post.content"
+      ></textarea>
     </mat-form-field>
   </div>
   <hr />
   <div class="is-flex is-flex-direction-row is-justify-content-space-between">
     <span
-      ><button mat-icon-button color="warn" matTooltip="Cancel">
+      ><button
+        mat-icon-button
+        color="warn"
+        matTooltip="Remove image"
+        (click)="removeImage()"
+      >
         <mat-icon>cancel</mat-icon></button
       ><button mat-icon-button color="accent" matTooltip="Upload an image">
         <mat-icon>image</mat-icon>
       </button></span
     >
-    <button mat-flat-button color="accent">Post</button>
+    <button
+      mat-flat-button
+      color="accent"
+      [disabled]="post.content == ''"
+      (click)="publishPost()"
+    >
+      Post
+    </button>
   </div>
 </div>

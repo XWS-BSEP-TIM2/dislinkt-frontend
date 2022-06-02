@@ -50,18 +50,18 @@ export class ProfilePageComponent implements OnInit {
   }
 
   redirectConnections() {
-    window.location.href = 'user/' + this.userProfile.id + '/connections';
+    window.location.href = 'profile/' + this.userProfile.id + '/connections';
   }
 
   redirectBlocks() {
-    window.location.href = 'user/' + this.userProfile.id + '/blocks';
+    window.location.href = 'profile/' + this.userProfile.id + '/blocks';
   }
 
   redirectRequests() {
-    window.location.href = 'user/' + this.userProfile.id + '/requests';
+    window.location.href = 'profile/' + this.userProfile.id + '/requests';
   }
 
   redirectFeed() {
-    window.location.href = 'user/' + this.userProfile.id;
+    window.location.href = 'profile/' + this.userProfile.id;
   }
 }

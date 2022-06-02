@@ -1,6 +1,6 @@
 mat-card {
   margin-bottom: 20px !important;
-  max-width: 540px !important;
+  width: 540px !important;
 }
 
 mat-card-header {
@@ -24,4 +24,12 @@ mat-card-header {
 
 .vertical-separator {
   margin: auto 10px;
+}
+
+::ng-deep .green {
+  color: #81d4fa !important;
+}
+
+::ng-deep .red {
+  color: rgb(175, 0, 0) !important;
 }

@@ -3,16 +3,32 @@
     <profile-picture class="mt-3" [activeUser]="true"></profile-picture>
     <mat-form-field class="ml-5" appearance="outline" color="accent">
       <mat-label>Write a post</mat-label>
-      <textarea matInput placeholder="Tell us about your day..."></textarea>
+      <textarea
+        matInput
+        placeholder="Tell us about your day..."
+        [(ngModel)]="commentContent"
+      ></textarea>
     </mat-form-field>
   </div>
   <hr />
   <div class="is-flex is-flex-direction-row is-justify-content-space-between">
     <span
-      ><button mat-icon-button color="warn" matTooltip="Discard comment">
+      ><button
+        mat-icon-button
+        color="warn"
+        matTooltip="Discard comment"
+        (click)="discardComment()"
+      >
         <mat-icon>cancel</mat-icon>
       </button></span
     >
-    <button mat-flat-button color="accent">Post</button>
+    <button
+      mat-flat-button
+      color="accent"
+      [disabled]="commentContent == ''"
+      (click)="publishComment()"
+    >
+      Post
+    </button>
   </div>
 </mat-card>

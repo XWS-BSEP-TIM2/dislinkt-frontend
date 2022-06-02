@@ -1,4 +1,4 @@
-<h1>Hello, {{loginRespons.username}}! 👋</h1>
+<h1>Hello, {{ loginRespons.username }}! 👋</h1>
 <div class="columns">
   <div class="column">
     <h2>
@@ -9,24 +9,13 @@
     <div
       class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
     >
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
-      <post-display></post-display>
+      <p *ngIf="posts.length == 0">No posts to show.</p>
+      <div *ngFor="let post of posts">
+        <post-display [post]="post"></post-display>
+      </div>
     </div>
   </div>
   <div class="column is-4 side-column">
-    <h2>People you might know</h2>
-    <mat-divider class="mb-5"></mat-divider>
-    <suggested-connections></suggested-connections>
-
-    <h2 class="mt-5 pt-5">Jobs for you</h2>
-    <mat-divider class="mb-5"></mat-divider>
-    <suggested-job-offers></suggested-job-offers>
+    <sidebar-right></sidebar-right>
   </div>
 </div>

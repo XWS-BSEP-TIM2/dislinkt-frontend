@@ -21,6 +21,9 @@ import { AuthGuard, UnAuthGuard } from './services/auth-guard.service';
 import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { MyJobOffersPageComponent } from './components/my-job-offers-page/my-job-offers-page.component';
+import { SearchPageComponent } from './components/feed/search-page/search-page.component';
+import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/welcome-feed.component';
+import { WelcomeSearchPageComponent } from './components/welcome-page/welcome-search-page/welcome-search-page.component';
 
 const routes: Routes = [
   {
@@ -28,14 +31,14 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', component: FeedComponent },
-      
+      { path: 'search/:searchText', component: SearchPageComponent },
       { path: 'chat', component: ChatPageComponent },
       { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
       { path: 'my-job-offers', component: MyJobOffersPageComponent },
-      { path: 'post/:id', component: PostPageComponentComponent },
+      { path: 'posts/:id', component: PostPageComponentComponent },
       {
-        path: 'user/:id',
+        path: 'profile/:id',
         component: ProfilePageComponent,
         children: [
           { path: '', component: ProfileFeedComponent },
@@ -51,26 +54,38 @@ const routes: Routes = [
   },
 
   {
-    path:'admin',
-    children:[
-       { path: 'dashboard', component: AdminDashboardComponent, canActivate:[AuthGuard], data:{role:['ADMIN']} },
-    ]
+    path: 'admin',
+    children: [
+      {
+        path: 'dashboard',
+        component: AdminDashboardComponent,
+        canActivate: [AuthGuard],
+        data: { role: ['ADMIN'] },
+      },
+    ],
   },
   {
     path: 'welcome',
     component: WelcomePageComponent,
+    children: [
+      { path: '', component: WelcomeFeedComponent },
+      { path: 'search/:searchText', component: WelcomeSearchPageComponent },
+    ],
     canActivate: [UnAuthGuard],
   },
   { path: 'login', component: LoginPageComponent, canActivate: [UnAuthGuard] },
-  { path: 'magic-link-login/:id', component: MagicLinkLoginComponent, canActivate: [UnAuthGuard] },
+  {
+    path: 'magic-link-login/:id',
+    component: MagicLinkLoginComponent,
+    canActivate: [UnAuthGuard],
+  },
   {
     path: 'register',
     component: RegistrationPageComponent,
     canActivate: [UnAuthGuard],
   },
-  {path:'not-authorized', component: NotAuthorizedComponent},
+  { path: 'not-authorized', component: NotAuthorizedComponent },
   { path: '**', component: ErrorPageComponent },
-  
 ];
 
 @NgModule({

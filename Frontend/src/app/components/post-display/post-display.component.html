@@ -1,24 +1,32 @@
-<mat-card class="post-container">
+<mat-spinner *ngIf="!loaded" color="accent"></mat-spinner>
+<mat-card class="post-container" *ngIf="loaded">
   <mat-card-header>
     <div mat-card-avatar>
-      <ngx-avatar name="Freud Cat" size="40"></ngx-avatar>
+      <profile-picture [post]="post" [size]="40"></profile-picture>
     </div>
-    <mat-card-title class="clickable" (click)="redirectAuthorProfile()"
-      >Freud the Cat</mat-card-title
+    <mat-card-title
+      class="clickable"
+      (click)="redirectAuthorProfile()"
+      matTooltip="User profile"
+      >{{ post.owner.name }} {{ post.owner.surname }}</mat-card-title
     >
-    <mat-card-subtitle class="clickable" (click)="redirectPostPage()"
-      >18/06/2022, 10:39 AM</mat-card-subtitle
+    <mat-card-subtitle
+      class="clickable"
+      (click)="redirectPostPage()"
+      matTooltip="Post page"
+      >{{ timestamp | date: "medium" }}</mat-card-subtitle
     >
   </mat-card-header>
-  <div class="image-container clickable" (click)="redirectPostPage()">
-    <img src="assets/maca.png" />
+  <div
+    class="image-container clickable"
+    (click)="redirectPostPage()"
+    *ngIf="imagePath != null"
+  >
+    <img [src]="imagePath" />
   </div>
   <mat-card-content class="mt-4">
     <p>
-      Sigmund Freudborn, Sigismund Schlomo Freud; 6 May 1856-23 September 1939
-      was an Austrian neurologist and the founder of psychoanalysis, a clinical
-      method for evaluating and treating pathologies in the psyche through
-      dialogue between a patient and a psychoanalyst.
+      {{ post.content }}
     </p>
   </mat-card-content>
   <mat-card-actions>
@@ -26,25 +34,59 @@
       class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
     >
       <div>
-        <button mat-icon-button matTooltip="Like">
-          <mat-icon>thumb_up</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Dislike">
-          <mat-icon>thumb_down</mat-icon>
-        </button>
+        <div *ngIf="loggedInUser">
+          <button
+            mat-icon-button
+            matTooltip="Like"
+            (click)="likePost()"
+            *ngIf="!likedByUser"
+          >
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Remove Like"
+            (click)="unlikePost()"
+            *ngIf="likedByUser"
+          >
+            <mat-icon class="green">thumb_up</mat-icon>
+          </button>
 
-        <button
-          mat-icon-button
-          matTooltip="Comments"
-          (click)="redirectPostPage()"
-        >
-          <mat-icon>comment</mat-icon>
-        </button>
+          <button
+            mat-icon-button
+            matTooltip="Dislike"
+            *ngIf="!dislikedByUser"
+            (click)="dislikePost()"
+          >
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Remove Dislike"
+            *ngIf="dislikedByUser"
+            (click)="undislikePost()"
+          >
+            <mat-icon class="red">thumb_down</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            matTooltip="Comments"
+            (click)="redirectPostPage()"
+          >
+            <mat-icon>comment</mat-icon>
+          </button>
+        </div>
       </div>
 
       <div class="mr-5">
-        <strong>90</strong> likes<span class="vertical-separator">|</span>
-        <strong>14</strong> comments
+        <strong>{{ likesCount }}</strong> like<span *ngIf="likesCount != 1"
+          >s</span
+        ><span class="vertical-separator">|</span>
+        <strong>{{ commentsCount }}</strong> comment<span
+          *ngIf="commentsCount != 1"
+          >s</span
+        >
       </div>
     </div>
   </mat-card-actions>

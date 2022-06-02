@@ -51,13 +51,15 @@ import { ConnectPanelComponent } from './components/connect-panel/connect-panel.
 import { ProfileRequestsComponent } from './components/profile-page/profile-requests/profile-requests.component';
 import { ProfileBlocksComponent } from './components/profile-page/profile-blocks/profile-blocks.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
-import { CompanyPictureComponent } from './components/company-picture/company-picture.component';
 import { MagicLinkLoginComponent } from './components/magic-link-login/magic-link-login.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { MyJobOffersPageComponent } from './components/my-job-offers-page/my-job-offers-page.component';
 import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.component';
 import { NewJobOfferDialogComponent } from './components/my-job-offers-page/new-job-offer-dialog/new-job-offer-dialog.component';
 import { EditJobOfferDialogComponent } from './components/my-job-offers-page/edit-job-offer-dialog/edit-job-offer-dialog.component';
+import { SearchPageComponent } from './components/feed/search-page/search-page.component';
+import { WelcomeSearchPageComponent } from './components/welcome-page/welcome-search-page/welcome-search-page.component';
+import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/welcome-feed.component';
 
 @NgModule({
   declarations: [
@@ -105,13 +107,15 @@ import { EditJobOfferDialogComponent } from './components/my-job-offers-page/edi
     ProfileRequestsComponent,
     ProfileBlocksComponent,
     ProfilePictureComponent,
-    CompanyPictureComponent,
     MagicLinkLoginComponent,
     NotAuthorizedComponent,
     MyJobOffersPageComponent,
     SidebarRightComponent,
     NewJobOfferDialogComponent,
     EditJobOfferDialogComponent,
+    SearchPageComponent,
+    WelcomeSearchPageComponent,
+    WelcomeFeedComponent,
   ],
   imports: [
     BrowserModule,

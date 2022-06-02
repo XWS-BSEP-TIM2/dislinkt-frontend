@@ -25,3 +25,11 @@ mat-card-header {
 .vertical-separator {
   margin: auto 10px;
 }
+
+::ng-deep .green {
+  color: #81d4fa !important;
+}
+
+::ng-deep .red {
+  color: rgb(175, 0, 0) !important;
+}

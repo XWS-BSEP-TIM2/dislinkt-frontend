@@ -32,6 +32,14 @@ export class HeaderComponent implements OnInit {
   }
 
   redirectMyProfile() {
-    window.location.href = '/user/' + this.loginUser.userID;
+    window.location.href = '/profile/' + this.loginUser.userID;
+  }
+
+  performSearch() {
+    if (this.searchText.trim() != '') {
+      window.location.href = '/search/' + this.searchText.trim().toLowerCase();
+    } else {
+      window.location.href = '/';
+    }
   }
 }

@@ -263,8 +263,6 @@ export class EditProfilePageComponent implements OnInit {
     requestBody.birthDate = new DateSecondsFormat();
     requestBody.birthDate.seconds = Date.parse(this.birthDate) / 1000 + 45000;
 
-    console.log(requestBody);
-
     this.profileService.updateProfile(requestBody).subscribe((data) => {
       this.loadProfile();
       this.cancelChangeExperience();

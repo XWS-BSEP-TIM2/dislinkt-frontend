@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Experience } from 'src/app/model/experienceModel';
+import { Post } from 'src/app/model/post';
 import { Profile } from 'src/app/model/profileModel';
+import { PostService } from 'src/app/services/post.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -11,13 +13,14 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class ProfileFeedComponent implements OnInit {
   userProfile: Profile = new Profile();
-  searchText: string = '';
   workExperiences: Experience[] = [];
   educationExperiences: Experience[] = [];
+  userPosts: Post[] = [];
 
   constructor(
     private profileService: ProfileService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -26,8 +29,12 @@ export class ProfileFeedComponent implements OnInit {
     this.profileService.getUserById(this.userProfile.id).subscribe((data) => {
       this.profileService.modifyProfileData(data);
       this.userProfile = data.profile;
-      console.log(this.userProfile);
       this.initExperiences();
+    });
+
+    this.postService.getPostsByUser(this.userProfile.id).subscribe((data) => {
+      this.userPosts = data.posts;
+      this.userPosts.reverse();
     });
   }
 
@@ -39,9 +46,5 @@ export class ProfileFeedComponent implements OnInit {
         this.workExperiences.push(experience);
       }
     }
-  }
-
-  resetSearch() {
-    this.searchText = '';
   }
 }

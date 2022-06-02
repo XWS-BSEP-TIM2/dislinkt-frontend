@@ -52,7 +52,8 @@
         <input
           matInput
           placeholder="Search Dislinkt"
-          [(ngModel)]="searchText"
+          [(ngModel)]="searchText"          
+          (keyup.enter)="performSearch()"
         />
         <button
           mat-icon-button

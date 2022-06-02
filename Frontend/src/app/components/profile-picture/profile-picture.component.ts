@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConnectionDetails } from 'src/app/model/connectionDetails';
+import { Post } from 'src/app/model/post';
 import { Profile } from 'src/app/model/profileModel';
 import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -14,6 +15,7 @@ export class ProfilePictureComponent implements OnInit {
   @Input() size: number = 50;
   @Input() activeUser: boolean = false;
   @Input() connection: ConnectionDetails = new ConnectionDetails();
+  @Input() post: Post = new Post();
   fullName: string = 'Null';
 
   constructor(
@@ -31,6 +33,8 @@ export class ProfilePictureComponent implements OnInit {
       this.fullName = this.profileService.getFullName(this.user);
     } else if (this.connection.UserID != '') {
       this.fullName = this.connection.Name + ' ' + this.connection.Surname;
+    } else if (this.post.owner.name != '') {
+      this.fullName = this.post.owner.name + ' ' + this.post.owner.surname;
     }
   }
 }

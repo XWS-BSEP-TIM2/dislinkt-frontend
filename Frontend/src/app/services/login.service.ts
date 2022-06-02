@@ -92,12 +92,19 @@ export class LoginService {
   }
 
   getHeaders() {
-    const token = this.getCurrentUser().token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ` + token,
-    });
-    return headers;
+    if (this.isUserLoggedIn()) {
+      const token = this.getCurrentUser().token;
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ` + token,
+      });
+      return headers;
+    } else {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+      return headers;
+    }
   }
 
   getCurrentUserRole() {

@@ -15,4 +15,13 @@ export class WelcomePageHeaderComponent implements OnInit {
   resetSearch() {
     this.searchText = '';
   }
+
+  performSearch() {
+    if (this.searchText.trim() != '') {
+      window.location.href =
+        'welcome/search/' + this.searchText.trim().toLowerCase();
+    } else {
+      window.location.href = '/welcome';
+    }
+  }
 }

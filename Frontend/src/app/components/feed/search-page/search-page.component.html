@@ -1,0 +1,23 @@
+<h1>
+  Search: <i>{{ searchText }}</i> 🔎
+</h1>
+<div class="columns">
+  <div class="column">
+    <mat-spinner *ngIf="!loaded" color="accent"></mat-spinner>
+    <div *ngIf="loaded">
+      <h2>{{ posts.length }} results found.</h2>
+      <mat-divider></mat-divider>
+      <div
+        class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
+      >
+        <post-display
+          class="stretch-width"
+          *ngFor="let post of posts"
+        ></post-display>
+      </div>
+    </div>
+  </div>
+  <div class="column is-4 side-column">
+    <sidebar-right></sidebar-right>
+  </div>
+</div>

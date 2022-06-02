@@ -1,0 +1,20 @@
+<h1>Welcome to Dislinkt! 😄</h1>
+<div class="columns">
+  <div class="column">
+    <h2>
+      This is where your connections come to life. Register to have full access
+      to our platform.
+    </h2>
+    <mat-divider></mat-divider>
+    <div
+      class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
+    >
+      <post-display *ngFor="let post of posts" [post]="post"></post-display>
+    </div>
+  </div>
+  <div class="column is-5 side-column">
+    <h2>Popular public accounts</h2>
+    <mat-divider class="mb-5"></mat-divider>
+    <public-accounts></public-accounts>
+  </div>
+</div>

@@ -51,7 +51,7 @@ export class ProfileService {
         currentExperience.name = '[FORMER] ' + currentExperience.name;
       }
     } else {
-      currentExperience.name = 'No career information available';
+      currentExperience.name = 'Unknown career';
     }
 
     return currentExperience;

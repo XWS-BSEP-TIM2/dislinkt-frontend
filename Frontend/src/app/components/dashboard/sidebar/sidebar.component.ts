@@ -28,13 +28,13 @@ export class SidebarComponent implements OnInit {
 
   redirect() {
     this.router.navigate([this.currentPage]);
-    if (this.currentPage == 'user/' + this.loginUser.userID) {
+    if (this.currentPage == 'profile/' + this.loginUser.userID) {
       this.redirectMyProfile();
     }
   }
 
   redirectMyProfile() {
-    window.location.href = '/user/' + this.loginUser.userID;
+    window.location.href = '/profile/' + this.loginUser.userID;
   }
 
   redirectFeed() {
