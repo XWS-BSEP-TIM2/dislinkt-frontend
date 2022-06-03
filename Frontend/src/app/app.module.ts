@@ -60,6 +60,10 @@ import { EditJobOfferDialogComponent } from './components/my-job-offers-page/edi
 import { SearchPageComponent } from './components/feed/search-page/search-page.component';
 import { WelcomeSearchPageComponent } from './components/welcome-page/welcome-search-page/welcome-search-page.component';
 import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/welcome-feed.component';
+import {
+  PostContentComponent,
+  UrlifyPipe,
+} from './components/post-content/post-content.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +120,8 @@ import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/wel
     SearchPageComponent,
     WelcomeSearchPageComponent,
     WelcomeFeedComponent,
+    PostContentComponent,
+    UrlifyPipe,
   ],
   imports: [
     BrowserModule,

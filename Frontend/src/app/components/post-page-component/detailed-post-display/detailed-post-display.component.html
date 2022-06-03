@@ -20,9 +20,7 @@
     <img [src]="imagePath" />
   </div>
   <mat-card-content class="mt-4">
-    <p>
-      {{ post.content }}
-    </p>
+    <post-content [text]="post.content"></post-content>
   </mat-card-content>
   <mat-card-actions>
     <div
