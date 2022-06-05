@@ -1,106 +1,110 @@
-<mat-spinner *ngIf="!loaded" color="accent"></mat-spinner>
-<mat-card class="post-container" *ngIf="loaded">
-  <mat-card-header>
-    <div mat-card-avatar>
-      <profile-picture [post]="post" [size]="40"></profile-picture>
+<div
+  class="is-flex is-flex-direction-row is-justify-content-space-around stretch-width"
+>
+  <mat-spinner *ngIf="!loaded" color="accent"></mat-spinner>
+  <mat-card class="post-container" *ngIf="loaded">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <profile-picture [post]="post" [size]="40"></profile-picture>
+      </div>
+      <mat-card-title
+        class="clickable"
+        (click)="redirectAuthorProfile()"
+        matTooltip="User profile"
+        >{{ post.owner.name }} {{ post.owner.surname }}</mat-card-title
+      >
+      <mat-card-subtitle
+        class="clickable"
+        (click)="redirectPostPage()"
+        matTooltip="Post page"
+        >{{ post.timestamp | date: "medium" }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <div class="is-flex is-flex-direction-row-reverse menu-icon" *ngIf="false">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
     </div>
-    <mat-card-title
-      class="clickable"
-      (click)="redirectAuthorProfile()"
-      matTooltip="User profile"
-      >{{ post.owner.name }} {{ post.owner.surname }}</mat-card-title
-    >
-    <mat-card-subtitle
-      class="clickable"
-      (click)="redirectPostPage()"
-      matTooltip="Post page"
-      >{{ post.timestamp | date: "medium" }}</mat-card-subtitle
-    >
-  </mat-card-header>
-  <div class="is-flex is-flex-direction-row-reverse menu-icon" *ngIf="false">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>edit</mat-icon>
-        <span>Edit</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>delete</mat-icon>
-        <span>Delete</span>
-      </button>
-    </mat-menu>
-  </div>
-  <div
-    class="image-container clickable"
-    (click)="redirectPostPage()"
-    *ngIf="imagePath != null"
-  >
-    <img [src]="imagePath" />
-  </div>
-  <mat-card-content class="mt-4">
-    <post-content [text]="post.content"></post-content>
-  </mat-card-content>
-  <mat-card-actions>
     <div
-      class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
+      class="image-container clickable"
+      (click)="redirectPostPage()"
+      *ngIf="imagePath != null"
     >
-      <div>
-        <div *ngIf="loggedInUser">
-          <button
-            mat-icon-button
-            matTooltip="Like"
-            (click)="likePost()"
-            *ngIf="!likedByUser"
-          >
-            <mat-icon>thumb_up</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            matTooltip="Remove Like"
-            (click)="unlikePost()"
-            *ngIf="likedByUser"
-          >
-            <mat-icon class="green">thumb_up</mat-icon>
-          </button>
+      <img [src]="imagePath" />
+    </div>
+    <mat-card-content class="mt-4">
+      <post-content [text]="post.content"></post-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <div
+        class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
+      >
+        <div>
+          <div *ngIf="loggedInUser">
+            <button
+              mat-icon-button
+              matTooltip="Like"
+              (click)="likePost()"
+              *ngIf="!likedByUser"
+            >
+              <mat-icon>thumb_up</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Remove Like"
+              (click)="unlikePost()"
+              *ngIf="likedByUser"
+            >
+              <mat-icon class="green">thumb_up</mat-icon>
+            </button>
 
-          <button
-            mat-icon-button
-            matTooltip="Dislike"
-            *ngIf="!dislikedByUser"
-            (click)="dislikePost()"
-          >
-            <mat-icon>thumb_down</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            matTooltip="Remove Dislike"
-            *ngIf="dislikedByUser"
-            (click)="undislikePost()"
-          >
-            <mat-icon class="red">thumb_down</mat-icon>
-          </button>
+            <button
+              mat-icon-button
+              matTooltip="Dislike"
+              *ngIf="!dislikedByUser"
+              (click)="dislikePost()"
+            >
+              <mat-icon>thumb_down</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Remove Dislike"
+              *ngIf="dislikedByUser"
+              (click)="undislikePost()"
+            >
+              <mat-icon class="red">thumb_down</mat-icon>
+            </button>
 
-          <button
-            mat-icon-button
-            matTooltip="Comments"
-            (click)="redirectPostPage()"
+            <button
+              mat-icon-button
+              matTooltip="Comments"
+              (click)="redirectPostPage()"
+            >
+              <mat-icon>comment</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mr-5">
+          <strong>{{ likesCount }}</strong> like<span *ngIf="likesCount != 1"
+            >s</span
+          ><span class="vertical-separator">|</span>
+          <strong>{{ commentsCount }}</strong> comment<span
+            *ngIf="commentsCount != 1"
+            >s</span
           >
-            <mat-icon>comment</mat-icon>
-          </button>
         </div>
       </div>
-
-      <div class="mr-5">
-        <strong>{{ likesCount }}</strong> like<span *ngIf="likesCount != 1"
-          >s</span
-        ><span class="vertical-separator">|</span>
-        <strong>{{ commentsCount }}</strong> comment<span
-          *ngIf="commentsCount != 1"
-          >s</span
-        >
-      </div>
-    </div>
-  </mat-card-actions>
-</mat-card>
+    </mat-card-actions>
+  </mat-card>
+</div>

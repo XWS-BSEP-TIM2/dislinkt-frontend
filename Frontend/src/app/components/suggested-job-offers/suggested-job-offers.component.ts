@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JobOffer } from 'src/app/model/jobOffer';
+import { JobOfferService } from 'src/app/services/job-offer.service';
 
 @Component({
   selector: 'suggested-job-offers',
@@ -6,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suggested-job-offers.component.scss'],
 })
 export class SuggestedJobOffersComponent implements OnInit {
-  constructor() {}
+  offers: JobOffer[] = [];
 
-  ngOnInit(): void {}
+  constructor(private jobOfferService: JobOfferService) {}
+
+  ngOnInit(): void {
+    this.jobOfferService.getAllJobOffers().subscribe((data) => {
+      this.offers = data.jobOffers;
+    });
+  }
 
   redirectJobOffers() {
     window.location.href = 'job-offers';

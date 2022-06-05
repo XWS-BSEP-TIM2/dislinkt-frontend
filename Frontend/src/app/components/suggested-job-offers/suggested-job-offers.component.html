@@ -2,11 +2,9 @@
   class="is-flex is-flex-direction-column stretch-width is-align-items-center"
 >
   <div class="stretch-width">
-    <single-job-offer></single-job-offer>
-    <single-job-offer></single-job-offer>
-    <single-job-offer></single-job-offer>
-    <single-job-offer></single-job-offer>
-    <single-job-offer></single-job-offer>
+    <div *ngFor="let offer of offers">
+      <single-job-offer [offer]="offer"></single-job-offer>
+    </div>
   </div>
 
   <div>

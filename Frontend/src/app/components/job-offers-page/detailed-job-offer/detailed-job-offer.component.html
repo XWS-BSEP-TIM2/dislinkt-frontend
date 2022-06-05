@@ -1,0 +1,42 @@
+<mat-card class="suggestion-container stretch-width">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <profile-picture [jobOffer]="offer" [size]="40"></profile-picture>
+    </div>
+    <mat-card-title
+      (click)="redirect()"
+      class="clickable"
+      matTooltip="View job offer page"
+      ><span
+        ><strong>{{ offer.position }}: {{ offer.seniority }}</strong></span
+      >
+    </mat-card-title>
+    <mat-card-subtitle
+      ><span>@{{ offer.companyName }}</span></mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <hr class="mt-5" />
+    <p>
+      {{ offer.description }}
+    </p></mat-card-content
+  >
+  <div
+    class="is-flex is-flex-direction-row-reverse stretch-width is-justify-content-space-between px-5"
+  >
+    <button mat-flat-button color="accent" (click)="redirectContact()">
+      Contact
+    </button>
+    <span>
+      <mat-chip-list>
+        <mat-chip
+          color="accent"
+          selected
+          disableRipple="true"
+          *ngFor="let technology of offer.technologies"
+          >{{ technology }}</mat-chip
+        ></mat-chip-list
+      >
+    </span>
+  </div>
+</mat-card>

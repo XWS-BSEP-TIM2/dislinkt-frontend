@@ -51,7 +51,6 @@ export class EditJobOfferDialogComponent implements OnInit {
           window.location.href = '/job-offers';
         }
       }, (error) => {
-        console.log(error)
       });
 
 

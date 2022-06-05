@@ -1,14 +1,20 @@
 <mat-card class="job-container clickable" (click)="redirect()">
   <mat-card-header>
     <div mat-card-avatar>
-      <ngx-avatar name="Microsofty" size="40"></ngx-avatar>
+      <profile-picture [jobOffer]="offer" [size]="40"></profile-picture>
     </div>
-    <mat-card-title><span>Microsoft</span></mat-card-title>
-    <mat-card-subtitle><span>C# Developer</span></mat-card-subtitle>
+    <mat-card-title
+      ><span>{{ offer.position }}</span></mat-card-title
+    >
+    <mat-card-subtitle
+      ><span>@{{ offer.companyName }}</span></mat-card-subtitle
+    >
   </mat-card-header>
   <mat-card-content class="mt-4">
-    <span class="tag is-primary">Full-Time</span>
-    <span class="tag is-primary">Well-Paid</span>
-    <span class="tag is-primary">Remote</span>
+    <span
+      class="tag is-primary"
+      *ngFor="let technology of offer.technologies"
+      >{{ technology }}</span
+    >
   </mat-card-content>
 </mat-card>

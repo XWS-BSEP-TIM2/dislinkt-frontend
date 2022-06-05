@@ -24,6 +24,7 @@ import { MyJobOffersPageComponent } from './components/my-job-offers-page/my-job
 import { SearchPageComponent } from './components/feed/search-page/search-page.component';
 import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/welcome-feed.component';
 import { WelcomeSearchPageComponent } from './components/welcome-page/welcome-search-page/welcome-search-page.component';
+import { JobOfferPageComponent } from './components/job-offer-page/job-offer-page.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'connections', component: SuggestedConnectionsPageComponent },
       { path: 'job-offers', component: JobOffersPageComponent },
       { path: 'my-job-offers', component: MyJobOffersPageComponent },
+      { path: 'job-offer/:id', component: JobOfferPageComponent },
       { path: 'posts/:id', component: PostPageComponentComponent },
       {
         path: 'profile/:id',

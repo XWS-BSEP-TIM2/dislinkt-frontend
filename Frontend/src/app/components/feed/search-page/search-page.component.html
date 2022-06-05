@@ -5,13 +5,37 @@
   <div class="column">
     <mat-spinner *ngIf="!loaded" color="accent"></mat-spinner>
     <div *ngIf="loaded">
-      <h2>{{ posts.length }} results found.</h2>
+      <h2>{{ posts.length + users.length + offers.length }} results found.</h2>
       <mat-divider></mat-divider>
       <div
         class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
       >
-        <div *ngFor="let post of posts">
-          <post-display class="stretch-width" [post]="post"></post-display>
+        <div *ngIf="users.length > 0" class="stretch-width mt-5">
+          <h3>Users ({{ users.length }})</h3>
+          <div *ngFor="let user of users">
+            <profile-preview
+              [user]="user"
+              class="stretch-width"
+            ></profile-preview>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="offers.length > 0" class="stretch-width mt-5">
+          <h3>Job offers ({{ offers.length }})</h3>
+          <div *ngFor="let offer of offers">
+            <detailed-job-offer
+              class="stretch-width"
+              [offer]="offer"
+            ></detailed-job-offer>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="posts.length > 0" class="stretch-width mt-5">
+          <h3>Posts ({{ posts.length }})</h3>
+          <div *ngFor="let post of posts">
+            <post-display [post]="post"></post-display>
+          </div>
+          <mat-divider></mat-divider>
         </div>
       </div>
     </div>

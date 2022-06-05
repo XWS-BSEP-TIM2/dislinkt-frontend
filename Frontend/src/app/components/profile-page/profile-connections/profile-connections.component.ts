@@ -24,7 +24,6 @@ export class ProfileConnectionsComponent implements OnInit {
   loadData() {
     let targetUserID = window.location.pathname.substring(6).split('/')[1];
     this.connectionService.GetFriends(targetUserID).subscribe((data) => {
-      console.log(data);
       this.friends = data;
     });
   }

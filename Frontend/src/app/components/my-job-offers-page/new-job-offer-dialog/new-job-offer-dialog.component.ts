@@ -32,7 +32,6 @@ export class NewJobOfferDialogComponent implements OnInit {
   }
 
   send() {
-    console.log("Try to send");
     if (this.validForm()) {
       this.offer.position = this.offer.position.trim();
       this.offer.seniority = this.offer.seniority.trim();

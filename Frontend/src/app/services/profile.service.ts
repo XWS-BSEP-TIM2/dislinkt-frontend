@@ -20,6 +20,11 @@ export class ProfileService {
     return this._http.get<any>(url, { headers: headers });
   }
 
+  getAllUsers() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url, { headers: headers });
+  }
+
   changePassword(changePasswordRequest: ChangePasswordRequest) {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(

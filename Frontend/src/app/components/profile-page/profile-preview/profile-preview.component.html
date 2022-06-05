@@ -1,0 +1,13 @@
+<mat-card class="suggestion-container clickable" (click)="redirect()">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <profile-picture [user]="user" [size]="40"></profile-picture>
+    </div>
+    <mat-card-title
+      ><span>{{ user.name }} {{ user.surname }}</span></mat-card-title
+    >
+    <mat-card-subtitle
+      ><span>@{{ user.username }}</span></mat-card-subtitle
+    >
+  </mat-card-header>
+</mat-card>

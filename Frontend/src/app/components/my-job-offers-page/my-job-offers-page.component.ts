@@ -17,18 +17,24 @@ export class MyJobOffersPageComponent implements OnInit {
   //company: Company = new Company();
   jobOffers: JobOffer[] = [];
 
-  constructor(private loginService: LoginService, public dialog: MatDialog,private jobOfferService:JobOfferService) {}
+  constructor(
+    private loginService: LoginService,
+    public dialog: MatDialog,
+    private jobOfferService: JobOfferService
+  ) {}
 
   ngOnInit(): void {
     this.user.id = this.loginService.getCurrentUser().userID;
-    this.jobOfferService.getUserJobOffers(this.user.id).subscribe(data=>{
-      console.log(data.jobOffers);
-      data.jobOffers!=undefined ?  this.jobOffers=data.jobOffers : this.jobOffers=[]
-     
-    },
-    (error)=>{
-      alert('Unable to load job offers');
-    })
+    this.jobOfferService.getUserJobOffers(this.user.id).subscribe(
+      (data) => {
+        data.jobOffers != undefined
+          ? (this.jobOffers = data.jobOffers)
+          : (this.jobOffers = []);
+      },
+      (error) => {
+        alert('Unable to load job offers');
+      }
+    );
   }
 
   addNew() {
@@ -49,16 +55,16 @@ export class MyJobOffersPageComponent implements OnInit {
           '? It cannot be undone.'
       )
     ) {
-      
-      this.jobOfferService.deleteOffer(offer).subscribe((data) => {
-        console.log(data);
-        if (data) {
-          window.location.href = '/job-offers';
+      this.jobOfferService.deleteOffer(offer).subscribe(
+        (data) => {
+          if (data) {
+            window.location.href = '/job-offers';
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      },error=>{
-        console.log(error);
-      });
-      
+      );
     }
   }
 }

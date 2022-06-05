@@ -333,7 +333,7 @@ export class EditProfilePageComponent implements OnInit {
   generateApiKey() {
     this.profileService.generateApiKey().subscribe(
       (data) => {
-        alert('Your Dislinkt API key:' + data.tokenCode);
+        alert('Your Dislinkt API key: ' + data.tokenCode);
       },
       (error) => {
         alert('Unable to generate api token');

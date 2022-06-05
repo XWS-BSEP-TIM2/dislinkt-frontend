@@ -33,7 +33,7 @@ import { SingleJobOfferComponent } from './components/suggested-job-offers/singl
 import { SingleContactComponent } from './components/chat-page/single-contact/single-contact.component';
 import { NewPostDialogComponent } from './components/new-post-dialog/new-post-dialog.component';
 import { DetailedConnectionSuggestionComponent } from './components/suggested-connections-page/detailed-connection-suggestion/detailed-connection-suggestion.component';
-import { DetailedJobOfferComponent } from './components/suggested-job-offers/detailed-job-offer/detailed-job-offer.component';
+import { DetailedJobOfferComponent } from './components/job-offers-page/detailed-job-offer/detailed-job-offer.component';
 import { ProfileFeedComponent } from './components/profile-page/profile-feed/profile-feed.component';
 import { ProfileConnectionsComponent } from './components/profile-page/profile-connections/profile-connections.component';
 import { ConnectionDisplayComponent } from './components/profile-page/profile-connections/connection-display/connection-display.component';
@@ -64,6 +64,8 @@ import {
   PostContentComponent,
   UrlifyPipe,
 } from './components/post-content/post-content.component';
+import { JobOfferPageComponent } from './components/job-offer-page/job-offer-page.component';
+import { ProfilePreviewComponent } from './components/profile-page/profile-preview/profile-preview.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import {
     WelcomeFeedComponent,
     PostContentComponent,
     UrlifyPipe,
+    JobOfferPageComponent,
+    ProfilePreviewComponent,
   ],
   imports: [
     BrowserModule,

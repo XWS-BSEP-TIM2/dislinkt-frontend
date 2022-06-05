@@ -1,0 +1,9 @@
+<div class="columns">
+  <div class="column">
+    <mat-spinner *ngIf="!loaded"></mat-spinner>
+    <detailed-job-offer [offer]="offer" *ngIf="loaded"></detailed-job-offer>
+  </div>
+  <div class="column is-4 side-column">
+    <sidebar-right></sidebar-right>
+  </div>
+</div>
