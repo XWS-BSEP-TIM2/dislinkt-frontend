@@ -33,8 +33,10 @@ export class ProfileFeedComponent implements OnInit {
     });
 
     this.postService.getPostsByUser(this.userProfile.id).subscribe((data) => {
-      this.userPosts = data.posts;
-      this.userPosts.reverse();
+      if (data.posts != undefined) {
+        this.userPosts = data.posts;
+        this.userPosts.reverse();
+      }
     });
   }
 

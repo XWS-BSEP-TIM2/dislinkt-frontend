@@ -41,7 +41,7 @@ export class ProfilePageComponent implements OnInit {
 
     this.connectionService.GetFriends(this.userProfile.id).subscribe((data) => {
       this.connectionNumber = data.length;
-    });
+    }); 
   }
 
   myProfileFunc(): boolean {

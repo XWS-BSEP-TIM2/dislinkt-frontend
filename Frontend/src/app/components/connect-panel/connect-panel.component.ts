@@ -5,106 +5,130 @@ import { ConnectionService } from 'src/app/services/connection.service';
 @Component({
   selector: 'connect-panel',
   templateUrl: './connect-panel.component.html',
-  styleUrls: ['./connect-panel.component.scss']
+  styleUrls: ['./connect-panel.component.scss'],
 })
 export class ConnectPanelComponent implements OnInit {
-
   @Input() userIDa: string = '';
   @Input() userIDb: string = '';
 
   connectionPanelModel!: ConnectionPanelModel;
 
-  ready: boolean = false
+  ready: boolean = false;
 
   constructor(private connectionService: ConnectionService) {
-    this.loadData()
+    this.loadData();
   }
 
   loadData() {
     this.connectionPanelModel = new ConnectionPanelModel();
-    this.connectionService.GetDetail(this.userIDa, this.userIDb).subscribe((data) => {
-      this.connectionPanelModel = data;
-      this.ready = true;
-    });  
+
+    this.connectionService
+      .GetDetail(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.connectionPanelModel = data;
+        this.ready = true;
+      });
   }
 
   ngOnInit(): void {
-    this.loadData()
+    this.loadData();
   }
 
-  connectBtnAvailable(): boolean{
-    return this.connectionPanelModel.relation === 'NO_RELATION' && !this.connectionPanelModel.isPrivate;
+  connectBtnAvailable(): boolean {
+    return (
+      this.connectionPanelModel.relation === 'NO_RELATION' &&
+      !this.connectionPanelModel.isPrivate
+    );
   }
 
   connecPrivtBtnAvailable(): boolean {
-    return this.connectionPanelModel.relation === 'NO_RELATION' && this.connectionPanelModel.isPrivate;
+    return (
+      this.connectionPanelModel.relation === 'NO_RELATION' &&
+      this.connectionPanelModel.isPrivate
+    );
   }
 
-  connectedBtnAvailable(): boolean{
+  connectedBtnAvailable(): boolean {
     return this.connectionPanelModel.relation === 'CONNECTED';
   }
 
-  messageAvailable(): boolean{
+  messageAvailable(): boolean {
     return this.connectionPanelModel.relation === 'CONNECTED';
   }
 
-  blockAvailable(): boolean{
-    return this.connectionPanelModel.relation !== 'B_BLOCK_A' && this.connectionPanelModel.relation !== 'A_BLOCK_B';
+  blockAvailable(): boolean {
+    return (
+      this.connectionPanelModel.relation !== 'B_BLOCK_A' &&
+      this.connectionPanelModel.relation !== 'A_BLOCK_B'
+    );
   }
 
-  unblockAvailable(): boolean{
+  unblockAvailable(): boolean {
     return this.connectionPanelModel.relation === 'A_BLOCK_B';
   }
 
-  pendingBtnAvailable(): boolean{
+  pendingBtnAvailable(): boolean {
     return this.connectionPanelModel.relation === 'PENDING';
   }
 
-  acceptBtnAvailable(): boolean{
+  acceptBtnAvailable(): boolean {
     return this.connectionPanelModel.relation === 'ACCEPT';
   }
 
   // =============================== ACTIONS
   connectBtn() {
-    this.connectionService.AddFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .AddFriend(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   connecPrivtBtn() {
-    this.connectionService.SendFriendRequest(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .SendFriendRequest(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   cancelRequestBtn() {
-    this.connectionService.UnsendFriendRequest(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .UnsendFriendRequest(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   acceptBtn() {
-    this.connectionService.AddFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .AddFriend(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   disconnectBtn() {
-    this.connectionService.RemoveFriend(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .RemoveFriend(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   block() {
-    this.connectionService.AddBlockUser(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .AddBlockUser(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   unblock() {
-    this.connectionService.UnblockUser(this.userIDa, this.userIDb).subscribe((data) => {
-      this.loadData();
-    });  
+    this.connectionService
+      .UnblockUser(this.userIDa, this.userIDb)
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
-
 }
