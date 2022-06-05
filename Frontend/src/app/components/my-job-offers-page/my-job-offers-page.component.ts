@@ -30,6 +30,8 @@ export class MyJobOffersPageComponent implements OnInit {
         data.jobOffers != undefined
           ? (this.jobOffers = data.jobOffers)
           : (this.jobOffers = []);
+
+        this.jobOffers.reverse();
       },
       (error) => {
         alert('Unable to load job offers');

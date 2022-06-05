@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Profile } from 'src/app/model/profileModel';
 
 @Component({
   selector: 'public-account-display',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-account-display.component.scss'],
 })
 export class PublicAccountDisplayComponent implements OnInit {
+  @Input() user: Profile = new Profile();
   constructor() {}
 
   ngOnInit(): void {}
 
-  redirect() {}
+  redirect() {
+    window.location.href = '/profile/' + this.user.id;
+  }
 }

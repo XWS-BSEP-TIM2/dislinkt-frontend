@@ -17,4 +17,8 @@ export class WelcomePageSidebarComponent implements OnInit {
   redirectRegister() {
     window.location.href = '/register';
   }
+
+  redirect() {
+    window.location.href = '/welcome';
+  }
 }
