@@ -21,7 +21,8 @@ export class JobOfferPageComponent implements OnInit {
     this.offer.id = this.route.snapshot.paramMap.get('id')!;
 
     this.jobOfferService.getJobOffer(this.offer.id).subscribe((data) => {
-      console.log(data);
+      this.offer = data.jobOffer;
+      this.loaded = true;
     });
   }
 }
