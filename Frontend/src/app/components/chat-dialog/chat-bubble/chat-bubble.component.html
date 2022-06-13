@@ -1,9 +1,9 @@
-<div class="">
-    <div class="">
-        <div [ngClass]="{'is-pulled-right': isMe, 'is-pulled-left' : !isMe}">
-            <div class="level-item bubbles-massage-me card" [ngClass]="{'bubbles-massage-me': isMe, 'bubbles-massage-sender' : !isMe}">
-                <h3 class="m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius recusandae fugit ipsa atque. Possimus omnis numquam iusto eos, sint tempora odio earum consequatur, autem praesentium mollitia dolores necessitatibus quidem accusamus!</h3>
-            </div>
+
+<div class="is-flex">
+    <div [ngClass]="{'bubbles-me': isMe, 'bubbles-sender' : !isMe}">
+        <div class="" [ngClass]="{'bubbles-massage-me': isMe, 'bubbles-massage-sender' : !isMe}">
+            <h3 class="mx-2 my-1">{{message.text}}</h3>
         </div>
     </div>
 </div>
+

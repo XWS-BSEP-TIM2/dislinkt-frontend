@@ -4,10 +4,10 @@
         <div class="level">
             <div class="level-left">
                 <div class="level-item">
-                    <ngx-avatar name="Pera Peric" size="60"></ngx-avatar>
+                    <ngx-avatar name="{{chat.fullNameUserB}}" size="60"></ngx-avatar>
                 </div>
                 <div class="level-item">
-                    <h2>Pera Peric</h2>
+                    <h2>{{chat.fullNameUserB}}</h2>
                 </div>
             </div>
         </div>
@@ -15,27 +15,10 @@
 
     <!-- Chat bubbles -->
     <div class="row chat-bubble-area">
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="false"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-        <chat-bubble [isMe]="true"></chat-bubble>
-       
+        <div *ngFor="let message of chat.messages">
+            <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
+        </div>
+
     </div>
 
     <!-- Send new message -->

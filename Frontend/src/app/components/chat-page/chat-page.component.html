@@ -5,12 +5,12 @@
         </div>
         <div class="contact-list-css">
             <div *ngFor="let chatPreview of chatPreviews; index as i">
-                <single-contact [chatPreview]="chatPreview"></single-contact>
+                <single-contact [ngClass]="{'card': chatPreview.userID === chat.userIDb}" (click)="showChat(chatPreview)" [chatPreview]="chatPreview"></single-contact>
             </div>
         </div>
         
     </div>
     <div class="column is-8">
-        <chat-dialog></chat-dialog>
+        <chat-dialog [chat]="chat"></chat-dialog>
     </div>
 </div>

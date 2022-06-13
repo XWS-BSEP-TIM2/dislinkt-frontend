@@ -19,5 +19,11 @@ export class MessageService {
     return this._http.get<any>(url, { headers: headers });
   }
 
+  getChat(msgID: string) {
+    const headers = this.loginService.getHeaders();
+    const url = this.url + '/chat/'+msgID;
+    return this._http.get<any>(url, { headers: headers });
+  }
+
 
 }

@@ -2,7 +2,7 @@ export class Message {
     constructor(
         public authorUserID: string = '',
         public text: string = '',
-        public date: any,
+        public date: any = {},
     ) { }
     
     getDate(): Date {
