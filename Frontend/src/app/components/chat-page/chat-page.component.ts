@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'src/app/services/message.service';
+import { ChatPreview } from 'src/app/model/ChatPreview'; 
+import { Message } from 'src/app/model/Message';
 
 @Component({
   selector: 'chat-page',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatPageComponent implements OnInit {
 
-  constructor() { }
+  chatPreviews: ChatPreview[] = [];
+
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-  }
+    this.messageService.getMyContacts().subscribe((data) => {
+      this.chatPreviews = data.chats;
+      console.log(this.chatPreviews)
+    }, (err) => {
+        alert(err)
+    });
+
+    
+  } 
 
 }

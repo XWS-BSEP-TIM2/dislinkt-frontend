@@ -9,7 +9,7 @@
     <div
       class="stretch-width is-flex is-flex-direction-column is-align-items-center my-5"
     >
-      <p *ngIf="recommendations.length == 0">
+      <p *ngIf="recommendations == null || recommendations.length == 0">
         No connections to show right now. Please try again later.
       </p>
       <div *ngFor="let rec of recommendations">

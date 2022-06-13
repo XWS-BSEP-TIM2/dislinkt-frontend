@@ -1,11 +1,19 @@
 <mat-card class="single-contact-container clickable">
-    <mat-card-header>
-      <div mat-card-avatar>
-        <ngx-avatar name="Pera Peric" size="40"></ngx-avatar>
-        
+  <div class="row">
+    <div class="columns">
+      <div class="column is-11">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <ngx-avatar name="{{chatPreview.fullNameUser}}" size="40"></ngx-avatar>        
+          </div>
+          <mat-card-title><span [ngClass]="chatPreview.numOfNewMessages > 0 ? 'has-text-weight-bold' : 'has-text-weight'">{{chatPreview.fullNameUser}}</span></mat-card-title>
+          <mat-card-subtitle><span [ngClass]="chatPreview.numOfNewMessages > 0 ? 'has-text-weight-bold' : 'has-text-weight'">{{chatPreview.lastMessage.text}}</span></mat-card-subtitle>
+        </mat-card-header>
       </div>
-      <mat-card-title><span>Pera Peric</span></mat-card-title>
-      <mat-card-subtitle><span class="has-text-weight-bold">last message</span></mat-card-subtitle>
-    </mat-card-header>
+      <div class="column is-1" *ngIf="chatPreview.numOfNewMessages>0">
+        <mat-icon style="margin-left: -20px; margin-top: 10px;" matBadge="{{chatPreview.numOfNewMessages}}" matBadgeColor="primary"></mat-icon>
+      </div>
+    </div>
+  </div>
 </mat-card>
   

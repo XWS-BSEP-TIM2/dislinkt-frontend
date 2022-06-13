@@ -2,7 +2,7 @@
   class="is-flex is-flex-direction-column stretch-width is-align-items-center"
 >
   <div class="stretch-width">
-    <p *ngIf="recommendations.length == 0">No quick connections to show.</p>
+    <p *ngIf="recommendations == null || recommendations.length == 0">No quick connections to show.</p>
     <div *ngFor="let rec of recommendations | slice: 0:3; let i = index">
       <single-connection-suggestion
         [connectionDetails]="rec"
