@@ -25,6 +25,7 @@ import { SearchPageComponent } from './components/feed/search-page/search-page.c
 import { WelcomeFeedComponent } from './components/welcome-page/welcome-feed/welcome-feed.component';
 import { WelcomeSearchPageComponent } from './components/welcome-page/welcome-search-page/welcome-search-page.component';
 import { JobOfferPageComponent } from './components/job-offer-page/job-offer-page.component';
+import { TwoFactorAuthComponent } from './components/two-factor-auth/two-factor-auth.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,11 @@ const routes: Routes = [
   {
     path: 'magic-link-login/:id',
     component: MagicLinkLoginComponent,
+    canActivate: [UnAuthGuard],
+  },
+  {
+    path: 'two-factor',
+    component: TwoFactorAuthComponent,
     canActivate: [UnAuthGuard],
   },
   {

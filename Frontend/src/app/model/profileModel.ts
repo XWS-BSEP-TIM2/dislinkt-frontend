@@ -15,6 +15,7 @@ export class Profile {
     public isPrivate: boolean = false,
     public skills: Skill[] = [],
     public experiences: Experience[] = [],
-    public fullName: string = ''
+    public fullName: string = '',
+    public isTwoFactor:boolean=false,
   ) {}
 }

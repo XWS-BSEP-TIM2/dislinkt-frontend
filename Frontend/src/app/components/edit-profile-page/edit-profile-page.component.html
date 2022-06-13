@@ -140,6 +140,19 @@
               </div>
             </div>
 
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input
+                    type="checkbox"
+                    [disabled]="!changeProfileFormEditable"
+                    [(ngModel)]="myProfile.isTwoFactor"
+                  />
+                  Use two factor authentication
+                </label>
+              </div>
+            </div>
+
             <div
               *ngIf="changeProfileFormEditable"
               class="is-flex is-justify-content-center mt-5"

@@ -6,6 +6,7 @@ export class LoginResponse {
     public username: string = '',
     public role: string = '',
     public userID: string = '',
-    public fullName: string = ''
+    public fullName: string = '',
+    public twoFactor:boolean=false
   ) {}
 }

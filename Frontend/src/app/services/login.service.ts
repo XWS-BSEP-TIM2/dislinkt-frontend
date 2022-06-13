@@ -6,17 +6,34 @@ import { LoginResponse as LoginResponse } from '../model/loginResponse';
 import { server } from '../app-global';
 import { RecoveryRequest } from '../model/recoveryRequest';
 import { PasswordlessLoginModel } from '../model/passwordlessLoginModel';
+import { Verify2Factor } from '../model/verify2Factor';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
+
+  
   url = server + 'login'; //TODO: na jednom mestu
 
   constructor(private _http: HttpClient, private route: Router) {}
 
   login(loginR: LoginRequest) {
     return this._http.post<any>(this.url, loginR);
+  }
+
+  verifyAuthCode(code: any) {
+    const url = server + 'two-factor';
+    const dto:Verify2Factor={
+      code:code,
+      userId:this.getCurrentUser().userID
+    }
+    return this._http.post<any>(url,dto);
+  }
+
+  getQrCode(userId:string){
+    const url = server + 'two-factor/'+userId;
+    return this._http.get<any>(url);
   }
 
   forggotPasswrod(username: string) {
@@ -63,7 +80,7 @@ export class LoginService {
       localStorage.setItem('currentUser', JSON.stringify(user));
       localStorage.setItem('role', user.role);
       if (user.role == 'USER') {
-        window.location.href = '/';
+        user.twoFactor==true ? window.location.href = '/two-factor' : window.location.href='/'
       }
     });
   }
@@ -84,7 +101,8 @@ export class LoginService {
   }
 
   isUserLoggedIn() {
-    if (this.getCurrentUser() == null) {
+    let user=this.getCurrentUser();
+    if (user== null || user.token==undefined) {
       return false;
     } else {
       return this.getCurrentUser().role !== '';
