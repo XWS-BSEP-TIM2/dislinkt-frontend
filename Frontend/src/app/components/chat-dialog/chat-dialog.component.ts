@@ -13,13 +13,13 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class ChatDialogComponent implements OnInit {
 
-  //@Input() chat: Chat = new Chat();
-
     private _chat: Chat = new Chat();
     
     @Input() set chat(value: Chat) {
-       this._chat = value;
-       this.setSeen();
+      this._chat = value;
+      if (this._chat.messages == null)
+        this._chat.messages = []
+      this.setSeen();
     }
     get chat(): Chat { return this._chat; }
 
@@ -53,6 +53,7 @@ export class ChatDialogComponent implements OnInit {
     //let sendMsgReq = new SendMessageRequest(this.chat.msgID, this.chat.userIDa, this.chat.userIDb, this.message.text, parseInt((new Date().getTime()/1000).toFixed()))
     let sendMsgReq = new SendMessageRequest(this.chat.msgID, this.chat.userIDa, this.chat.userIDb, this.message.text)
     console.log(sendMsgReq)
+    this._chat.messages.push(new Message(this.chat.userIDa, this.message.text))
     this.messageService.sendMessage(sendMsgReq).subscribe((data) => {
       console.log(data)
       this.message.text = ""

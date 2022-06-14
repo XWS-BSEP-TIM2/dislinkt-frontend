@@ -32,7 +32,7 @@
         <div class="row chat-text-area">
             <div class="columns">
                 <div class="column is-10">
-                    <input type="text" [(ngModel)]="message.text" class="input is-rounded">
+                    <input (keyup.enter)="sendMessage()" type="text" [(ngModel)]="message.text" class="input is-rounded">
                 </div>
                 <div class="column is-2">
                     <button (click)="sendMessage()" class="button is-rounded send-button">send</button>
