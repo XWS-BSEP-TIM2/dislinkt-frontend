@@ -1,35 +1,44 @@
 <div class="rows">
-    <!-- Header of selected contact -->
-    <div class="row header-chat-dialog">
-        <div class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <ngx-avatar name="{{chat.fullNameUserB}}" size="60"></ngx-avatar>
+
+    <div *ngIf="chat.userIDb === ''" style="height: 750px;">
+        <div class="row is-flex is-justify-content-center">
+            <img src="assets/chat.png" style="margin-top: 100px;" />
+        </div>
+    </div>
+    <div *ngIf="chat.userIDb !== ''">
+        <!-- Header of selected contact -->
+        <div class="row header-chat-dialog">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <ngx-avatar name="{{chat.fullNameUserB}}" size="60"></ngx-avatar>
+                    </div>
+                    <div class="level-item">
+                        <h2>{{chat.fullNameUserB}}</h2>
+                    </div>
                 </div>
-                <div class="level-item">
-                    <h2>{{chat.fullNameUserB}}</h2>
+            </div>
+        </div>
+
+        <!-- Chat bubbles -->
+        <div class="row chat-bubble-area">
+            <div *ngFor="let message of chat.messages">
+                <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
+            </div>
+
+        </div>
+
+        <!-- Send new message -->
+        <div class="row chat-text-area">
+            <div class="columns">
+                <div class="column is-10">
+                    <input type="text" [(ngModel)]="message.text" class="input is-rounded">
+                </div>
+                <div class="column is-2">
+                    <button (click)="sendMessage()" class="button is-rounded send-button">send</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Chat bubbles -->
-    <div class="row chat-bubble-area">
-        <div *ngFor="let message of chat.messages">
-            <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
-        </div>
-
-    </div>
-
-    <!-- Send new message -->
-    <div class="row chat-text-area">
-        <div class="columns">
-            <div class="column is-10">
-                <input type="text" class="input is-rounded">
-            </div>
-            <div class="column is-2">
-                <button class="button is-rounded send-button">send</button>
-            </div>
-        </div>
-    </div>
 </div>

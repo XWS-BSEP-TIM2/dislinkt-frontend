@@ -66,7 +66,7 @@ import {
 } from './components/post-content/post-content.component';
 import { JobOfferPageComponent } from './components/job-offer-page/job-offer-page.component';
 import { ProfilePreviewComponent } from './components/profile-page/profile-preview/profile-preview.component';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+//import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { TwoFactorAuthComponent } from './components/two-factor-auth/two-factor-auth.component';
 
 @NgModule({
