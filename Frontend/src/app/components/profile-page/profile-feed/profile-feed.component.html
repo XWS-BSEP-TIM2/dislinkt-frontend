@@ -81,18 +81,35 @@
     </div>
     <div class="column">
       <div class="box stretch-height">
-        <h2>Skills and Interests</h2>
+        <h2>Skills ({{ getSkillsCount() }})</h2>
         <mat-chip-list>
-          <mat-chip
-            color="primary"
-            selected
-            disableRipple="true"
-            *ngFor="let skill of userProfile.skills"
-            >{{ skill.name }}</mat-chip
-          >
+          <div *ngFor="let skill of userProfile.skills">
+            <mat-chip
+              color="primary"
+              selected
+              disableRipple="true"
+              *ngIf="skill.skillType == 'Skill'"
+              >{{ skill.name }}</mat-chip
+            >
+          </div>
         </mat-chip-list>
-        <div class="ml-3 mb-5" *ngIf="userProfile.skills.length == 0">
+        <div class="ml-3 mb-5" *ngIf="getSkillsCount() == 0">
           No skills to show.
+        </div>
+        <h2 class="mt-5">Interests ({{ getInterestsCount() }})</h2>
+        <mat-chip-list>
+          <div *ngFor="let skill of userProfile.skills">
+            <mat-chip
+              color="accent"
+              selected
+              disableRipple="true"
+              *ngIf="skill.skillType == 'Interest'"
+              >{{ skill.name }}</mat-chip
+            >
+          </div>
+        </mat-chip-list>
+        <div class="ml-3 mb-5" *ngIf="getInterestsCount() == 0">
+          No interests to show.
         </div>
       </div>
     </div>

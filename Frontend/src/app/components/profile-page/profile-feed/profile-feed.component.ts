@@ -49,4 +49,13 @@ export class ProfileFeedComponent implements OnInit {
       }
     }
   }
+
+  getSkillsCount() {
+    return this.userProfile.skills.filter((e) => e.skillType == 'Skill').length;
+  }
+
+  getInterestsCount() {
+    return this.userProfile.skills.filter((e) => e.skillType == 'Interest')
+      .length;
+  }
 }

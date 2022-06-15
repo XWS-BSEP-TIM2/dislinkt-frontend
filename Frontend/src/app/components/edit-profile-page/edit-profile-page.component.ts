@@ -220,17 +220,22 @@ export class EditProfilePageComponent implements OnInit {
   changeBiography() {
     this.myProfile.biography = this.biography;
     this.myProfile.skills = [];
-    for (let skill of this.skills.split(',').map((e) => e.trim())) {
-      let newSkill = new Skill();
-      newSkill.name = skill;
-      newSkill.skillType = 'Skill';
-      this.myProfile.skills.push(newSkill);
+    if (this.skills.trim() != '') {
+      for (let skill of this.skills.split(',').map((e) => e.trim())) {
+        let newSkill = new Skill();
+        newSkill.name = skill;
+        newSkill.skillType = 'Skill';
+        this.myProfile.skills.push(newSkill);
+      }
     }
-    for (let interest of this.interests.split(',').map((e) => e.trim())) {
-      let newInterest = new Skill();
-      newInterest.name = interest;
-      newInterest.skillType = 'Interest';
-      this.myProfile.skills.push(newInterest);
+
+    if (this.interests.trim() != '') {
+      for (let interest of this.interests.split(',').map((e) => e.trim())) {
+        let newInterest = new Skill();
+        newInterest.name = interest;
+        newInterest.skillType = 'Interest';
+        this.myProfile.skills.push(newInterest);
+      }
     }
 
     let requestBody: any;
