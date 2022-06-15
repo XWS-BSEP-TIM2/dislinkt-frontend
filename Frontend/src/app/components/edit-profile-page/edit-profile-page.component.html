@@ -459,27 +459,25 @@
                   ></textarea>
                 </div>
               </div>
-              <div class="field">
-                <label class="label">Skills (comma separated)</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    [(ngModel)]="skills"
-                    type="text"
-                    placeholder="Angular, Spring, GoLang..."
-                  />
-                </div>
+              <div class="is-flex is-flex-direction-row my-3 pb-3 mt-5">
+                <button
+                  mat-raised-button
+                  color="accent"
+                  (click)="openSkillsDialog()"
+                >
+                  Manage skills ({{ getSkillsCount() }}
+                  selected)
+                </button>
               </div>
-              <div class="field">
-                <label class="label">Interests (comma separated)</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    [(ngModel)]="interests"
-                    type="text"
-                    placeholder="Game Development, Android, Embedded Programming..."
-                  />
-                </div>
+              <div class="is-flex is-flex-direction-row my-3 pb-3">
+                <button
+                  mat-raised-button
+                  color="accent"
+                  (click)="openInterestsDialog()"
+                >
+                  Manage interests ({{ getInterestsCount() }}
+                  selected)
+                </button>
               </div>
               <div class="is-flex is-justify-content-center mt-5">
                 <button

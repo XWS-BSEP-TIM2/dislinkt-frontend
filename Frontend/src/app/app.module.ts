@@ -68,6 +68,7 @@ import { JobOfferPageComponent } from './components/job-offer-page/job-offer-pag
 import { ProfilePreviewComponent } from './components/profile-page/profile-preview/profile-preview.component';
 //import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { TwoFactorAuthComponent } from './components/two-factor-auth/two-factor-auth.component';
+import { SelectTechnologiesDialogComponent } from './components/select-technologies-dialog/select-technologies-dialog.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { TwoFactorAuthComponent } from './components/two-factor-auth/two-factor-
     JobOfferPageComponent,
     ProfilePreviewComponent,
     TwoFactorAuthComponent,
+    SelectTechnologiesDialogComponent,
   ],
   imports: [
     BrowserModule,

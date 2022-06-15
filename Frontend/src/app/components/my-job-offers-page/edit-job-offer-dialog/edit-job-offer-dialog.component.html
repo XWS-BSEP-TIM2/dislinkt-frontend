@@ -24,10 +24,12 @@
     ></textarea>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" color="accent">
-    <mat-label>Technologies (comma separated)</mat-label>
-    <input matInput [(ngModel)]="technologies" />
-  </mat-form-field>
+  <div class="is-flex is-flex-direction-row my-3 pb-3">
+    <button mat-raised-button color="accent" (click)="openTechnologiesDialog()">
+      Manage technologies ({{ getTechnologyCount() }}
+      selected)
+    </button>
+  </div>
 
   <div
     class="mt-5 pt-5 is-flex is-flex-direction-row is-justify-content-space-between"

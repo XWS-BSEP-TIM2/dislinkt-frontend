@@ -1,46 +1,47 @@
 <div class="p-5 is-flex is-flex-direction-column dialog">
-    <h2>New Job Offer</h2>
-    <mat-form-field appearance="fill" color="accent">
-        <mat-label>Company name</mat-label>
-        <input matInput [(ngModel)]="offer.companyName" />
-      </mat-form-field>
+  <h2>New Job Offer</h2>
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Company name</mat-label>
+    <input matInput [(ngModel)]="offer.companyName" />
+  </mat-form-field>
 
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Position name</mat-label>
-      <input matInput [(ngModel)]="offer.position" />
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Position seniority</mat-label>
-      <input matInput [(ngModel)]="offer.seniority" />
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        placeholder="Tell us about your job offer..."
-        [(ngModel)]="offer.description"
-      ></textarea>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Technologies (comma separated)</mat-label>
-      <input matInput [(ngModel)]="technologies" />
-    </mat-form-field>
-    
-    <div
-      class="mt-5 pt-5 is-flex is-flex-direction-row is-justify-content-space-between"
-    >
-      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="!validForm()"
-        (click)="send()"
-      >
-        Send request
-      </button>
-    </div>
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Position name</mat-label>
+    <input matInput [(ngModel)]="offer.position" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Position seniority</mat-label>
+    <input matInput [(ngModel)]="offer.seniority" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      placeholder="Tell us about your job offer..."
+      [(ngModel)]="offer.description"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="is-flex is-flex-direction-row my-3 pb-3">
+    <button mat-raised-button color="accent" (click)="openTechnologiesDialog()">
+      Manage technologies ({{ getTechnologyCount() }}
+      selected)
+    </button>
   </div>
-  
+
+  <div
+    class="mt-5 pt-5 is-flex is-flex-direction-row is-justify-content-space-between"
+  >
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!validForm()"
+      (click)="send()"
+    >
+      Send request
+    </button>
+  </div>
+</div>

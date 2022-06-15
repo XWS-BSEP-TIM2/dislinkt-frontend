@@ -6,6 +6,8 @@ import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
 import { Skill } from 'src/app/model/skillModel';
 import { DateSecondsFormat } from 'src/app/model/dateSecondsFormat';
 import { Experience } from 'src/app/model/experienceModel';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectTechnologiesDialogComponent } from '../select-technologies-dialog/select-technologies-dialog.component';
 
 @Component({
   selector: 'edit-profile-page',
@@ -21,7 +23,8 @@ export class EditProfilePageComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public dialog: MatDialog
   ) {}
 
   changeProfileFormEditable: boolean = false;
@@ -339,5 +342,43 @@ export class EditProfilePageComponent implements OnInit {
         alert('Unable to generate api token');
       }
     );
+  }
+
+  getSkillsCount() {
+    if (this.skills != '') {
+      return this.skills.split(',').length;
+    } else {
+      return 0;
+    }
+  }
+
+  openSkillsDialog() {
+    const dialogRef = this.dialog.open(SelectTechnologiesDialogComponent, {
+      data: { currentTechnologies: this.skills },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      this.skills = result;
+    });
+  }
+
+  getInterestsCount() {
+    if (this.interests != '') {
+      return this.interests.split(',').length;
+    } else {
+      return 0;
+    }
+  }
+
+  openInterestsDialog() {
+    const dialogRef = this.dialog.open(SelectTechnologiesDialogComponent, {
+      data: { currentTechnologies: this.interests },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      this.interests = result;
+    });
   }
 }
