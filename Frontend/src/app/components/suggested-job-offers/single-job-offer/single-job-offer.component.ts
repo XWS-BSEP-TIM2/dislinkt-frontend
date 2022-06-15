@@ -14,6 +14,6 @@ export class SingleJobOfferComponent implements OnInit {
   ngOnInit(): void {}
 
   redirect() {
-    window.location.href = '/job-offer/' + this.offer.userId;
+    window.location.href = '/job-offer/' + this.offer.id;
   }
 }
