@@ -17,7 +17,6 @@ import { SuggestedConnectionsComponent } from './components/suggested-connection
 import { SuggestedJobOffersComponent } from './components/suggested-job-offers/suggested-job-offers.component';
 import { JobOffersPageComponent } from './components/job-offers-page/job-offers-page.component';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
-import { NotificationComponent } from './components/notification/notification.component';
 import { PostDisplayComponent } from './components/post-display/post-display.component';
 import { ChatPageComponent } from './components/chat-page/chat-page.component';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
@@ -69,6 +68,8 @@ import { ProfilePreviewComponent } from './components/profile-page/profile-previ
 //import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { TwoFactorAuthComponent } from './components/two-factor-auth/two-factor-auth.component';
 import { SelectTechnologiesDialogComponent } from './components/select-technologies-dialog/select-technologies-dialog.component';
+import { NotificationBoxComponent } from './components/dashboard/header/notification-box/notification-box.component';
+import { DateAsAgoPipe } from './services/shared/date-as-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,6 @@ import { SelectTechnologiesDialogComponent } from './components/select-technolog
     SuggestedJobOffersComponent,
     JobOffersPageComponent,
     EditProfilePageComponent,
-    NotificationComponent,
     PostDisplayComponent,
     ChatPageComponent,
     ChatDialogComponent,
@@ -131,6 +131,8 @@ import { SelectTechnologiesDialogComponent } from './components/select-technolog
     ProfilePreviewComponent,
     TwoFactorAuthComponent,
     SelectTechnologiesDialogComponent,
+    NotificationBoxComponent,
+    DateAsAgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -144,5 +146,6 @@ import { SelectTechnologiesDialogComponent } from './components/select-technolog
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [DateAsAgoPipe],
 })
 export class AppModule {}
