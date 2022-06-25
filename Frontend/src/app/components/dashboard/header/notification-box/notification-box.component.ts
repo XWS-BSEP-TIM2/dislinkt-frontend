@@ -19,9 +19,11 @@ export class NotificationBoxComponent implements OnInit {
 
   getNotifications() {
     this.notificationService.getNotifications().subscribe((data) => {
-      console.log(data);
       if (data != undefined) {
         this.userNotifications = data.notifications;
+        this.userNotifications = this.userNotifications.sort(
+          (a, b) => b.date.seconds - a.date.seconds
+        );
 
         this.unreadNotifications = this.userNotifications.filter(
           (n) => !n.seen
