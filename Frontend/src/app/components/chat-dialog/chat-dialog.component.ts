@@ -15,10 +15,19 @@ export class ChatDialogComponent implements OnInit {
 
     private _chat: Chat = new Chat();
     
-    @Input() set chat(value: Chat) {
+  @Input() set chat(value: Chat) {
+      console.log("@Input() set chat(value: Chat) POZVANA")
       this._chat = value;
-      if (this._chat.messages == null)
-        this._chat.messages = []
+      if (this._chat.messages == null) {
+        this._chat.messages = [] 
+      }
+      else {
+        if (this._chat.messages.length != this.lastMessageNum) {
+          //this.scrollChat()
+        }
+        this.lastMessageNum = this._chat.messages.length
+      }
+    
       this.setSeen();
     }
     get chat(): Chat { return this._chat; }
@@ -27,6 +36,8 @@ export class ChatDialogComponent implements OnInit {
   loginResponse!: LoginResponse;
 
   message: Message = new Message();
+
+  lastMessageNum: number = 0;
 
   constructor(private loginService: LoginService, private messageService: MessageService) { }
 
@@ -57,12 +68,14 @@ export class ChatDialogComponent implements OnInit {
     console.log(sendMsgReq)
     this._chat.messages.push(new Message(this.chat.userIDa, this.message.text))
     this.message.text = ""
-    this.scrollChat()
+    //this.lastMessageNum++
+    //this.scrollChat()
     this.messageService.sendMessage(sendMsgReq).subscribe((data) => {
       console.log(data)
 
     }, (err) => {
-        alert(err)
+        console.log(err)
+        //alert(err)
     });
   }
 
@@ -70,7 +83,12 @@ export class ChatDialogComponent implements OnInit {
     let element = document.getElementById("ChatDialogID")
     console.log(element)
     if(element != null)
-      element.scroll(0, -1000);
+      element.scroll(0, 100000);
+  }
+
+  ngForCallback() {
+    this.scrollChat()
+    console.log("RERENDERRRRR TYESSSSSSSSSS")
   }
 
 }
