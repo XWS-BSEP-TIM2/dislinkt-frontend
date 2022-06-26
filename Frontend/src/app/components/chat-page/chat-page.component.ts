@@ -31,7 +31,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     let self = this
     this.contactRefreshFunc = setInterval(function () {
       self.getMyContacts()
-    }, 5000);
+    }, 3000);
   } 
 
   getMyContacts() {
@@ -51,7 +51,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     let self = this
     this.chatRefreshFunc = setInterval(function () {
       self.loadChat(chatPreview);
-    }, 1000);
+    }, 3000);
   }
 
   loadChat(chatPreview: ChatPreview) {

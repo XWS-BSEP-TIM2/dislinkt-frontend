@@ -81,14 +81,13 @@ export class ChatDialogComponent implements OnInit {
 
   scrollChat() {
     let element = document.getElementById("ChatDialogID")
-    console.log(element)
+    //console.log(element)
     if(element != null)
       element.scroll(0, 100000);
   }
 
   ngForCallback() {
     this.scrollChat()
-    console.log("RERENDERRRRR TYESSSSSSSSSS")
   }
 
 }
