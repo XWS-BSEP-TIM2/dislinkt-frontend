@@ -41,7 +41,8 @@ export class ChatDialogComponent implements OnInit {
     this.messageService.setSeen(setSeenReq).subscribe((data) => {
       console.log(data)
     }, (err) => {
-        alert(err)
+        //alert(err)
+        console.log(err)
     });
   }
 
@@ -50,16 +51,26 @@ export class ChatDialogComponent implements OnInit {
   }
 
   sendMessage() {
+    if(this.message.text === "" || this.message.text.trim().length === 0) return
     //let sendMsgReq = new SendMessageRequest(this.chat.msgID, this.chat.userIDa, this.chat.userIDb, this.message.text, parseInt((new Date().getTime()/1000).toFixed()))
     let sendMsgReq = new SendMessageRequest(this.chat.msgID, this.chat.userIDa, this.chat.userIDb, this.message.text)
     console.log(sendMsgReq)
     this._chat.messages.push(new Message(this.chat.userIDa, this.message.text))
+    this.message.text = ""
+    this.scrollChat()
     this.messageService.sendMessage(sendMsgReq).subscribe((data) => {
       console.log(data)
-      this.message.text = ""
+
     }, (err) => {
         alert(err)
     });
+  }
+
+  scrollChat() {
+    let element = document.getElementById("ChatDialogID")
+    console.log(element)
+    if(element != null)
+      element.scroll(0, -1000);
   }
 
 }
