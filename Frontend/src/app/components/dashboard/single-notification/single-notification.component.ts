@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { timeOffset } from 'src/app/app-global';
 import { NotificationModel } from 'src/app/model/notification';
 
 @Component({
@@ -19,7 +20,7 @@ export class SingleNotificationComponent implements OnInit {
 
   getDateFromSeconds(seconds: number): Date {
     var date = new Date(1970, 0, 1); // Epoch
-    date.setSeconds(seconds);
+    date.setSeconds(seconds + timeOffset);
     return date;
   }
 
