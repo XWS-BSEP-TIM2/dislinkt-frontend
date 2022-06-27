@@ -14,10 +14,41 @@ export class NotificationBoxComponent implements OnInit {
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    this.getNotifications();
+    this.getNotificationsSilent();
+
+    setInterval(() => {
+      this.refresh();
+    }, 5000);
   }
 
-  getNotifications() {
+  async refresh() {
+    this.getNotificationsWithSound();
+  }
+
+  getNotificationsWithSound() {
+    let oldUnread = this.unreadNotifications;
+    this.notificationService.getNotifications().subscribe((data) => {
+      if (data != undefined) {
+        this.userNotifications = data.notifications;
+        this.userNotifications = this.userNotifications.sort(
+          (a, b) => b.date.seconds - a.date.seconds
+        );
+
+        this.unreadNotifications = this.userNotifications.filter(
+          (n) => !n.seen
+        ).length;
+
+        if (this.unreadNotifications > oldUnread) {
+          let audio = new Audio();
+          audio.src = '../../../../assets/notification.wav';
+          audio.load();
+          audio.play();
+        }
+      }
+    });
+  }
+
+  getNotificationsSilent() {
     this.notificationService.getNotifications().subscribe((data) => {
       if (data != undefined) {
         this.userNotifications = data.notifications;
@@ -37,7 +68,7 @@ export class NotificationBoxComponent implements OnInit {
       this.notificationService.readNotifications().subscribe((data) => {
         this.unreadNotifications = 0;
         setTimeout(() => {
-          this.getNotifications();
+          this.getNotificationsWithSound();
         }, 2000);
       });
     }
