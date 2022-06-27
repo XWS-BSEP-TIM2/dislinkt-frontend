@@ -5,9 +5,9 @@ import { Profile } from 'src/app/model/profileModel';
 import { ChangePasswordRequest } from 'src/app/model/changePasswordRequest';
 import { Skill } from 'src/app/model/skillModel';
 import { DateSecondsFormat } from 'src/app/model/dateSecondsFormat';
-import { Experience } from 'src/app/model/experienceModel';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectTechnologiesDialogComponent } from '../select-technologies-dialog/select-technologies-dialog.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'edit-profile-page',
@@ -24,7 +24,8 @@ export class EditProfilePageComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private loginService: LoginService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private notificationService: NotificationService
   ) {}
 
   changeProfileFormEditable: boolean = false;
@@ -33,6 +34,7 @@ export class EditProfilePageComponent implements OnInit {
   changePasswordFormVisible: boolean = false;
   changeBiographyFormVisible: boolean = false;
   changeExperienceFormVisible: boolean = false;
+  changeNotificationsFormVisible: boolean = false;
 
   newUsername: string = '';
   newEmail: string = '';
@@ -40,6 +42,10 @@ export class EditProfilePageComponent implements OnInit {
   biography: string = '';
   skills: string = '';
   interests: string = '';
+  notifications: string = '1';
+  showPostNotifications = false;
+  showConnectionNotifications = false;
+  showMessageNotifications = false;
 
   ngOnInit(): void {
     this.loadProfile();
@@ -70,6 +76,22 @@ export class EditProfilePageComponent implements OnInit {
         .toString();
 
       this.loadExperiences();
+    });
+
+    this.notificationService.getNotificationSettings().subscribe((data) => {
+      console.log(data);
+
+      if (data.postNotifications != undefined) {
+        this.showPostNotifications = data.postNotifications;
+      }
+
+      if (data.messageNotifications != undefined) {
+        this.showMessageNotifications = data.messageNotifications;
+      }
+
+      if (data.connectionNotifications != undefined) {
+        this.showConnectionNotifications = data.connectionNotifications;
+      }
     });
   }
 
@@ -147,6 +169,30 @@ export class EditProfilePageComponent implements OnInit {
     this.loadExperiences();
   }
 
+  startChangeNotifications() {
+    this.cancelAllOtherForms(7);
+    this.changeNotificationsFormVisible = true;
+  }
+
+  cancelChangeNotifications() {
+    this.changeNotificationsFormVisible = false;
+    this.notificationService.getNotificationSettings().subscribe((data) => {
+      console.log(data);
+
+      if (data.postNotifications != undefined) {
+        this.showPostNotifications = data.postNotifications;
+      }
+
+      if (data.messageNotifications != undefined) {
+        this.showMessageNotifications = data.messageNotifications;
+      }
+
+      if (data.connectionNotifications != undefined) {
+        this.showConnectionNotifications = data.connectionNotifications;
+      }
+    });
+  }
+
   cancelAllOtherForms(n: number) {
     if (n != 1) this.cancelChangeProfile();
     if (n != 2) this.cancelChangeUsername();
@@ -154,6 +200,64 @@ export class EditProfilePageComponent implements OnInit {
     if (n != 4) this.cancelChangePassword();
     if (n != 5) this.cancelChangeBiography();
     if (n != 6) this.cancelChangeExperience();
+    if (n != 7) this.cancelChangeNotifications();
+  }
+
+  changeNotifications() {
+    let code = '1';
+
+    if (
+      !this.showPostNotifications &&
+      !this.showConnectionNotifications &&
+      !this.showMessageNotifications
+    ) {
+      code = '2';
+    } else if (
+      this.showPostNotifications &&
+      !this.showConnectionNotifications &&
+      !this.showMessageNotifications
+    ) {
+      code = '3';
+    } else if (
+      !this.showPostNotifications &&
+      this.showConnectionNotifications &&
+      !this.showMessageNotifications
+    ) {
+      code = '4';
+    } else if (
+      !this.showPostNotifications &&
+      !this.showConnectionNotifications &&
+      this.showMessageNotifications
+    ) {
+      code = '5';
+    } else if (
+      this.showPostNotifications &&
+      !this.showConnectionNotifications &&
+      this.showMessageNotifications
+    ) {
+      code = '6';
+    } else if (
+      !this.showPostNotifications &&
+      this.showConnectionNotifications &&
+      this.showMessageNotifications
+    ) {
+      code = '7';
+    } else if (
+      this.showPostNotifications &&
+      this.showConnectionNotifications &&
+      !this.showMessageNotifications
+    ) {
+      code = '8';
+    }
+
+    this.notificationService
+      .updateNotificationSettings(code)
+      .subscribe((data) => {
+        if (data) {
+          this.loadProfile();
+          this.cancelChangeNotifications();
+        }
+      });
   }
 
   changeProfile() {

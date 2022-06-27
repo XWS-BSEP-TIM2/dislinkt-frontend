@@ -14,7 +14,10 @@ export class ProfileRequestsComponent implements OnInit {
 
   loadData() {
     this.connectionService.GetFriendRequests().subscribe((data) => {
-      this.connectionRequest = data;
+      console.log(data);
+      if (data != null) {
+        this.connectionRequest = data;
+      }
     });
   }
 

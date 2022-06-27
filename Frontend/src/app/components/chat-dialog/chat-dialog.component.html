@@ -21,12 +21,14 @@
         </div>
 
         <!-- Chat bubbles -->
-        <div class="row chat-bubble-area">
-            <div *ngFor="let message of chat.messages">
+        <div id="ChatDialogID" class="row chat-bubble-area">
+            <div *ngFor="let message of chat.messages; let i = index">
                 <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
+                <span *ngIf="i == chat.messages.length-1">{{ngForCallback()}}</span>
             </div>
-
         </div>
+
+
 
         <!-- Send new message -->
         <div class="row chat-text-area">

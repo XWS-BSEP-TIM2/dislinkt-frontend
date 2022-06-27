@@ -1,0 +1,21 @@
+<button
+  mat-icon-button
+  class="mr-5"
+  [matMenuTriggerFor]="notifications"
+  (click)="readNotifications()"
+>
+  <mat-icon [matBadge]="unreadNotifications" matBadgeColor="primary"
+    >notifications_none</mat-icon
+  >
+</button>
+<mat-menu #notifications="matMenu" class="mt-2">
+  <div class="notification-menu">
+    <p *ngIf="userNotifications.length == 0" class="m-5">
+      No notifications to show.
+    </p>
+    <single-notification
+      *ngFor="let notification of userNotifications"
+      [notification]="notification"
+    ></single-notification>
+  </div>
+</mat-menu>

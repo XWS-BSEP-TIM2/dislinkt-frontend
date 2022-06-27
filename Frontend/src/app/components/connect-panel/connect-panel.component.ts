@@ -22,12 +22,14 @@ export class ConnectPanelComponent implements OnInit {
   loadData() {
     this.connectionPanelModel = new ConnectionPanelModel();
 
-    this.connectionService
-      .GetDetail(this.userIDa, this.userIDb)
-      .subscribe((data) => {
-        this.connectionPanelModel = data;
-        this.ready = true;
-      });
+    if (this.userIDa != '' && this.userIDb != '') {
+      this.connectionService
+        .GetDetail(this.userIDa, this.userIDb)
+        .subscribe((data) => {
+          this.connectionPanelModel = data;
+          this.ready = true;
+        });
+    }
   }
 
   ngOnInit(): void {

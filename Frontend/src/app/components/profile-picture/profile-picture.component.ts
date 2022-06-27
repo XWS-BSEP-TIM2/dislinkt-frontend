@@ -18,7 +18,7 @@ export class ProfilePictureComponent implements OnInit {
   @Input() activeUser: boolean = false;
   @Input() connection: ConnectionDetails = new ConnectionDetails();
   @Input() post: Post = new Post();
-  fullName: string = 'Null';
+  @Input() fullName: string = 'Null';
 
   constructor(
     private profileService: ProfileService,

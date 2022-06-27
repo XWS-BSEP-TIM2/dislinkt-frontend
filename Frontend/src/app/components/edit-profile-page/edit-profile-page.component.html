@@ -421,6 +421,84 @@
       </mat-card-content>
     </mat-card>
 
+    <!-- edit email -->
+    <mat-card class="editSectionCss">
+      <div class="columns">
+        <div class="column is-10">
+          <mat-card-header>
+            <mat-card-title
+              >Change <strong>notification settings</strong>
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="column is-2">
+          <button
+            style="margin-left: 5px"
+            *ngIf="!changeNotificationsFormVisible"
+            (click)="startChangeNotifications()"
+            class="button is-danger is-outlined"
+          >
+            change
+          </button>
+        </div>
+      </div>
+      <mat-card-content>
+        <div *ngIf="changeNotificationsFormVisible" class="mt-5 mb-5">
+          <hr />
+          <div class="columns">
+            <div class="column is-3"></div>
+            <div class="column is-6">
+              <div
+                class="is-flex is-flex-direction-column is-align-items-center"
+              >
+                <div>
+                  <div class="mb-3">
+                    <mat-slide-toggle
+                      [checked]="showPostNotifications"
+                      [(ngModel)]="showPostNotifications"
+                    >
+                      Post notifications
+                    </mat-slide-toggle>
+                  </div>
+                  <div class="mb-3">
+                    <mat-slide-toggle
+                      [checked]="showConnectionNotifications"
+                      [(ngModel)]="showConnectionNotifications"
+                    >
+                      Connection notifications
+                    </mat-slide-toggle>
+                  </div>
+                  <div class="mb-3">
+                    <mat-slide-toggle
+                      [checked]="showMessageNotifications"
+                      [(ngModel)]="showMessageNotifications"
+                    >
+                      Message notifications
+                    </mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+              <div class="is-flex is-justify-content-center mt-5">
+                <button
+                  (click)="cancelChangeNotifications()"
+                  class="button is-danger m-2"
+                >
+                  Cancel
+                </button>
+                <button
+                  (click)="changeNotifications()"
+                  class="button is-success m-2"
+                >
+                  Change
+                </button>
+              </div>
+            </div>
+            <div class="column is-3"></div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
     <!--- Change biography, skills and interests -->
     <mat-card class="editSectionCss">
       <div class="columns">

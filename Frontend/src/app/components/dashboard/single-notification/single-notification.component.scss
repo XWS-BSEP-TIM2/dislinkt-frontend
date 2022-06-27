@@ -5,4 +5,15 @@
   &:hover {
     background-color: #f0f0f0;
   }
+
+  transition: all ease-in-out 0.3s;
+}
+
+.unread {
+  transition: all ease-in-out 0.3s;
+  background-color: #b8e9ff75 !important;
+
+  &:hover {
+    background-color: #cef0ff75 !important;
+  }
 }
