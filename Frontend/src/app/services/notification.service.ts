@@ -26,4 +26,26 @@ export class NotificationService {
       headers: headers,
     });
   }
+
+  getNotificationSettings() {
+    const headers = this.loginService.getHeaders();
+    const url =
+      this.url + '/settings/' + this.loginService.getCurrentUser().userID;
+    return this._http.get<any>(url, {
+      headers: headers,
+    });
+  }
+
+  updateNotificationSettings(code: string) {
+    const headers = this.loginService.getHeaders();
+    const url =
+      this.url +
+      '/settings/' +
+      this.loginService.getCurrentUser().userID +
+      '/' +
+      code;
+    return this._http.put<any>(url, null, {
+      headers: headers,
+    });
+  }
 }
