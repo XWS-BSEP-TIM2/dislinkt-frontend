@@ -13,7 +13,7 @@ export class SuggestedJobOffersComponent implements OnInit {
   constructor(private jobOfferService: JobOfferService) {}
 
   ngOnInit(): void {
-    this.jobOfferService.getAllJobOffers().subscribe((data) => {
+    this.jobOfferService.getRecommendetJobOffers().subscribe((data) => {
       this.offers = data.jobOffers;
     });
   }

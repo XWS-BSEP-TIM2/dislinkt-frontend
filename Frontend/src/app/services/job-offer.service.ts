@@ -40,6 +40,13 @@ export class JobOfferService {
     });
   }
 
+  getRecommendetJobOffers() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url+'/recommend', {
+      headers: headers,
+    });
+  }
+
   getJobOffer(id: string) {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(this.url + '/' + id, {

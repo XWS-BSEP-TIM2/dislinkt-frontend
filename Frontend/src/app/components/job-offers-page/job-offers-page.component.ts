@@ -9,13 +9,11 @@ import { JobOfferService } from 'src/app/services/job-offer.service';
 })
 export class JobOffersPageComponent implements OnInit {
   offers: JobOffer[] = [];
-
   constructor(private jobOfferService: JobOfferService) {}
 
   ngOnInit(): void {
-    this.jobOfferService.getAllJobOffers().subscribe((data) => {
+    this.jobOfferService.getRecommendetJobOffers().subscribe((data) => {
       this.offers = data.jobOffers;
-      this.offers.reverse();
     });
   }
 }
