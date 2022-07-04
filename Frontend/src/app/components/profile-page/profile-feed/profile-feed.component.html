@@ -7,6 +7,9 @@
         <p class="has-text-justified">
           {{ userProfile.biography }}
         </p>
+        <p class="has-text-justified" *ngIf="userProfile.biography == ''">
+          No biography to display.
+        </p>
       </div>
       <div class="column is-5 ml-5">
         <h2>Basic informations</h2>

@@ -29,7 +29,9 @@ export class NotificationBoxComponent implements OnInit {
     let oldUnread = this.unreadNotifications;
     this.notificationService.getNotifications().subscribe((data) => {
       if (data != undefined) {
-        this.userNotifications = data.notifications;
+        if (data.notifications != undefined) {
+          this.userNotifications = data.notifications;
+        }
         this.userNotifications = this.userNotifications.sort(
           (a, b) => b.date.seconds - a.date.seconds
         );
@@ -51,7 +53,9 @@ export class NotificationBoxComponent implements OnInit {
   getNotificationsSilent() {
     this.notificationService.getNotifications().subscribe((data) => {
       if (data != undefined) {
-        this.userNotifications = data.notifications;
+        if (data.notifications != undefined) {
+          this.userNotifications = data.notifications;
+        }
         this.userNotifications = this.userNotifications.sort(
           (a, b) => b.date.seconds - a.date.seconds
         );

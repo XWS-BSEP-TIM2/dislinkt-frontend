@@ -1,0 +1,70 @@
+mat-drawer {
+  border: none;
+}
+
+mat-drawer-content {
+  background-color: #f3f5f7 !important;
+}
+
+.content-container {
+  margin-right: 70px;
+  margin-top: 30px;
+  margin-left: 90px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.sidebar-container h1 {
+  font-weight: 900;
+  margin-bottom: 5px !important;
+  font-size: 28px !important;
+}
+
+.sidebar-container {
+  width: 240px;
+  background-color: white;
+}
+
+img {
+  margin-top: 100px;
+}
+
+hr {
+  border-top: #bdbdbd solid 1px;
+}
+
+.highlights h3 {
+  font-size: 1.4rem !important;
+  margin-bottom: 5px;
+  color: gray;
+}
+
+.highlights h2 {
+  font-size: 3rem !important;
+  font-weight: bold;
+}
+
+.highlights img {
+  margin: auto;
+}
+
+.highlight-part {
+  width: 50%;
+}
+
+.red-icon {
+  color: rgb(170, 39, 39) !important;
+}
+
+.green-icon {
+  color: rgb(73, 129, 21) !important;
+}
+
+.td-text {
+  position: relative;
+  top: 6px;
+}
+
+.is-primary {
+  background-color: rgb(57, 176, 255) !important;
+}

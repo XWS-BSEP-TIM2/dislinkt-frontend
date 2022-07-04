@@ -1,3 +1,194 @@
-<div>
-    Admin Dashboard
-</div>
+<mat-drawer-container class="stretch-height">
+  <mat-drawer mode="side" opened
+    ><div class="sidebar-container stretch-height">
+      <div
+        class="stretch-height p-5 is-flex is-flex-direction-column is-align-items-center"
+      >
+        <div class="clickable">
+          <img src="assets/Dislinkt-logo-no-padding.png" width="80px" />
+        </div>
+        <h1 class="ml-2 mt-5 mb-5 pb-5 clickable">Dislinkt</h1>
+        <button
+          mat-raised-button
+          color="accent"
+          class="shadow-hover mt-5"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div>
+      <div
+        class="is-flex stretch-width is-flex-direction-column is-align-items-center"
+      >
+        <div class="content-container mb-5 pb-5">
+          <h1 class="mt-5 pt-5">Admin / Dashboard</h1>
+          <hr class="my-5" />
+          <div class="columns highlights">
+            <div class="column">
+              <div class="box is-flex is-flex-direction-row stretch-width">
+                <div class="highlight-part">
+                  <h3>Total events</h3>
+                  <h2>{{ totalEvents }}</h2>
+                </div>
+                <div class="is-flex is-align-items-center highlight-part">
+                  <img src="../../../assets/event.png" width="60px" />
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box is-flex is-flex-direction-row stretch-width">
+                <div class="highlight-part">
+                  <h3>Registered users</h3>
+                  <h2>{{ totalUsers }}</h2>
+                </div>
+                <div class="is-flex is-align-items-center highlight-part">
+                  <img src="../../../assets/team.png" width="60px" />
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box is-flex is-flex-direction-row stretch-width">
+                <div class="highlight-part">
+                  <h3>Post interactions</h3>
+                  <h2>{{ totalPosts }}</h2>
+                </div>
+                <div class="is-flex is-align-items-center highlight-part">
+                  <img src="../../../assets/blog.png" width="60px" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Application users</strong>
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <table class="table stretch-width">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Private</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of profiles">
+                  <td>
+                    <profile-picture
+                      [user]="user"
+                      [size]="30"
+                    ></profile-picture>
+                  </td>
+                  <td class="td-text">
+                    {{ user.name }}
+                  </td>
+                  <td class="td-text">
+                    {{ user.surname }}
+                  </td>
+                  <td class="td-text">
+                    <strong> {{ user.id }}</strong>
+                  </td>
+                  <td class="td-text">
+                    {{ user.username }}
+                  </td>
+                  <td class="td-text">
+                    {{ user.email }}
+                  </td>
+                  <td class="td-text">
+                    <mat-icon
+                      *ngIf="user.isPrivate == true"
+                      class="red-icon"
+                      matTooltip="Private profile"
+                      >lock</mat-icon
+                    >
+                    <mat-icon
+                      *ngIf="user.isPrivate != true"
+                      class="green-icon"
+                      matTooltip="Public profile"
+                      >people</mat-icon
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="mt-5" [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title> <strong>Events</strong> </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table class="table stretch-width">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Entity Id</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of events">
+                  <td>
+                    <span
+                      class="tag is-primary"
+                      *ngIf="
+                        event.title == 'Registration' ||
+                        event.title == 'Update Profile'
+                      "
+                      >{{ event.title }}</span
+                    >
+                    <span
+                      class="tag is-link"
+                      *ngIf="event.title == 'Login' || event.title == 'Logout'"
+                      >{{ event.title }}</span
+                    >
+                    <span
+                      class="tag is-warning"
+                      *ngIf="
+                        event.title == 'Job Offer' ||
+                        event.title == 'Job Offer Update'
+                      "
+                      >{{ event.title }}</span
+                    >
+                    <span
+                      class="tag is-success"
+                      *ngIf="event.title == 'Post'"
+                      >{{ event.title }}</span
+                    >
+                    <span
+                      class="tag is-danger"
+                      *ngIf="event.title == 'Job Offer Delete'"
+                      >{{ event.title }}</span
+                    >
+                  </td>
+                  <td class="td-text">
+                    {{ event.description }}
+                  </td>
+                  <td class="td-text">
+                    <strong> {{ event.userId }}</strong>
+                  </td>
+                  <td class="td-text">
+                    {{ event.dateDisplay | date: "medium" }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

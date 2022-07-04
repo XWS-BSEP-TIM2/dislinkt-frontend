@@ -1,160 +1,255 @@
-<div class="background-login-page" >
-    <div class="rows">
-        <div class="row">
-            <img src="assets/layered-waves-haikei.svg" class="waves-css">
-        </div>
-        <div class="row" >
-            <div class="container">
-                <mat-card>
-                    <div class="columns is-flex">
-                        <div class="column is-6 blobwallpaper">
-                            <div class="rows">
-                                <div class="row is-flex is-justify-content-center">
-                                    <img src="assets/Dislinkt-white-logo-transparent.png" class="img-dislink-logo">
-                                </div>
-                                <div class="row">
-                                    <br>
-                                    <h1 class="has-text-centered" style="color: white;">Dislinkt</h1>
-                                    <br>
-
-                                    <p class="has-text-centered dislinkt-description">Dislinkt is the world's largest professional network on the internet. You can use Dislinkt to find the right job or internship, connect and strengthen professional relationships, and learn the skills you need to succeed in your career.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column is-6">
-                            <div class="rows">
-                                
-                
-                                <h1 class="has-text-centered has-text-weight-bold mt-5" style="color: #6E87D6;">Register</h1>
-
-                               
-                                <!-- Inputs -->
-                                <div class="columns">
-                                  <div class="column is-2"></div>
-                                  <div class="column is-8">
-                                    <div class="field">
-                                        <label class="label">Name</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.name" type="text" placeholder="Your name">
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="field">
-                                        <label class="label">Surname </label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.surname" type="text" placeholder="Your Surname">
-                                        </div>
-                                      </div>
-
-                                      <div class="field">
-                                        <label class="label">Username</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.username" type="text" placeholder="Your unique username">
-                                        </div>
-                                      </div>
-
-                                      <div class="field">
-                                        <label class="label">Email</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.email" type="text" placeholder="Your email">
-                                        </div>
-                                      </div>
-
-                                      <div class="field">
-                                        <label class="label">Phone number</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.phoneNumber" type="text" placeholder="Your phone number">
-                                        </div>
-                                      </div>
-
-                                      <div class="field" style="width: 50%;">
-                                        <label class="label">Birthday</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.birthday" type="date">
-                                        </div>
-                                      </div>
-
-
-                                      <div class="field">
-                                        <div class="control">
-                                          <label class="label">Gender</label>
-                                          <label class="radio">
-                                            <input type="radio" (click)="registrationModel.gender='Male'" name="question">
-                                            male 
-                                          </label> <br>
-                                          <label class="radio">
-                                            <input type="radio" (click)="registrationModel.gender='Female'" name="question">
-                                            female 
-                                          </label>
-                                        </div>
-                                      </div> <br> <br>
-
-                                      <div class="field">
-                                        <label class="label">Password</label>
-                                        <div class="control ">
-
-                                          <p class="control has-icons-right">
-                                            <input class="input" [(ngModel)]="registrationModel.password" type="password" placeholder="Enter password">
-                                            <span class="icon is-small is-right">
-                                              <mat-icon *ngIf="registrationModel.passwordStrength()[1]" style="color: rgba(60, 255, 0, 0.812);">check_circle_outline</mat-icon>    
-                                              <mat-icon *ngIf="!registrationModel.passwordStrength()[1]" style="color: red;">cancel</mat-icon>
-                                            </span>
-                                          </p>
-                                          <p [ngClass]="registrationModel.passwordStrength()[1] ? 'has-text-success' : 'has-text-danger'">{{registrationModel.passwordStrength()[0]}}</p>
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="field">
-                                        <label class="label ">Confirm Password</label>
-                                        <div class="control">
-                                          <input class="input" [(ngModel)]="registrationModel.confirmPassword" type="password" placeholder="Confirm password" [class.is-danger] = "!registrationModel.passwordMatch()">
-                                          <p *ngIf="!registrationModel.passwordMatch()" class="has-text-danger">Password did not match</p>
-                                        </div>
-                                      </div>
-
-                                      <div class="field">
-                                        <div class="control">
-                                          <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]="registrationModel.isPrivate">
-                                            Private dislinkt account
-                                          </label>
-                                        </div>
-                                      </div>
-                                             
-                                  </div>
-                                  <div class="column is-2"></div>
-                                </div>
-                                
-
-                                <div class="row has-text-centered">
-                                  <p *ngIf="!registrationModel.validateProperty()" class="has-text-danger">Please fill in all fields</p>
-                                </div>
-
-                                <div class="row">
-                                    <br>
-                                    <div class="is-flex is-justify-content-center">
-                                        <button (click)="register()" class="button is-primary is-rounded" [class.disabled] = "!registrationModel.validateProperty()">Register</button>
-                                    </div>
-                                </div>
-
-                               
-
-                                <div class="row has-text-centered mt-5">
-                                    You already have an account? <a href="/login">Login</a>
-                                </div>
-
-                                <div class="row is-flex is-justify-content-center mt-5">
-                                    <button [routerLink]="['/welcome']" class="button is-outlined">Continue as a guest</button>
-                                </div>
-
-                            </div>
-    
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-        </div>
+<div class="background-login-page">
+  <div class="rows">
+    <div class="row">
+      <img src="assets/layered-waves-haikei.svg" class="waves-css" />
     </div>
-</div>
+    <div class="row">
+      <div class="container">
+        <mat-card>
+          <div class="columns is-flex">
+            <div class="column is-6 blobwallpaper">
+              <div class="rows">
+                <div class="row is-flex is-justify-content-center">
+                  <img
+                    src="assets/Dislinkt-white-logo-transparent.png"
+                    class="img-dislink-logo"
+                  />
+                </div>
+                <div class="row">
+                  <br />
+                  <h1 class="has-text-centered" style="color: white">
+                    Dislinkt
+                  </h1>
+                  <br />
 
+                  <p class="has-text-centered dislinkt-description">
+                    Dislinkt is the world's largest professional network on the
+                    internet. You can use Dislinkt to find the right job or
+                    internship, connect and strengthen professional
+                    relationships, and learn the skills you need to succeed in
+                    your career.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="rows">
+                <h1
+                  class="has-text-centered has-text-weight-bold mt-5"
+                  style="color: #6e87d6"
+                >
+                  Register
+                </h1>
+
+                <!-- Inputs -->
+                <div class="columns">
+                  <div class="column is-2"></div>
+                  <div class="column is-8">
+                    <div class="field">
+                      <label class="label">Name</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.name"
+                          type="text"
+                          placeholder="Your name"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Surname </label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.surname"
+                          type="text"
+                          placeholder="Your Surname"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Username</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.username"
+                          type="text"
+                          placeholder="Your unique username"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Email</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.email"
+                          type="text"
+                          placeholder="Your email"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Phone number</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.phoneNumber"
+                          type="text"
+                          placeholder="Your phone number"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field" style="width: 50%">
+                      <label class="label">Birthday</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.birthday"
+                          type="date"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="control">
+                        <label class="label">Gender</label>
+                        <label class="radio">
+                          <input
+                            type="radio"
+                            (click)="registrationModel.gender = 'Male'"
+                            name="question"
+                          />
+                          male
+                        </label>
+                        <br />
+                        <label class="radio">
+                          <input
+                            type="radio"
+                            (click)="registrationModel.gender = 'Female'"
+                            name="question"
+                          />
+                          female
+                        </label>
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="field">
+                      <label class="label">Password</label>
+                      <div class="control">
+                        <p class="control has-icons-right">
+                          <input
+                            class="input"
+                            [(ngModel)]="registrationModel.password"
+                            type="password"
+                            placeholder="Enter password"
+                          />
+                          <span class="icon is-small is-right">
+                            <mat-icon
+                              *ngIf="registrationModel.passwordStrength()[1]"
+                              style="color: rgba(60, 255, 0, 0.812)"
+                              >check_circle_outline</mat-icon
+                            >
+                            <mat-icon
+                              *ngIf="!registrationModel.passwordStrength()[1]"
+                              style="color: red"
+                              >cancel</mat-icon
+                            >
+                          </span>
+                        </p>
+                        <p
+                          [ngClass]="
+                            registrationModel.passwordStrength()[1]
+                              ? 'has-text-success'
+                              : 'has-text-danger'
+                          "
+                        >
+                          {{ registrationModel.passwordStrength()[0] }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Confirm Password</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          [(ngModel)]="registrationModel.confirmPassword"
+                          type="password"
+                          placeholder="Confirm password"
+                          [class.is-danger]="!registrationModel.passwordMatch()"
+                        />
+                        <p
+                          *ngIf="!registrationModel.passwordMatch()"
+                          class="has-text-danger"
+                        >
+                          Password did not match
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="control">
+                        <label class="checkbox">
+                          <input
+                            type="checkbox"
+                            [(ngModel)]="registrationModel.isPrivate"
+                          />
+                          Private dislinkt account
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-2"></div>
+                </div>
+
+                <div class="row has-text-centered">
+                  <p
+                    *ngIf="!registrationModel.validateProperty()"
+                    class="has-text-danger"
+                  >
+                    Please fill in all fields
+                  </p>
+                </div>
+
+                <div class="row">
+                  <br />
+                  <div class="is-flex is-justify-content-center">
+                    <button
+                      (click)="register()"
+                      class="button is-primary is-rounded"
+                      [class.disabled]="!registrationModel.validateProperty()"
+                    >
+                      Register
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row has-text-centered mt-5">
+                  You already have an account? <a href="/login">Login</a>
+                </div>
+
+                <div class="row is-flex is-justify-content-center mt-5">
+                  <button
+                    [routerLink]="['/welcome']"
+                    class="button is-outlined"
+                  >
+                    Continue as a guest
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="gray"></div>
+</div>

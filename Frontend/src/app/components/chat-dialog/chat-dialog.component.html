@@ -1,46 +1,49 @@
 <div class="rows">
-
-    <div *ngIf="chat.userIDb === ''" style="height: 750px;">
-        <div class="row is-flex is-justify-content-center">
-            <img src="assets/chat.png" style="margin-top: 100px;" />
-        </div>
+  <div *ngIf="chat.userIDb === ''" style="height: 670px">
+    <div class="row is-flex is-justify-content-center">
+      <img src="assets/chat.png" style="margin-top: 50px" />
     </div>
-    <div *ngIf="chat.userIDb !== ''">
-        <!-- Header of selected contact -->
-        <div class="row header-chat-dialog">
-            <div class="level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <ngx-avatar name="{{chat.fullNameUserB}}" size="60"></ngx-avatar>
-                    </div>
-                    <div class="level-item">
-                        <h2>{{chat.fullNameUserB}}</h2>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div *ngIf="chat.userIDb !== ''" style="height: 670px">
+    <!-- Header of selected contact -->
+    <div class="row header-chat-dialog">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <ngx-avatar name="{{ chat.fullNameUserB }}" size="60"></ngx-avatar>
+          </div>
+          <div class="level-item">
+            <h2>{{ chat.fullNameUserB }}</h2>
+          </div>
         </div>
-
-        <!-- Chat bubbles -->
-        <div id="ChatDialogID" class="row chat-bubble-area">
-            <div *ngFor="let message of chat.messages; let i = index">
-                <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
-                <span *ngIf="i == chat.messages.length-1">{{ngForCallback()}}</span>
-            </div>
-        </div>
-
-
-
-        <!-- Send new message -->
-        <div class="row chat-text-area">
-            <div class="columns">
-                <div class="column is-10">
-                    <input (keyup.enter)="sendMessage()" type="text" [(ngModel)]="message.text" class="input is-rounded">
-                </div>
-                <div class="column is-2">
-                    <button (click)="sendMessage()" class="button is-rounded send-button">send</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
+    <!-- Chat bubbles -->
+    <div id="ChatDialogID" class="row chat-bubble-area">
+      <div *ngFor="let message of chat.messages; let i = index">
+        <chat-bubble [message]="message" [isMe]="isMe(message)"></chat-bubble>
+        <span *ngIf="i == chat.messages.length - 1">{{ ngForCallback() }}</span>
+      </div>
+    </div>
+
+    <!-- Send new message -->
+    <div class="row chat-text-area">
+      <div class="columns">
+        <div class="column is-10">
+          <input
+            (keyup.enter)="sendMessage()"
+            type="text"
+            [(ngModel)]="message.text"
+            class="input is-rounded"
+          />
+        </div>
+        <div class="column is-2">
+          <button (click)="sendMessage()" class="button is-rounded send-button">
+            send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

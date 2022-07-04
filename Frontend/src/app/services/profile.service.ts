@@ -109,4 +109,10 @@ export class ProfileService {
 
     return data;
   }
+
+  getEvents() {
+    const headers = this.loginService.getHeaders();
+    const url = server + 'events/';
+    return this._http.get<any>(url, { headers: headers });
+  }
 }
