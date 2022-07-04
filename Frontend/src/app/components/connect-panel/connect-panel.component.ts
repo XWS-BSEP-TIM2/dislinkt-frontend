@@ -133,4 +133,8 @@ export class ConnectPanelComponent implements OnInit {
         this.loadData();
       });
   }
+
+  redirectChat() {
+    window.location.href = 'chat';
+  }
 }
