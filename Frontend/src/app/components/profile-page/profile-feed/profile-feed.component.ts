@@ -29,15 +29,16 @@ export class ProfileFeedComponent implements OnInit {
     this.profileService.getUserById(this.userProfile.id).subscribe((data) => {
       this.profileService.modifyProfileData(data);
       this.userProfile = data.profile;
-      if (data.biography == undefined) {
+      if (data.profile.biography == undefined) {
         this.userProfile.biography = '';
       }
-      if (data.skills == undefined) {
+      if (data.profile.skills == undefined) {
         this.userProfile.skills = [];
       }
-      if (data.experiences == undefined) {
+      if (data.profile.experiences == undefined) {
         this.userProfile.experiences = [];
       }
+
       this.initExperiences();
     });
 
