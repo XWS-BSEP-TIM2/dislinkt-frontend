@@ -115,4 +115,9 @@ export class ProfileService {
     const url = server + 'events/';
     return this._http.get<any>(url, { headers: headers });
   }
+    updateProfileSkills(profile: any) {
+    const headers = this.loginService.getHeaders();
+    const url = this.url;
+    return this._http.put<any>(url+'/skills', profile, { headers: headers });
+  }
 }
